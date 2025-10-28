@@ -7,7 +7,7 @@ description: Управляйте настройками приложения ч
 **Функционал управление приложения** включает два направления:
 
 * [Стандартные параметры](app-management.md#standartnye-parametry) управления которые работают для большиства панелей.
-* [Расширенные параметры](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) для которых необходимо передавать Provider ID с подпиской.
+* [Расширенные параметры](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) для которых необходимо указывать [Provider ID](provider-id.md) в подписке.
 
 Чтобы активировать параметр, передайте значение `true` или `1` ; чтобы отключить — любое другое непустое значение (например, `0` или `false`).
 
@@ -285,7 +285,7 @@ vmess://zkIAU1JitkI…
 ## Расширенные параметры <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
 
 {% hint style="warning" %}
-Необходим параметр Provider ID!
+Необходим параметр [Provider ID](provider-id.md)!
 {% endhint %}
 
 <details>
@@ -630,7 +630,7 @@ vmess://zkIAU1JitkI…
 #### Управление настройками приложения <a href="#upravlenie-nastroikami-prilozheniya" id="upravlenie-nastroikami-prilozheniya"></a>
 
 {% hint style="warning" %}
-Необходим параметр Provider ID!
+Необходим параметр [Provider ID](provider-id.md)!
 {% endhint %}
 
 <details>
