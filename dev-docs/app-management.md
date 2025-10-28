@@ -249,6 +249,41 @@ vmess://zkIAU1JitkI…
 
 <details>
 
+<summary>Отключение маршрутизации</summary>
+
+Глобальный параметр для отключения маршрутизации в приложении.
+
+**Пример настройки данного параметра:**
+
+```
+routing-enable: [string]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+routing-enable: 0
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#routing-enable: 0
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Конфигурация туннеля (только для Desktop)</summary>
 
 Передавайте собственную конфигурацию туннеля для ядра sing-box
