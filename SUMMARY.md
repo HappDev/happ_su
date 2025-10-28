@@ -12,7 +12,7 @@
   * [Errors](faq/errors.md)
 * [Техническая документация](dev-docs/README.md)
   * [Зашифрованная ссылка](dev-docs/crypto-link.md)
-  * [Управление приложением](dev-docs/upravlenie-prilozheniem.md)
+  * [Управление приложением](dev-docs/app-management.md)
   * [Provider ID](dev-docs/provider-id.md)
   * [Отображение Meta info](dev-docs/meta-info.md)
   * [Геонастройки / Routing](dev-docs/routing.md)

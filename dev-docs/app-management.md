@@ -6,8 +6,8 @@ description: Управляйте настройками приложения ч
 
 **Функционал управление приложения** включает два направления:
 
-* [Стандартные параметры](upravlenie-prilozheniem.md#standartnye-parametry) управления которые работают для большиства панелей.
-* [Расширенные параметры](upravlenie-prilozheniem.md#id-rasshirennyifunkcional-opisanieparametrov) для которых необходимо передавать Provider ID с подпиской.
+* [Стандартные параметры](app-management.md#standartnye-parametry) управления которые работают для большиства панелей.
+* [Расширенные параметры](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) для которых необходимо передавать Provider ID с подпиской.
 
 Чтобы активировать параметр, передайте значение `true` или `1` ; чтобы отключить — любое другое непустое значение (например, `0` или `false`).
 
