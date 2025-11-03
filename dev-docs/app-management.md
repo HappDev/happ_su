@@ -1216,6 +1216,46 @@ vmess://zkIAU1JitkI…
 
 <details>
 
+<summary>Режим TUN (только для Desktop)</summary>
+
+Определяет какой режим будет использоваться для TUN подключения.
+
+* **`system`** — использует системный сетевой стек ОС.\
+  Быстро и эффективно, но зависит от корректной настройки маршрутов и файрвола .
+* **`gvisor`** — пользовательский стек gVisor (userspace).\
+  Меньше зависимостей от правил ядра и конфликтов с iptables/nftables/Docker, лучше изоляция; возможен небольшой минус к производительности.
+
+**Пример настройки данного параметра:**
+
+```
+tun-mode: [system,gvisor]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+tun-mode: gvisor
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#tun-mode: gvisor
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Exclude routes</summary>
 
 Определяет перечень подсетей и IP-адресов, трафик которых не должен проходить через туннель.\
