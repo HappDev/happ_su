@@ -1177,3 +1177,75 @@ vmess://zkIAU1JitkI…
 {% endcode %}
 
 </details>
+
+<details>
+
+<summary>Режим Proxy \ TUN (только для Desktop)</summary>
+
+Необходимо <mark style="color:$warning;">**использовать только один**</mark> из двух перечисленных параметров! Эти параметры определяют тип подключения при добавлении\обновлении подписки.
+
+**Пример настройки данного параметра:**
+
+```
+proxy-enable: [true / 1]
+tun-enable: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+proxy-enable: 1
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#proxy-enable: 1
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Exclude routes</summary>
+
+Определяет перечень подсетей и IP-адресов, трафик которых не должен проходить через туннель.\
+Адреса указываются в одной строке, разделяя их пробелами и запятыми.
+
+**Пример настройки данного параметра:**
+
+```
+exclude-routes: [String]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+exclude-routes: 192.169.1.0/24, 10.0.0.0/8
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#exclude-routes: 192.169.1.0/24, 10.0.0.0/8
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
