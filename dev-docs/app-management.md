@@ -291,7 +291,7 @@ vmess://zkIAU1JitkI…
 **Пример настройки данного параметра:**
 
 ```
-announce: [string]
+custom-tunnel-config: [json]
 ```
 
 **Способы передачи:**
@@ -303,13 +303,13 @@ date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
-announce: base64:SGFwcCB0aGUgYmVzdCE=
+custom-tunnel-config: {...}
 ```
 {% endcode %}
 
 {% code title="Через тело подписки:" %}
 ```
-#announce: base64:SGFwcCB0aGUgYmVzdCE=
+#custom-tunnel-config: {...}
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
