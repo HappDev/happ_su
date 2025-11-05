@@ -242,7 +242,7 @@ vmess://zkIAU1JitkI…
 **设置此参数的示例：**
 
 ```
-announce: [string]
+custom-tunnel-config: [string]
 ```
 
 **传递方式：**
@@ -254,13 +254,13 @@ date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
-announce: base64:SGFwcCB0aGUgYmVzdCE=
+custom-tunnel-config: {...}
 ```
 {% endcode %}
 
 {% code title="通过订阅主体：" %}
 ```
-#announce: base64:SGFwcCB0aGUgYmVzdCE=
+#custom-tunnel-config: {...}
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
