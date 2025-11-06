@@ -9,6 +9,7 @@
   * [Поделиться конфигурацией](faq/podelitsya-konfiguraciei.md)
   * [Подключения из локальной сети](faq/local-network-connections.md)
   * [Android TV](faq/android-tv.md)
+  * [Apple TV (tvOS)](faq/apple-tv-tvos.md)
   * [Errors](faq/errors.md)
 * [Техническая документация](dev-docs/README.md)
   * [Зашифрованная ссылка](dev-docs/crypto-link.md)
