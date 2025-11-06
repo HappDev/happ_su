@@ -7,7 +7,11 @@
 |                                                                                                                                                              | [Download Beta APK](https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ_beta.apk) | Linux: [alpha](https://github.com/Happ-proxy/happ-desktop/releases/)                                                                                                   | [Apple TV](https://apps.apple.com/us/app/happ-proxy-utility-for-tv/id6748297274)            |
 | <mark style="color:$danger;">Поддержать приложение</mark> ❤️                                                                                                 | [Карты МИР/Visa](https://t.me/tribute/app?startapp=dzpe)                                               | [Crypto](contacts.md#crypto)                                                                                                                                           |                                                                                             |
 
-Happ — кроссплатформенное приложение для удобной работы с прокси-серверами. Построенное на базе мощного ядра Xray, оно доступно на Windows, macOS, Linux и мобильных устройствах. Интуитивный интерфейс и гибкие настройки делают Happ надёжным инструментом как для новичков, так и для опытных пользователей.
+Happ — кроссплатформенное приложение для удобной работы с прокси-серверами. Построенное на базе мощного ядра Xray.
+
+Приложение доступно на Windows, macOS, Linux, мобильных устройствах (iOS/Android) и TV (tvOS/Android TV).
+
+Интуитивный интерфейс и гибкие настройки делают Happ надёжным инструментом как для новичков, так и для опытных пользователей.
 
 **Основные возможности включают:**
 
