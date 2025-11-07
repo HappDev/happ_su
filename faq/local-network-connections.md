@@ -1,71 +1,47 @@
-# Подключения из локальной сети
+# Local Network Connections
 
-Функция **«Разрешить LAN-подключения»** позволяет делиться VPN-соединением с другими устройствами, находящимися в одной локальной сети или подключёнными к тому же Wi-Fi.\
-Это удобно, если вы хотите использовать одно VPN-подключение на нескольких устройствах — например, на телевизоре, консоли или другом компьютере.
+Use the "Allow connections from LAN" option to share your VPN with devices connected to the same local network or Wi-Fi as you.
 
-***
+**How to Enable This Feature**
 
-### 1. Как включить функцию
+* **iOS**: Open the app settings and enable the "Allow connections from LAN" option.
+* **Android**: Open the app settings, go to "Advanced Settings," and activate "Allow LAN Connections."
 
-1. Откройте **«Настройки»** приложения Happ.
-2. Перейдите в раздел **«Расширенные настройки»** (_Advanced Settings_).
-3. Активируйте опцию **«Разрешить LAN-подключения»** (_Allow LAN Connections_).
+Once enabled, new parameters will appear:
 
-После активации появятся дополнительные параметры:
+* **Current IP**
+* **SOCKS5 Port**
+* **HTTP Port**
 
-* **Текущий IP** — локальный IP-адрес устройства (например, `192.168.1.100`);
-* **Порт SOCKS5** — для подключения через SOCKS-прокси (например, `10808`);
-* **Порт HTTP** — для подключения через HTTP-прокси (например, `10809`).
-
-4. Подключитесь к серверу VPN в приложении Happ.
-
-> ⚠️ При отключении этой функции (или VPN-соединения) подключённые устройства потеряют доступ к VPN.
-
-***
-
-### 2. Настройка подключения на других устройствах
+Connect to the VPN within the app and use these parameters on the device you want to connect to the VPN.
 
 <details>
 
-<summary>Android</summary>
+<summary>Windows</summary>
 
-1. Откройте **«Настройки»** устройства.
-2. Перейдите в **Wi-Fi → выберите вашу сеть**.
-3. Нажмите **«Дополнительно»** или **«Изменить сеть»**.
-4. В разделе **«Прокси»** выберите **«Ручная настройка»**.
-5. Укажите:
-   * **Имя хоста прокси**: текущий IP (например, `192.168.1.100`);
-   * **Порт прокси**: HTTP-порт (например, `10809`).
-6. Сохраните настройки и подключитесь к сети.
+1. Open **Windows Settings** in one of the following ways:
+   * Click the **Start** button (Windows icon) in the lower-left corner of the screen and select the gear icon for **Settings**.
+   * Press **Win + I** on your keyboard.
+2. Navigate to **Network & Internet**.
+3. Select **Proxy** from the left menu.
+4. Under **Manual Proxy Setup**, toggle **Use a Proxy Server** to "On."
+5. Enter the **Current IP** from the app as the **Address** (e.g., `192.168.1.100`) and the **HTTP Port** as the **Port** (e.g., `10809`).
+6. Click **Save**.
 
 </details>
 
 <details>
 
-<summary>iOS</summary>
+<summary>Android TV</summary>
 
-1. Откройте **«Настройки → Wi-Fi»**.
-2. Найдите подключённую сеть и нажмите значок **ℹ️** рядом с ней.
-3. Прокрутите вниз до раздела **«HTTP-прокси»**.
-4. Выберите **«Вручную»**.
-5. Введите:
-   * **Сервер**: текущий IP (например, `192.168.1.100`);
-   * **Порт**: HTTP-порт (например, `10809`).
-6. Вернитесь назад — настройки сохраняются автоматически.
+Setting up a system-wide proxy on Android TV can vary by model and version. Unfortunately, unlike Android on phones and tablets, Android TV often lacks built-in proxy configuration options in Wi-Fi settings. As a result, you may need to use third-party applications or configure the proxy individually in each app (if supported).
 
-</details>
+**Steps to Check for Built-In Proxy Settings:**
 
-<details>
-
-<summary>Linux</summary>
-
-1. Откройте **«Настройки системы»**.
-2. Перейдите в раздел **«Сеть → Прокси»**.
-3. Активируйте **«Ручную настройку прокси»**.
-4. Введите:
-   * **Адрес**: текущий IP (например, `192.168.1.100`);
-   * **Порт**: HTTP-порт (например, `10809`).
-5. Сохраните изменения.
+1. Open the **Settings** on your Android TV.
+2. Navigate to **Network** or **Wi-Fi**.
+3. Select your connected Wi-Fi network.
+4. Look for proxy-related options such as "Proxy Settings." If available, you can enter the **IP Address** and **HTTP Port** here.
 
 </details>
 
@@ -73,63 +49,38 @@
 
 <summary>macOS</summary>
 
-1. Откройте **«Системные настройки → Сеть»**.
-2. Выберите активное подключение (**Wi-Fi** или **Ethernet**).
-3. Нажмите **«Дополнительно…» → вкладка «Прокси»**.
-4. Установите флажок **«SOCKS-прокси»** или **«HTTP-прокси»**.
-5. Укажите:
-   * **Сервер**: текущий IP (например, `192.168.1.100`);
-   * **Порт**: SOCKS5-порт или HTTP-порт (например, `10808` или `10809`).
-6. Нажмите **«ОК»** и **«Применить»**.
+1. Open **System Settings** (Apple Icon → System Settings or press **Command + Space** and type "System Settings").
+2. Navigate to **Network**.
+3. Select your active network connection (e.g., **Wi-Fi** or **Ethernet**).
+4. Click **Advanced...**.
+5. Go to the **Proxies** tab.
+6. Check the box for **SOCKS Proxy**.
+7. Enter the **SOCKS Proxy Server IP** in the **Server** field and the **Port** in the **Port** field.
+8. Click **OK** to save changes.
 
 </details>
 
 <details>
 
-<summary>Windows</summary>
+<summary>Linux</summary>
 
-1. Откройте **«Параметры Windows»** (через меню _Пуск → Параметры_ или сочетание **Win+I**).
-2. Перейдите в **«Сеть и Интернет → Прокси»**.
-3. В разделе **«Ручная настройка прокси»** включите **«Использовать прокси-сервер»**.
-4. Укажите:
-   * **Адрес**: значение из поля _Текущий IP_ (например, `192.168.1.100`);
-   * **Порт**: значение из поля _HTTP-порт_ (например, `10809`).
-5. Нажмите **«Сохранить»**.
+#### Configuring SOCKS Proxy for Specific Applications (e.g., Firefox)
 
-После этого весь трафик системы будет проходить через VPN-подключение Happ.
+If you need a proxy for a single application, configuring it directly in the app is the simplest approach.
 
-</details>
+**Firefox Example:**
 
-***
+1. Open **Firefox**.
+2. Go to **Settings** (three horizontal lines in the top-right corner) → **General**.
+3. Scroll to **Network Settings** and click **Settings...**.
+4. Choose **Manual Proxy Configuration**.
+5. In the **SOCKS v5** field, enter the **SOCKS Host** (e.g., `192.168.1.100`) and the **Port** (e.g., `10809`).
+6. Click **OK**.
 
-### 3. Использование встроенных настроек прокси в отдельных приложениях
+#### Other Applications
 
-Некоторые приложения (на всех платформах — Windows, macOS, Android, Linux) имеют собственные настройки прокси.\
-Если системный прокси недоступен или требуется индивидуальная конфигурация, настройте прокси напрямую в нужной программе.\
-Такой способ особенно удобен, если прокси нужен только для отдельных приложений — например, браузеров.
-
-<details>
-
-<summary>Пример настройки в Firefox</summary>
-
-1. Откройте **«Настройки → Основные → Параметры сети»**.
-2. Нажмите **«Настроить…»**.
-3. Выберите **«Ручная настройка прокси»**.
-4. Укажите:
-   * **Узел SOCKS5 (SOCKS5 Host)**: текущий IP (например, `192.168.1.100`);
-   * **Порт**: SOCKS5-порт (например, `10808`).
-5. Нажмите **«ОК»**.
+Some applications may also have built-in proxy settings. Check the settings of the specific app you are using to see if a proxy can be configured directly.
 
 </details>
 
-***
-
-### 4. Типичные ошибки при LAN-подключении
-
-| Симптом                          | Возможная причина                                                           | Что сделать                                                                                |
-| -------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Другое устройство не видит IP    | Устройства подключены к разным сетям/подсетям (например, 2.4 и 5 ГГц Wi-Fi) | Подключите оба устройства к одной подсети (одной сети Wi-Fi)                               |
-| Соединение не устанавливается    | Брандмауэр блокирует входящие подключения                                   | Разрешите входящие подключения для приложения Happ в настройках брандмауэра                |
-| Прокси не работает на Android TV | Нет системной поддержки прокси                                              | Используйте стороннее приложение (например, Happ) или настройте прокси в каждом приложении |
-| Порт занят                       | Порт использует другой процесс                                              | Измените порт в настройках Happ                                                            |
-| VPN включён, но IP недоступен    | Подключение к интернету через мобильную сеть или изоляция гостевой сети     | Подключите оба устройства к одной сети Wi-Fi                                               |
+####

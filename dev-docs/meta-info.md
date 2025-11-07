@@ -3,56 +3,55 @@ hidden: true
 noIndex: true
 ---
 
-# Отображение Meta info
+# Meta Info
 
-<figure><img src="../.gitbook/assets/Frame 110 (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Frame 110.png" alt="" width="375"><figcaption></figcaption></figure>
 
-Владелец подписки может отобразить информацию о потребленном и оставшемся трафике, сроке действия подписки, а также отображать объявления и задавать до двух ссылок для иконок в строке отображения метаданных.
+A subscription owner can display information about consumed and remaining traffic, subscription expiration date, display announcements, and set up to two links for icons in the metadata display bar.
 
-Все данные могут быть переданы в формате plain text или base64.
+All data can be provided in either plain text or base64 format.
 
-Метаданные можно передать двумя способами:
+Metadata can be transmitted in two ways:
 
-1. Через HTTP-заголовок страницы подписки.
-2. Через тело подписки, указав перед параметром знак # (например #profile-title).
+1. Through the HTTP header of the subscription page.
+2. Through the subscription body by prefixing the parameter with the `#` symbol (e.g., `#profile-title`).
 
-### Параметры отображения
+### Display Parameters
 
 * **`profile-title`** (string):\
-  Название профиля. Может быть передано как plain text или в base64 (UTF-8).\
-  **Ограничение**: Максимальная длина — 25 символов.
+  The profile name. It can be provided as plain text or in base64 (UTF-8).\
+  **Limit**: Maximum length — 25 characters.
 * **`subscription-userinfo`** (string):\
-  Содержит информацию для отображения трафика и срока подписки.
-  * В левой части шкалы отображается сумма потребленного трафика (`upload + download`), в правой части после знака `/` — общий объем (`total`).
-  * Дата окончания подписки указана в параметре `expire`.\
-    **Примечание**: Все данные передаются в одном заголовке и разделяются символом `;`.
+  Contains information for displaying traffic usage and subscription expiration date.
+  * The left side of the progress bar shows the total consumed traffic (`upload + download`), while the right side after the `/` sign displays the total allowance (`total`).
+  * The subscription expiration date is specified in the `expire` parameter.\
+    **Note**: All data is included in a single header and separated by the `;` character.
 * **`support-url`** (string):\
-  Ссылка на поддержку.
-  * Отображается иконкой синего цвета в правой части строки.
-  * Область клика выделена зеленым прямоугольником.
+  A support link.
+  * Displayed as a blue icon on the right side of the bar.
+  * The clickable area is highlighted with a green rectangle.
 * **`profile-web-page-url`** (string):\
-  Ссылка на веб-страницу профиля.
-  * Если параметр указан, иконка приобретает синий цвет (аналогично `support-url`).
-  * Область клика также выделена зеленым прямоугольником.
+  A link to the profile web page.
+  * If this parameter is specified, the icon becomes blue (similar to `support-url`).
+  * The clickable area is also highlighted with a green rectangle.
 * **`announce`** (string):\
-  Текст объявления. Может быть передан в формате plain text или base64.\
-  **Ограничение**: Максимальная длина отображаемого текста — 200 символов.
+  Announcement text. It can be provided in plain text or base64 format.\
+  **Limit**: The maximum length of displayed text is 200 characters.
 
-### Параметр обновления
+### **Update Parameter**
 
-**profile-update-interval** (int): Интервал автоматического обновления подписки, задаётся в часах.\
-Если пользователь указал интервал в настройках приложения, этот параметр будет проигнорирован.
+**profile-update-interval (int):** The interval for automatic subscription updates, specified in hours.\
+If the user has set an interval in the app settings, this parameter will be ignored.
 
-### Дополнительные рекомендации
+### Additional Recommendations
 
-* Для корректного отображения метаданных убедитесь, что формат данных соответствует требованиям (plain text или base64 UTF-8).
-* Параметры, указанные в теле подписки, имеют более высокий приоритет, чем параметры, переданные через HTTP-заголовки.
-* Если часть параметров поступает через HTTP-заголовки, а другая часть через тело подписки, необходимо объединить (merge) все параметры, учитывая их приоритеты, и корректно отобразить результат.\
-
+* To ensure proper metadata display, make sure the data format meets the requirements (plain text or base64 UTF-8).
+* Parameters specified in the subscription body take precedence over those passed through HTTP headers.
+* If some parameters are received via HTTP headers and others through the subscription body, all parameters should be merged, respecting their priority, and displayed correctly.
 
 ***
 
-### **Пример http headers:**
+### Example **http headers:** <a href="#primer-http-headers" id="primer-http-headers"></a>
 
 ```
 HTTP/2 200 
@@ -69,11 +68,11 @@ announce: base64:J1bC5jb20iLCJwYXRoIjoiXC8xUyIsInRscyI6InRscyIsImFkZCI6Ind3dy5nd
 cf-cache-status: DYNAMIC
 ```
 
-### **Пример тела подписки:**
+### Example subscription bod&#x79;**:** <a href="#primer-tela-podpiski" id="primer-tela-podpiski"></a>
 
 ```
 #profile-title: Happ.su
-#profile-title: base64:0J/QvtC00L/QuNGB0LrQsA==
+#profile-title: base64:U3Vic2NyaXB0aW9u
 #profile-update-interval: 1
 #subscription-userinfo: upload=455727941; download=6174315083; total=1073741824000; expire=1671815872
 #support-url: https://t.me/happ_chat

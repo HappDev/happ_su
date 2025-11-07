@@ -1,35 +1,36 @@
 # Errors
 
-В этом разделе подробно описаны возможные ошибки приложения:
+This section describes possible application errors in detail:
 
-### Буффер обмена пуст
+### Clipboard is empty
 
-Скорее всего вы забыли скопировать данные перед тем как их импортировать приложение
+Most likely, you forgot to copy the data before attempting to import it into the application.
 
-### Url подписки не валидна
+### The subscription URL is not valid
 
-Переданный адрес содержит ошибки или недопустимые символы. Проверьте правильность ссылки путем просмотра буфера обмена.
+The provided address contains errors or invalid characters. Check the link for correctness by reviewing the clipboard contents.
 
-### Конфигурация {config type} не валидная
+### Configuration {config type} is not valid
 
-Конфигурация которую вы добавляли (vless, vmess, trojan и тд.) содержит ошибки или недопустимые символы. Проверьте правильность ссылки путем просмотра буфера обмена.
+The configuration you tried to add (vless, vmess, trojan, etc.) contains errors or invalid characters. Verify the link’s correctness by reviewing the clipboard contents.
 
-### Невалидная (массив) конфигурация JSON
+### JSON (or array) configuration is not valid
 
-Переданный JSON содержит ошибки или недопустимые символы. Проверьте JSON путем просмотра буфера обмена.
+The provided JSON contains errors or invalid characters. Check the JSON by reviewing the clipboard contents.
 
-### Неизвестное действие DeepLink
+### Invalid deeplink URL
 
-Указанный DeepLink не известен приложению и был проигнорирован.
+The specified DeepLink is not recognized by the application and has been ignored.
 
-### Неизвестный тип контента
+### Unknown content type
 
-Переданные данные не удалось распознать, так как они содержат ошибки или недопустимые символы. Проверьте корректность переданных данных.
+The provided data could not be recognized because it contains errors or invalid characters. Verify the correctness of the provided data.
 
-### Неправильные данные для импортирования профиля маршрутизации
+### Wrong data for import routing profile
 
-Провиль маршутизации содержит ошибки или недопустимые параметры.&#x20;
+The routing profile contains errors or invalid parameters.
 
-### **Timeout при добавлении подписки**
+### **Timeout while adding a subscription**
 
-При добавлении или обновлении подписки приложение отправляет запрос на сервер подписки. Если в течении 9 секунд никакого ответа не будет получено, то будет отображена данная ошибка.
+When adding or updating a subscription, the application sends a request to the subscription server.\
+If no response is received within 9 seconds, this error will be displayed.

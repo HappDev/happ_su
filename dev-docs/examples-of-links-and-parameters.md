@@ -1,131 +1,18 @@
-# Примеры ссылок и параметров
+# Examples of links and parameters
 
-{% hint style="warning" %}
-Данная информация **не является инструкцией по настройке VPN**, а также **не предназначено для обхода блокировок, доступа к запрещённым сайтам или приложениям**, нарушающим законодательство вашей страны.
-{% endhint %}
-
-### Параметры
+### Parameters
 
 <details>
 
-<summary>allowinsecure</summary>
+<summary>allowInsecure</summary>
 
-Позволяет устанавливать соединения без проверки TLS-сертификата.\
-Передаётся в URL конфигурации:
+Allows connections without TLS certificate verification.\
+Set in the configuration URL:
 
-* Для **VMess** указывается как:\
+* For **VMess**:\
   `"allowInsecure": "1"`
-* Для остальных протоколов — как параметр URL:\
+* For other protocols:\
   `allowInsecure=1`
-
-</details>
-
-<details>
-
-<summary>Фрагментация и «шумы» (fragmentation / noises)</summary>
-
-Фрагментация в Xray — это механизм **разделения исходящего трафика на более мелкие фрагменты** с контролируемыми интервалами и шаблонами отправки.\
-`noises` дополняет фрагментацию, добавляя **псевдопакеты** для повышенной вариативности поведения.
-
-> `noises` работает **только** при включённой фрагментации.
-
-***
-
-### Где настраивается
-
-* **Глобально** — включается в общих настройках приложения и действует **для всех** подписок и серверов.\
-  См. раздел: [App Management](https://www.happ.su/main/dev-docs/app-management)
-* **Локально (для конкретного сервера)** — включается в настройках **этого** сервера внутри приложения.
-
-**Поведение при одновременном включении:**\
-Если фрагментация/«шумы» включены **и глобально, и локально**, применяется **глобальная конфигурация**. Локальная нужна, когда глобальная **выключена**, а функцию требуется задействовать только на отдельных серверах.
-
-***
-
-### 1) Фрагментация (fragmentation)
-
-**Формат строки**
-
-```
-fragment=length,interval,packets[,maxSplit]
-```
-
-**Параметры**
-
-* **length** — длина фрагментов как `Int32Range` (например, `3` или `1-3`).
-* **interval** — интервал между фрагментами как `Int32Range` (например, `1` или `1-5`).
-* **packets** — тип пакетов (например, `tlshello`).
-* **maxSplit** _(необяз.)_ — максимальное количество разбиений как `Int32Range` (например, `100` или `100-200`).\
-  Доступно с версии ядра **Xray 25.9.5**.
-
-> `Int32Range` — одно число или диапазон `min-max`; при диапазоне значение выбирается динамически.
-
-**Примеры (только для конкретного сервера)**
-
-*   **VMess (JSON-поле):**
-
-    ```json
-    "fragment": "1-10,5-20,tlshello,100-200"
-    ```
-*   **Другие протоколы (строкой):**
-
-    ```
-    fragment=3,1,tlshello,100-200
-    ```
-
-    `maxSplit` можно опустить:
-
-    ```
-    fragment=3,1,tlshello
-    ```
-
-***
-
-### 2) Шумы (noises)
-
-**Формат строки**
-
-```
-noises=type,packet,delay[,applyTo]
-```
-
-**Параметры**
-
-* **type** — `rand` | `str` | `base64`
-* **packet** — содержимое:
-  * при `rand` — длина или диапазон как `Int32Range` (например, `50` или `50-150`);
-  * при `str` — строка (например, `string`);
-  * при `base64` — base64-строка (например, `7nQBAAABAAAAAAAABnQtcmluZwZtc2VkZ2UDbmV0AAABAAE=`).
-* **delay** — задержка как `Int32Range` (например, `10-50`).
-* **applyTo** _(необяз.)_ — область применения: `ip` _(по умолчанию)_, `ipv4`, `ipv6`.
-
-**Примеры (только для конкретного сервера)**
-
-*   **VMess (JSON-поле):**
-
-    ```json
-    "noises": "rand,50-150,10-50,ip"
-    ```
-*   **Другие протоколы (строкой):**
-
-    ```
-    noises=rand,50-150,10-50,ip
-    ```
-
-    `applyTo` можно опустить:
-
-    ```
-    noises=rand,50-150,10-50
-    ```
-
-***
-
-#### Замечания и типичные ошибки
-
-* Используйте **запятые без пробелов**.
-* Диапазоны должны быть корректными (`min <= max`).
-* `noises` без активной фрагментации **не применяются**.
-* Слишком маленькие `length`, короткие `interval` или большие `maxSplit` могут снижать скорость и повышать задержку.
 
 </details>
 
@@ -133,13 +20,13 @@ noises=type,packet,delay[,applyTo]
 
 <summary>fragmentation</summary>
 
-Параметр фрагментации может быть задан глобально (в настройках приложения) или для конкретного сервера.
+This enables traffic fragmentation. It can be configured globally (via app settings) or per server:
 
-* **Глобальная настройка** — применяется ко всем подключениям и задаётся в настройках приложения.
-* **Для конкретного сервера:**
-  * Для **VMess**:\
+* **Global setting** — applies to all connections.
+* **Per-server setting**:
+  * **VMess**:\
     `"fragment": "1-10,5-20,tlshello"`
-  * Для других протоколов:\
+  * **Others**:\
     `fragment=3,1,tlshello`
 
 </details>
@@ -148,12 +35,12 @@ noises=type,packet,delay[,applyTo]
 
 <summary>title</summary>
 
-Название сервера (до 30 символов).\
-Отображаемое имя может быть сокращено троеточием (`...`), если не помещается в ширину экрана.\
-Указывается в конце строки конфигурации после символа `#`.
+Server name (up to 30 characters).\
+If it exceeds the screen width, it will be truncated with ellipsis (`...`).\
+Defined at the end of the config after `#`.
 
-**Пример:**\
-`vmess://...#Мой_Сервер`
+**Example:**\
+`vmess://...#My_Server`
 
 </details>
 
@@ -161,35 +48,20 @@ noises=type,packet,delay[,applyTo]
 
 <summary>serverDescription</summary>
 
-Доступен только для локального списка серверов. Для подписок необходим параметр `ProviderID`.\
-Позволяет задать дополнительную подпись, которая отображается под названием сервера вместо стандартного текста (например, "VMess", "VLESS", "Trojan").
+Available only for the local server list. For subscriptions, the `ProviderID` parameter is required.\
+Allows you to set an additional label that is displayed below the server name instead of the default text (e.g., "VMess", "VLESS", "Trojan").
 
-* Максимальная длина — 30 символов.
-* Если не помещается на экран, будет сокращена с троеточием.
-* Задаётся после `title` через разделитель `?`.
+* Max length: 30 characters
+* Truncated with `...` if too long
+* Specified after the title with `?`
 
-**Пример:**\
+**Example:**\
 `vmess://...#MyServer?serverDescription=<base64>`
 
-**Пример для JSON:**\
-`"meta":{`\
-&#x20; `"serverDescription":"Тут текст без base64!"`\
+**Example for JSON:**
+
+`"meta": {`\
+`"serverDescription": "Here is the text without base64!"`\
 `}`
-
-</details>
-
-<details>
-
-<summary>Socks proxy</summary>
-
-Ниже приведен пример трёх вариантов одной и той же конфигурации которую может распарсить приложение:
-
-**Пример:**
-
-```
-socks://user123:pass321@12.8.8.8:443
-socks://dXNlcjEyMzpwYXNzMzIx@12.8.8.8:443#name
-socks://dXNlcjEyMzpwYXNzMzIxQDEyLjguOC44OjQ0Mw==
-```
 
 </details>

@@ -1,50 +1,51 @@
 # Provider ID
 
-Provider ID — уникальный идентификатор, связывающий вашу подписку с аккаунтом на сайте [happ-proxy.com](https://happ-proxy.com/). Он открывает доступ к расширенной статистике использования приложения и позволяет точно учитывать число активных устройств.
+Provider ID is a unique identifier that links your subscription to an account on the website [happ-proxy.com](https://happ-proxy.com/). It provides access to advanced application usage statistics and allows accurate tracking of the number of active devices.
 
 ***
 
-### Где взять Provider ID?
+#### Where to Get Provider ID?
 
-Для получения Provider ID необходимо зарегистрироваться на сайте [https://happ-proxy.com](https://happ-proxy.com/)\
-После регистрации вы сможете его увидеть в верхней правой части экрана или в профиле пользователя.
+To obtain the Provider ID, you need to register on the website [https://happ-proxy.com](https://happ-proxy.com/)
 
-### **Как это работает**
+After registration, you will be able to see it in the upper right part of the screen or in the user profile.
 
-Один раз в сутки приложение отправляет GET‑запрос на:
+#### **How It Works**
+
+Once a day, the application sends a GET request to:
 
 ```
 https://check.happ-proxy.com/provider?id={ProviderID}
 ```
 
-В запрос включаются:
+The request includes:
 
-* **providerid** — ваш уникальный идентификатор;
-* **хеш домена**, с которого загружена подписка;
-* **HWID** устройства;
-* **название и версия** операционной системы.
+* **providerid** — your unique identifier;
+* **domain hash**, from which the subscription is loaded;
+* **HWID** of the device;
+* **name and version** of the operating system.
 
-Хеш домена гарантирует привязку ProviderID к конкретному домену подписки и исключает его использование на других сайтах или в чужих подписках.
+The domain hash ensures that the ProviderID is tied to a specific subscription domain and prevents its use on other sites or in third-party subscriptions.
 
 ***
 
-### **Способы передачи ProviderID**
+#### **Ways to Transmit ProviderID**
 
-Вы можете добавить ProviderID в подписку тремя способами:
+You can add ProviderID to the subscription in three ways:
 
-1.  **В URL** (query‑параметр)
+1.  **In URL** (query parameter)
 
     ```
     https://your-domain.com/sub/123#?providerid={ProviderID}
     ```
-2.  **В теле подписки** (комментарий)
+2.  **In the Subscription Body** (comment)
 
     ```
     #providerid {ProviderID}
     vless://70cc48c5‑b2f4…
     vmess://zkIAU1JitkI…
     ```
-3.  **В HTTP‑заголовке** ответа
+3.  **In the HTTP Header** of the Response
 
     ```
     HTTP/2 200 OK

@@ -1,52 +1,52 @@
-# Геонастройки / Routing
+# Routing
 
-Приложение поставляется с предустановленными геофайлами, что обеспечивает его готовность к работе сразу после установки. Актуальность геофайлов поддерживается обновлением версии ядра внутри приложения.&#x20;
+The app comes with pre-installed geo files, ensuring it's ready to use immediately after installation. The relevance of geo files is maintained by updating the core version within the app.
 
-### **Добавление правил маршрутизации**
+### Adding Routing Rules
 
-Приложение позволяет добавлять правила маршрутизации автоматически, используя специальные ссылки, которые можно создать на сайте [https://routing.happ.su](https://routing.happ.su/).
+The app allows you to add routing rules automatically by using special links that can be created on the [https://routing.happ.su](https://routing.happ.su/) website.
 
-Ссылки могут быть переданы одним из следующих способов:
+The links can be transmitted in one of the following ways:
 
-* Через буфер обмена.
-* С использованием deeplink.
-* Через QR-код.
-* В виде HTTP-заголовков или тела подписки.
+* Via clipboard.
+* Using a deeplink.
+* Through a QR code.
+* As HTTP headers or subscription body.
 
-Для передачи через HTTP-заголовок используется параметр `routing`, а для добавления в тело подписки достаточно указать ссылку.
+For HTTP headers, the `routing` parameter is used, while for subscription bodies, simply including the link is sufficient.
 
-### **Обработка ошибок загрузки**
+### Handling Download Errors
 
-Приложение использует менеджер загрузки геофайлов, который работает в фоновом режиме.
+The app uses a geo file download manager that operates in the background.
 
-* Если загрузка геофайлов не завершается в течение 3 минут, процесс останавливается.
-* На главном экране появляется сообщение об ошибке.
-* В списке профилей рядом с проблемным профилем отображается красный восклицательный знак.
+* If the geo file download does not complete within 3 minutes, the process is stopped.
+* An error message appears on the main screen.
+* A red exclamation mark is displayed next to the problematic profile in the profile list.
 
-### **Устранение ошибок**
+### Troubleshooting
 
-Проблемное состояние профиля исчезает автоматически после:
+The problematic profile state automatically resolves after:
 
-* Успешного завершения загрузки файлов.
-* Удаления проблемного профиля.
+* Successfully completing file downloads.
+* Deleting the problematic profile.
 
-Если в списке больше нет проблемных профилей, уведомления об ошибках удаляются.
+If there are no more problematic profiles in the list, error notifications are removed.
 
-### **Виды ссылок:**
+### Types of Links
 
-* `happ://routing/add/{base64}`: Добавляет профиль в список профилей. Первый добавленный профиль становится активным только после успешной загрузки геофайлов. Если профиль с таким именем уже существует, он перезаписывается.
-* `happ://routing/onadd/{base64}`: Добавляет и автоматически активирует профиль, даже если другие профили уже активны. Если профиль с таким именем уже существует, он перезаписывается.
-* `happ://routing/off`: Отключит функционал маршрутизации
+* `happ://routing/add/{base64}`: Adds a profile to the profile list. The first added profile becomes active only after geo files are successfully downloaded. If a profile with the same name already exists, it is overwritten.
+* `happ://routing/onadd/{base64}`: Adds and automatically activates a profile, even if other profiles are active. If a profile with the same name already exists, it is overwritten.
+* `happ://routing/off`: Disable the routing function
 
-`{base64}`:это JSON-профиль, преобразованный в текстовый формат base64.
+`{base64}` is a JSON profile converted into a Base64-encoded text format.
 
-### **Структура профилей**
+### Profile Structure
 
-Приложение использует профили маршрутизации, которые настраиваются через JSON.
+The app uses routing profiles configured via JSON.
 
-**Профиль по умолчанию** содержит базовые настройки, используемые для заполнения отсутствующих или некорректных параметров.
+The default profile contains basic settings used to fill in missing or incorrect parameters.
 
-**Пример профиля по умолчанию:**
+**Example Default Profile:**
 
 ```json
 {
@@ -77,7 +77,7 @@
 }
 ```
 
-**Пример пользовательского профиля:**
+**Example Custom Profile:**
 
 ```json
 {
@@ -114,16 +114,13 @@
 }
 ```
 
-### **Особенности работы с профилями**
+### Profile Management Features
 
-* Если профиль с таким же именем уже существует, его данные обновляются.
-* Если у профиля есть параметр `"LastUpdated": ""` и он содержит дату в формате Unix, которая больше предыдущего значения, он будет обновлён.
+* If a profile with the same name already exists, its data is updated.
+* Geo files are updated no more than once a week, even if the profile is updated every hour.
+* If the profile has a parameter "LastUpdated": "", and it contains a date in unix format that is higher than the previous value.
 
-### Схема добавления / обновления профиля
-
-{% embed url="https://www.figma.com/board/EQnbUQwxUqNG35uJcKfQCz/Routing-Flow?node-id=0-1&t=qKffplQufcmeJfxO-1" %}
-
-**Пример http headers:**
+**Example http headers:**
 
 ```
 HTTP/2 200 
@@ -134,7 +131,7 @@ content-disposition: attachment; filename="213"
 routing: happ://routing/onadd/ewogICAgIk5hbWUiOiAidGVzdCIsCiAgICAiR2xvYmFsUHJveHkiOiAidHJ1ZSIsCiAgICAiUmVtb3RlRG5zIjogIiIsCiAgICAiRG9tZXN0aWNEbnMiOiAiIiwKICAgICJHZW9pcHVybCI6ICIiLAogICAgIkdlb3NpdGV1cmwiOiAiIiwKICAgICJEbnNIb3N0cyI6IHt9LAogICAgIkRpcmVjdFNpdGVzIjogW10sCiAgICAiRGlyZWN0SXAiOiBbXSwKICAgICJQcm94eVNpdGVzIjogW10sCiAgICAiUHJveHlJcCI6IFtdLAogICAgIkJsb2NrU2l0ZXMiOiBbXSwKICAgICJCbG9ja0lwIjogW10sCiAgICAiRG9tYWluU3RyYXRlZ3kiOiAiQXNJcyIKfQ==
 ```
 
-**Пример тела подписки:**
+**Example subscription body:**
 
 ```
 happ://routing/onadd/ewogICAgIk5hbWUiOiAidGVzdCIsCiAgICAiR2xvYmFsUHJveHkiOiAidHJ1ZSIsCiAgICAiUmVtb3RlRG5zIjogIiIsCiAgICAiRG9tZXN0aWNEbnMiOiAiIiwKICAgICJHZW9pcHVybCI6ICIiLAogICAgIkdlb3NpdGV1cmwiOiAiIiwKICAgICJEbnNIb3N0cyI6IHt9LAogICAgIkRpcmVjdFNpdGVzIjogW10sCiAgICAiRGlyZWN0SXAiOiBbXSwKICAgICJQcm94eVNpdGVzIjogW10sCiAgICAiUHJveHlJcCI6IFtdLAogICAgIkJsb2NrU2l0ZXMiOiBbXSwKICAgICJCbG9ja0lwIjogW10sCiAgICAiRG9tYWluU3RyYXRlZ3kiOiAiQXNJcyIKfQ==

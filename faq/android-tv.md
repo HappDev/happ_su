@@ -10,8 +10,8 @@
 {% endcolumn %}
 {% endcolumns %}
 
-Приложение Happ на Android TV не отличается от мобильного приложения и устанавливается с помощью APK или через Google Play.
+The Happ app on Android TV is the same as the mobile app and can be installed via APK or through Google Play.
 
-При первом запуске приложение предложит добавить подписку по локальной сети через QR-код. Просто отсканируйте QR-код в мобильном приложении Happ для iOS или Android, после чего телефон попытается передать выбранные серверы или подписку на телевизор. Если сделать это по локальной сети не удастся, приложение предложит отправить подписку через интернет.
+At the first launch, the app will offer to add a subscription over the local network using a QR code. Simply scan the QR code with the Happ mobile app on iOS or Android, after which your phone will try to transfer the selected servers or subscription to the TV. If this local network transfer fails, the app will suggest sending the subscription via the internet.
 
-Кроме того, возможно удаленно передать подписку или конфигурацию серверов на TV можно через сайт [tv.happ.su](https://tv.happ.su/) или [API](../dev-docs/android-tv-api.md). На телевизоре выберите пункт Web Import и введите отображённый код либо отсканируйте QR-код и откройте ссылку в браузере телефона.
+Additionally, it is possible to remotely transfer a subscription or server configuration to the TV through the website [tv.happ.su](https://tv.happ.su/) or the [API](../dev-docs/android-tv-api.md). On the TV, select the **Web Import** option and enter the displayed code or scan the QR code and open the link in your phone’s browser.

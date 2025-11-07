@@ -1,43 +1,38 @@
-# Отображение смайликов и флагов
+# Displaying flags and smileys
 
-### Флаги
+### Flags
 
-Если **первым emoji** в названии сервера является **флаг**, он будет использован в качестве иконки сервера.\
-Все последующие флаги или другие emoji игнорируются — они будут отображаться только в названии, но **не в иконке**.
+If the **first emoji** in the server name is a **flag**, it will be used as the server icon.\
+Any additional flags or emojis after the first one will be ignored by the icon and only shown in the server name.
 
-Флаг может быть передан двумя способами:
+You can provide a flag in two formats:
 
-* **В виде emoji-символа** (например: 🇺🇸 — визуальное отображение);
-* **В URL-кодировке (UTF-8 байты)**, например:
-  * `%F0%9F%87%AF%F0%9F%87%B5` — это 🇯🇵 (флаг Японии);
-  * `%F0%9F%87%B7%F0%9F%87%BA` — это 🇷🇺 (флаг России);
-  * `%F0%9F%87%BA%F0%9F%87%B8` — это 🇺🇸 (флаг США).
+* **As an emoji symbol** (e.g. 🇺🇸 — visual representation)
+* **As a UTF-8 URL-encoded string**, for example:
+  * `%F0%9F%87%AF%F0%9F%87%B5` — 🇯🇵 (Japan)
+  * `%F0%9F%87%B7%F0%9F%87%BA` — 🇨🇳 (China)
+  * `%F0%9F%87%BA%F0%9F%87%B8` — 🇺🇸 (USA)
 
-⚠️ **Для заголовков подписок**:
-
-* Поддерживаются только emoji в **виде символа** (например: 🥰);
-* **URL-кодировка (UTF-8)** — **не поддерживается**.
+⚠️ For **subscription headers**, only emoji **symbols** (e.g. 🥰) are supported.\
+**UTF-8 encoded emojis are not supported**.
 
 ***
 
-### Смайлики
+### Emojis
 
-В названии сервера, как и флаги, можно использовать смайлики (emoji).\
-Однако если вы используете смайлик **до флага**, то флаг **не будет** отображён как иконка.\
-Чтобы флаг отображался как иконка, он **обязательно должен быть первым emoji** в строке.
+You can also use regular emojis (like smileys) in server names.\
+However, if a smiley appears **before the flag**, the flag will **not be shown as the icon**.
 
-Пример (корректно):\
-`🇷🇺 😎 RU Node` → в иконке будет 🇷🇺
+✅ Correct example:\
+🇺🇸 `😎 USA Node` → icon: 🇺🇸
 
-Пример (некорректно):\
-`😎 🇷🇺 RU Node` → иконка не отображается
+❌ Incorrect example:\
+`😎` 🇺🇸 `USA Node` → no icon
 
-⚠️ **Для заголовков подписок**:
+⚠️ For **subscription headers**, only emoji **symbols** (e.g. 🥰) are supported.\
+**UTF-8 encoded emojis are not supported**.
 
-* Поддерживаются только emoji в **виде символа** (например: 🥰);
-* **URL-кодировка (UTF-8)** — **не поддерживается**.
-
-### Пример
+### Example
 
 ```
 vless://uuid@ip:80?flow=&type=tcp&security=none#Right1%F0%9F%87%AF%F0%9F%87%B5%F0%9F%A5%B0
@@ -46,4 +41,4 @@ vless://uuid@ip:80?flow=&type=tcp&security=none#Wrong1%F0%9F%A5%B0%F0%9F%87%AF%F
 vless://uuid@ip:80?flow=&type=tcp&security=none#Wrong2🥰🇯🇵
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>

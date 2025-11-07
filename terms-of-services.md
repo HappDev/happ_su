@@ -1,22 +1,22 @@
-# Условия использования
+# Terms of Services
 
-_Последнее обновление: 05.10.2025_
+Last updated: 05.10.2025
 
-1. **Принятие условий**\
-   Используя приложение Happ («Приложение»), вы подтверждаете, что прочли и соглашаетесь с настоящими Условиями использования («Условия»). Если вы не согласны с этими Условиями, пожалуйста, не используйте Приложение.
-2. **Отсутствие ограничений на использование**\
-   Приложение Happ предоставляется без ограничений на использование. Вы можете свободно использовать Приложение в личных или коммерческих целях при условии соблюдения применимых законов.
-3. **Запрет на использование бренда и имени приложения**\
-   Запрещается использовать название «Happ» или иные обозначения, сходные с ним до степени смешения, в названии, описании, доменном имени, интерфейсе или рекламных материалах собственного сервиса, продукта или приложения. Также запрещено каким-либо образом утверждать, что Happ является вашим личным приложением, проектом или принадлежит вам. Любое использование имени Happ допускается только с предварительного письменного согласия правообладателя.
-4. **Отсутствие монетизации**\
-   Приложение не содержит платных функций, встроенных покупок или подписок. Все функции доступны бесплатно.
-5. **Политика возврата средств**\
-   Так как приложение Happ предоставляется бесплатно и не включает платных функций, политика возврата средств не применяется.
-6. **Отказ от ответственности**\
-   Happ предоставляется «как есть». Владельцы приложения отказываются от какой-либо ответственности за возможные убытки, ущерб или последствия, связанные с использованием Приложения, в максимально допустимых законом пределах.
-7. **Сбор данных**\
-   Приложение Happ собирает только данные о сбоях для аналитических целей. Эти данные помогают улучшать приложение и не содержат информации, которая может идентифицировать пользователей.
-8. **Изменения в условиях**\
-   Мы можем обновлять настоящие Условия в любое время. Рекомендуем периодически их пересматривать, чтобы быть в курсе изменений.
-9. **Контакты**\
-   Если у вас есть вопросы относительно настоящих Условий, пожалуйста, свяжитесь с нами.
+1. **Acceptance of Terms**\
+   By using the Happ application (“App”), you acknowledge that you have read and agree to these Terms of Service (“Terms”). If you do not agree with these Terms, please do not use the App.
+2. **No Usage Restrictions**\
+   The Happ App is provided without usage restrictions. You may freely use the App for personal or commercial purposes, provided that you comply with all applicable laws.
+3. **Prohibition on Using the Brand or App Name**\
+   You are strictly prohibited from using the name “Happ” or any similar variations that may cause confusion in the name, description, domain, interface, or promotional materials of your own service, product, or application. You may not claim, imply, or present that Happ is your personal app, service, or property. Any use of the Happ name or branding requires prior written permission from the rights holder.
+4. **No Monetization**\
+   The App contains no paid features, in-app purchases, or subscriptions. All functionality is available free of charge.
+5. **Refund Policy**\
+   Since the Happ App is provided free of charge and contains no paid features, a refund policy is not applicable.
+6. **Disclaimer of Liability**\
+   Happ is provided “as is.” The owners of the App disclaim any liability for any potential losses, damages, or consequences resulting from the use of the App, to the fullest extent permitted by law.
+7. **Data Collection**\
+   The Happ App only collects crash data for analytical purposes. This data helps us improve the App and does not include information that can identify users.
+8. **Changes to the Terms**\
+   We may update these Terms at any time. We recommend reviewing them periodically to stay informed about any changes.
+9. **Contact**\
+   If you have any questions regarding these Terms, please contact us.

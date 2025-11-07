@@ -1,37 +1,35 @@
----
-description: Управляйте настройками приложения через подписку
----
+# App management
 
-# Управление приложением
+## App Management
 
-**Функционал управление приложения** включает два направления:
+**App management functionality** includes two directions:
 
-* [Стандартные параметры](app-management.md#standartnye-parametry) управления которые работают для большиства панелей.
-* [Расширенные параметры](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) для которых необходимо указывать [Provider ID](provider-id.md) в подписке.
+* [Standard parameters](app-management.md#standard-parameters) that work for most panels.
+* [Advanced parameters](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) for which it is necessary to pass [Provider ID](provider-id.md) with the subscription.
 
-Чтобы активировать параметр, передайте значение `true` или `1` ; чтобы отключить — любое другое непустое значение (например, `0` или `false`).
+To activate a parameter, pass the value `true` or `1`; to disable it — any other non-empty value (for example, `0` or `false`).
 
-## Стандартные параметры
+### Standard Parameters
 
 <details>
 
-<summary>Автообновление подписки</summary>
+<summary>Subscription Auto-Update</summary>
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-В системе создаётся задача на выполнение операции с заданным интервалом. В зависимости от внутренних приоритетов система старается запустить обновление подписки в установленное время.\
-Если по какой-либо причине обновление не было выполнено в пределах указанного интервала, оно произойдёт автоматически при следующем запуске приложения.\
-Интервал задаётся в часах и должен быть кратен одному часу.
+The system creates a task to perform the operation at a specified interval. Depending on internal priorities, the system tries to start the subscription update at the set time.\
+If for any reason the update was not performed within the specified interval, it will occur automatically on the next app launch.\
+The interval is set in hours and must be a multiple of one hour.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 profile-update-interval: [int]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -42,7 +40,7 @@ profile-update-interval: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #profile-update-interval: 1
 vless://70cc48c5‑b2f4…
@@ -54,23 +52,23 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Имя подписки</summary>
+<summary>Subscription Name</summary>
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
-Название профиля подписки. Может быть передано как plain text или в base64 (UTF-8). **Ограничение**: Максимальная длина — 25 символов.
+The name of the subscription profile. Can be passed as plain text or in base64 (UTF-8). **Limit**: Maximum length — 25 characters.
 
-Через тело подписки, указав перед параметром знак # (например #profile-title)
+Via the subscription body, by adding a # sign before the parameter (for example, #profile-title)
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 profile-title: [string]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -81,7 +79,7 @@ profile-title: Name VPN
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #profile-title: Name VPN
 vless://70cc48c5‑b2f4…
@@ -93,24 +91,24 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Строка состояния подписки (трафик, дата истечения)</summary>
+<summary>Subscription Status String (traffic, expiration date)</summary>
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
-Отображается информация о балансе, объёме использованного трафика и сроке действия подписки.\
-В приложении левой части шкалы показано количество израсходованного трафика (upload + download), а в правой — общий объём (total) после символа «/».\
-Дата окончания подписки указывается в параметре **expire**.\
-**Примечание:** все данные передаются в одном заголовке и разделяются символом **;**. 
+Displays information about the balance, amount of used traffic, and subscription expiration date.\
+In the app, the left part of the scale shows the amount of spent traffic (upload + download), and the right part — the total volume (total) after the "/" symbol.\
+The subscription expiration date is specified in the **expire** parameter.\
+**Note:** all data is passed in one header and separated by the **;** symbol.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 subscription-userinfo: [string]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -121,9 +119,9 @@ subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
-№subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
+#subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -133,23 +131,23 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Ссылка на страницу поддержки</summary>
+<summary>Support Page Link</summary>
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
-Кнопка для перехода на страницу поддержки.\
-Отображается в виде синей иконки, расположенной в правой части строки.\
-Если ссылка ведёт в Telegram, отображается иконка Telegram; в остальных случаях используется стандартная иконка ссылки.
+Button to go to the support page.\
+Displayed as a blue icon located on the right side of the line.\
+If the link leads to Telegram, a Telegram icon is displayed; in other cases, a standard link icon is used.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 support-url: [string]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -160,7 +158,7 @@ support-url: https://t.me/happ_chat
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #support-url: https://t.me/happ_chat
 vless://70cc48c5‑b2f4…
@@ -172,23 +170,23 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Ссылка на страницу сайта</summary>
+<summary>Website Page Link</summary>
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-Кнопка для перехода на страницу сайта подписки.\
-Отображается в виде синей иконки, расположенной в левой части строки.\
-Если параметр не задан иконка будет серого цвета
+Button to go to the subscription website page.\
+Displayed as a blue icon located on the left side of the line.\
+If the parameter is not set, the icon will be gray.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 profile-web-page-url: [string]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -199,7 +197,7 @@ profile-web-page-url: https://happ.su
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #profile-web-page-url: https://happ.su
 vless://70cc48c5‑b2f4…
@@ -211,22 +209,22 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Объявление</summary>
+<summary>Announcement</summary>
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-Подписка может содержать текст объявления, передаваемый в формате **plain text** или **Base64**.\
-**Ограничение:** максимальная длина отображаемого текста — **200 символов**.
+The subscription can contain announcement text, passed in **plain text** or **Base64** format.\
+**Limit:** maximum displayed text length — **200 characters**.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 announce: [string]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -237,7 +235,7 @@ announce: base64:SGFwcCB0aGUgYmVzdCE=
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #announce: base64:SGFwcCB0aGUgYmVzdCE=
 vless://70cc48c5‑b2f4…
@@ -249,54 +247,19 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Отключение маршрутизации</summary>
+<summary>Tunnel Configuration (Desktop only)</summary>
 
-Глобальный параметр для отключения маршрутизации в приложении.
+Pass your own tunnel configuration for the sing-box core.
 
-**Пример настройки данного параметра:**
-
-```
-routing-enable: [string]
-```
-
-**Способы передачи:**
-
-{% code title="Через HTTP Headers:" %}
-```
-HTTP/2 200 
-date: Wed, 24 Nov 2024 10:00:52 GMT
-content-type: application/json
-content-length: 3798
-content-disposition: attachment; filename="213"
-routing-enable: 0
-```
-{% endcode %}
-
-{% code title="Через тело подписки:" %}
-```
-#routing-enable: 0
-vless://70cc48c5‑b2f4…
-vmess://zkIAU1JitkI…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>Конфигурация туннеля (только для Desktop)</summary>
-
-Передавайте собственную конфигурацию туннеля для ядра sing-box
-
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 custom-tunnel-config: [json]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -307,7 +270,7 @@ custom-tunnel-config: {...}
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #custom-tunnel-config: {...}
 vless://70cc48c5‑b2f4…
@@ -317,27 +280,27 @@ vmess://zkIAU1JitkI…
 
 </details>
 
-## Расширенные параметры <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
+### Advanced Parameters <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
 
 {% hint style="warning" %}
-Необходим параметр [Provider ID](provider-id.md)!
+[Provider ID](provider-id.md) parameter is required!
 {% endhint %}
 
 <details>
 
-<summary>Смена URL подписки</summary>
+<summary>Change Subscription URL</summary>
 
-Если домен заблокирован вашим провайдером, а пользователи могут подключаться к серверам и обновлять подписку только через VPN, этот параметр именно для вас. Задав новое доменное имя в значении данного параметра, вы обеспечите его автоматическую замену у всех пользователей подписки.
+If the domain is blocked by your provider, and users can connect to servers and update the subscription only via VPN, this parameter is for you. By setting a new domain name in the value of this parameter, you will ensure its automatic replacement for all subscription users.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 new-url: [url]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -348,7 +311,7 @@ new-url: https://mynew-domain.com/3J3jrb4jfc
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #new-url https://mynew-domain.com/3J3jrb4jfc
 vless://70cc48c5‑b2f4…
@@ -360,19 +323,19 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Смена домена подписки</summary>
+<summary>Change Subscription Domain</summary>
 
-Изменение домена сайта без смены полного URL, сохраняя остальную часть адреса.
+Changing the website domain without changing the full URL, keeping the rest of the address.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 new-domain: [domain]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -383,7 +346,7 @@ new-domain: mynew-domain.com
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #new-domain mynew-domain.com
 vless://70cc48c5‑b2f4…
@@ -395,17 +358,17 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Описание сервера в подписке</summary>
+<summary>Server Description in Subscription</summary>
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
-Позволяет задать дополнительную подпись, которая отображается под названием сервера вместо стандартного текста (например, "VMess", "VLESS", "Trojan").
+Allows setting an additional caption that is displayed under the server name instead of the standard text (for example, "VMess", "VLESS", "Trojan").
 
-* Максимальная длина — 30 символов.
-* Если не помещается на экран, будет сокращена с троеточием.
-* Задаётся после `title` через разделитель `?`.
+* Maximum length — 30 characters.
+* If it doesn't fit on the screen, it will be shortened with an ellipsis.
+* Set after `title` through the `?` separator.
 
-**Примеры:**
+**Examples:**
 
 {% code title="VLESS" %}
 ```
@@ -446,19 +409,19 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 {% code title="JSON" %}
 ```
 {
-  "dns": {
-  ...
-  },
-  "inbounds": [
-  ...
-  ],
-  "outbounds": [
-  ...
-  ],
-  "remarks": "🇭🇰 Hong Kong",
-  "meta": {
-    "serverDescription": "Happ the best"
-  }
+  "dns": {
+  ...
+  },
+  "inbounds": [
+  ...
+  ],
+  "outbounds": [
+  ...
+  ],
+  "remarks": "🇭🇰 Hong Kong",
+  "meta": {
+    "serverDescription": "Happ the best"
+  }
 }
 ```
 {% endcode %}
@@ -467,17 +430,17 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 
 <details>
 
-<summary>Фрагментация и фронтинг подписки</summary>
+<summary>Subscription Fragmentation and Fronting</summary>
 
-Некоторые CDN поддерживают фронтинг доменов. Это позволяет подключаться к своему сайту через сторонний домен.
+Some CDNs support domain fronting. This allows connecting to your site through a third-party domain.
 
-Например, указав адрес подключения `visa.com`, а в заголовке Host — `my-domain.com`, провайдер увидит только запрос к `visa.com`.
+For example, by specifying the connection address `visa.com`, and in the Host header — `my-domain.com`, the provider will only see the request to `visa.com`.
 
-Также вы можете обращаться к своему домену за списком серверов, используя фрагментацию пакетов в SNI TLSHello.
+You can also access your domain for the server list using packet fragmentation in SNI TLSHello.
 
-По умолчанию фрагментация включена для всех подписок. Пользователь может добавить подписку только один раз; при повторной попытке, если аккаунт не премиумный, обновление не будет разрешено.
+By default, fragmentation is enabled for all subscriptions. The user can add a subscription only once; on repeated attempts, if the account is not premium, the update will not be allowed.
 
-#### &#x20;Схема URL c параметрами
+**URL Scheme with Parameters**
 
 ```
 [link]#title?[fragment]&[resolve-address]&[host]&[insecure]
@@ -485,39 +448,39 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 Fronting:
 visa.com/123#MyVPN?resolve-address=visa.com&host=mydomain.com
 
-Frgmentation:
+Fragmentation:
 mydomain.com/123#MyVPN?fragment=80-250,10-100,tlshello
 ```
 
-Фрагментация содержит три параметра: `[length]`, `[interval]` и `[packets]`.
+Fragmentation contains three parameters: `[length]`, `[interval]` and `[packets]`.
 
-При использовании фронтинга необходимо сначала указать URL с доменом, через который будет осуществляться соединение. Также требуется задать `resolve-address` — это может быть домен или IP-адрес — и `host`, соответствующий вашему хосту в сети выбранного провайдера.
-
-</details>
-
-<details>
-
-<summary>Advanced fragmentation</summary>
-
-Данная функция пока что проходит закрытое тестирование и скоро будет доступна...
+When using fronting, you must first specify the URL with the domain through which the connection will be made. You also need to set `resolve-address` — this can be a domain or IP address — and `host`, corresponding to your host in the selected provider's network.
 
 </details>
 
 <details>
 
-<summary>Неотключаемый HWID</summary>
+<summary>Advanced Fragmentation</summary>
 
-По умолчанию HWID включен на всех приложениях Happ. Но если вы хотите, чтобы пользователь не мог отключить пересылку этого параметра отключив его в настройках приложения, то вы можете отправить вместе с подпиской специальный параметр.
+This feature is currently undergoing closed testing and will be available soon...
 
-**Пример настройки данного параметра:**
+</details>
+
+<details>
+
+<summary>Non-Disablable HWID</summary>
+
+By default, HWID is enabled on all Happ apps. But if you want the user to be unable to disable the forwarding of this parameter by turning it off in the app settings, you can send a special parameter along with the subscription.
+
+**Example of setting this parameter:**
 
 ```
 subscription-always-hwid-enable: [true / 1]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -528,7 +491,7 @@ subscription-always-hwid-enable: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #subscription-always-hwid-enable: 1
 vless://70cc48c5‑b2f4…
@@ -540,26 +503,26 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Уведомление об окончании подписки</summary>
+<summary>Subscription Expiration Notification</summary>
 
-Вы можете включить функцию автоматических уведомлений о завершении подписки.\
-Пользователь будет получать напоминания за 3 дня до окончания подписки: приложение отправит по одному уведомлению в день в течение трёх дней. Это поможет пользователю не забыть продлить подписку вовремя.
+You can enable the automatic subscription expiration notifications feature.\
+The user will receive reminders 3 days before the subscription ends: the app will send one notification per day for three days. This will help the user not forget to renew the subscription on time.
 
-Текст уведомления:
+Notification text:
 
 ```
- У вашей подписки [name] скоро истечёт срок действия, не забудьте продлить её.
+Your subscription [name] is about to expire, don't forget to renew it.
 ```
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 notification-subs-expire: [true / 1]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -570,7 +533,7 @@ notification-subs-expire: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #notification-subs-expire: 1
 vless://70cc48c5‑b2f4…
@@ -582,21 +545,21 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Скрыть настройки серверов в подписке</summary>
+<summary>Hide Server Settings in Subscription</summary>
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
-Отключите возможность просмотра и редактирования конфигураций серверов для пользователей вашей подписки. Настройка применяется как к уже добавленным подпискам, так и к тем, что будут добавлены в будущем.
+Disable the ability to view and edit server configurations for your subscription users. The setting applies to both already added subscriptions and those that will be added in the future.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 hide-settings: [true / 1]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -607,7 +570,7 @@ hide-settings: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #hide-settings: 1
 vless://70cc48c5‑b2f4…
@@ -619,15 +582,15 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Резолвинг доменов</summary>
+<summary>Domain Resolving</summary>
 
-Приложение может выполнять предварительное резолвинг доменов серверов ещё до установления подключения.\
-Вы можете указать любой DoH-сервер, и при соединении с сервером Xray доменное имя будет заменено на полученный IP-адрес.
+The app can perform preliminary domain resolving of servers before establishing a connection.\
+You can specify any DoH server, and when connecting to the Xray server, the domain name will be replaced with the received IP address.
 
-Если для домена возвращается несколько IP-адресов, приложение автоматически выберет тот, у которого минимальное время отклика (ping).\
-Однако стоит учитывать: при большом количестве IP-адресов подключение может занять больше времени, так как все варианты будут протестированы заранее.
+If multiple IP addresses are returned for the domain, the app will automatically select the one with the minimum response time (ping).\
+However, keep in mind: with a large number of IP addresses, the connection may take longer, as all options will be tested in advance.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 server-address-resolve-enable: [true / 1]
@@ -635,9 +598,9 @@ server-address-resolve-dns-domain: [url]
 server-address-resolve-dns-ip: [ip]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -650,7 +613,7 @@ server-address-resolve-dns-ip: 77.88.8.8
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #server-address-resolve-enable: 1
 #server-address-resolve-dns-domain: https://common.dot.dns.yandex.net/dns-query
@@ -662,28 +625,28 @@ vmess://zkIAU1JitkI…
 
 </details>
 
-#### Управление настройками приложения <a href="#upravlenie-nastroikami-prilozheniya" id="upravlenie-nastroikami-prilozheniya"></a>
+**Managing App Settings**
 
 {% hint style="warning" %}
-Необходим параметр [Provider ID](provider-id.md)!
+[Provider ID](provider-id.md) parameter is required!
 {% endhint %}
 
 <details>
 
-<summary>Автоподключение</summary>
+<summary>Auto-Connect</summary>
 
-Позволяет автоматически подключать пользователя к серверам при запуске приложения. Дополнительно, с помощью параметра **subscription-autoconnect** можно указать критерий для подключения к определенному серверу.
+Allows automatically connecting the user to servers when launching the app. Additionally, using the **subscription-autoconnect** parameter, you can specify the criterion for connecting to a specific server.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 subscription-autoconnect: [true / 1]
 subscription-autoconnect-type: [“lastused“/”lowestdelay”]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -695,7 +658,7 @@ subscription-autoconnect-type: lowestdelay
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #subscription-autoconnect: 1
 #subscription-autoconnect-type: lastused
@@ -708,19 +671,19 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Автопинг</summary>
+<summary>Auto-Ping</summary>
 
-Запускайте автоматическое тестирование списка серверов при открытии приложения если это необходимо.
+Launch automatic testing of the server list when opening the app if necessary.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 subscription-ping-onopen-enabled: [true / 1]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -731,7 +694,7 @@ subscription-ping-onopen-enabled: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #subscription-ping-onopen-enabled: 1
 vless://70cc48c5‑b2f4…
@@ -743,19 +706,19 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Автообновление подписок</summary>
+<summary>Auto-Update Subscriptions</summary>
 
-В приложении можно включать или отключать автообновление сразу для всех подписок — эта настройка применяется ко всем подпискам одновременно. Если же нужно задать автообновление только для конкретной подписки, воспользуйтесь функционалом Автообновление подписки. При отключении глобальной настройки каждая подписка самостоятельно определяет своё время обновления.
+In the app, you can enable or disable auto-update for all subscriptions at once — this setting applies to all subscriptions simultaneously. If you need to set auto-update only for a specific subscription, use the Subscription Auto-Update functionality. When the global setting is disabled, each subscription independently determines its update time.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 subscription-auto-update-enable: [true / 1] 
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -766,7 +729,7 @@ subscription-auto-update-enable: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #new-url: https:/mynew-domain.com/3J3jrb4jfc
 vless://70cc48c5‑b2f4…
@@ -778,11 +741,11 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Фрагментация</summary>
+<summary>Fragmentation</summary>
 
-Это глобальный параметр управления фрагментацией для всех подписок. Если же нужно назначить фрагментацию только для конкретной подписки или серверу, воспользуйтесь бесплатным функционалом и инструкциями общей документации к приложению. При отключении глобальной настройки каждая подписка самостоятельно определяет настройки фрагментации.
+This is a global parameter for managing fragmentation for all subscriptions. If you need to assign fragmentation only to a specific subscription or server, use the free functionality and instructions from the general app documentation. When the global setting is disabled, each subscription independently determines the fragmentation settings.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 fragmentation-enable: [true / 1]
@@ -797,9 +760,9 @@ noises-delay: [String]
 noises-applyto: [ip,ipv4,ipv6]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -819,7 +782,7 @@ noises-applyto: ipv4
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #fragmentation-enable: 1
 #fragmentation-packets: tlshello
@@ -840,22 +803,20 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Пинг</summary>
+<summary>Ping</summary>
 
+This function allows you to choose the ping method in the app. Three options are available: "via Proxy", "TCP", and "ICMP". For the "via Proxy" mode, you can additionally specify a URL for ping checking.
 
-
-Эта функция позволяет выбрать способ выполнения пинга в приложении. Доступны три варианта: «via Proxy», «TCP» и «ICMP». Для режима «via Proxy» можно дополнительно указать URL для проверки пинга.
-
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 ping-type: ["proxy", "proxy-head', "tcp","icmp"]
 check-url-via-proxy: [url]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -867,7 +828,7 @@ check-url-via-proxy: https://cp.cloudflare.com/generate_204
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #ping-type proxy
 #check-url-via-proxy: https://cp.cloudflare.com/generate_204
@@ -882,17 +843,17 @@ vmess://zkIAU1JitkI…
 
 <summary>User-Agent</summary>
 
-Эта функция позволяет изменить User-Agent, используемый в заголовках при получении подписки. Полезно в случаях, когда провайдер блокирует запросы с нестандартными или неподходящими заголовками.
+This function allows changing the User-Agent used in headers when receiving the subscription. Useful in cases where the provider blocks requests with non-standard or unsuitable headers.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 change-user-agent: [String] 
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -903,7 +864,7 @@ change-user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/5
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #change-user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
 vless://70cc48c5‑b2f4…
@@ -915,19 +876,19 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Автозапуск приложения</summary>
+<summary>App Auto-Start</summary>
 
-Эта функция позволяет автоматически запускать приложение при включении устройства. В настоящее время доступна только на Android.&#x20;
+This function allows automatically launching the app when the device is turned on. Currently available only on Android.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 app-auto-start: [String] 
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -938,7 +899,7 @@ app-auto-start: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #app-auto-start: 1
 vless://70cc48c5‑b2f4…
@@ -950,19 +911,19 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Обновление подписки при запуске приложения</summary>
+<summary>Subscription Update on App Launch</summary>
 
-Эта функция автоматически обновляет все подписки в приложении при каждом открытии приложения.
+This function automatically updates all subscriptions in the app every time the app is opened.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 subscription-auto-update-open-enable: [String] 
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -973,7 +934,7 @@ subscription-auto-update-open-enable: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #subscription-auto-update-open-enable: 1
 vless://70cc48c5‑b2f4…
@@ -985,20 +946,20 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Прокси для выбранных приложений (Android)</summary>
+<summary>Proxy for Selected Apps (Android)</summary>
 
-В этом параметре можно указать список приложений, которые должны использовать VPN или, наоборот, обходить его. Если приложение ещё не установлено на устройстве, но указано в списке, оно будет автоматически учтено при первом подключении к VPN после установки.
+In this parameter, you can specify a list of apps that should use VPN or, conversely, bypass it. If the app is not yet installed on the device but is listed, it will be automatically accounted for on the first VPN connection after installation.
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
-per-app-proxy-mode: [off/on/bypass] \\Укажите один из трех параметров
-per-app-proxy-list: [com.google.chrome,com.meta.instagram] \\список appID через ','
+per-app-proxy-mode: [off/on/bypass] \\Specify one of the three parameters
+per-app-proxy-list: [com.google.chrome,com.meta.instagram] \\list of appIDs separated by ','
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -1010,7 +971,7 @@ per-app-proxy-list: com.google.chrome,com.meta.instagram
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #per-app-proxy-mode: on
 #per-app-proxy-list: com.google.chrome,com.meta.instagram
@@ -1023,21 +984,20 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Анализ пакетов (Sniffing)</summary>
+<summary>Packet Analysis (Sniffing)</summary>
 
-В **xray-core** sniffing нужен, чтобы анализировать первые пакеты соединения и автоматически определять **протокол** (HTTP, TLS, BitTorrent и т.д.) и **домен** (SNI/Host).\
-Может влиять на загрузку медиа в приложении WeChat. По умолчанию включен.\
+In **xray-core**, sniffing is needed to analyze the first connection packets and automatically determine the **protocol** (HTTP, TLS, BitTorrent, etc.) and **domain** (SNI/Host).\
+May affect media loading in the WeChat app. Enabled by default.
 
-
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 sniffing-enable: [String] 
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -1048,7 +1008,7 @@ sniffing-enable: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #sniffing-enable: 1
 vless://70cc48c5‑b2f4…
@@ -1060,22 +1020,21 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Запрет сворачивания подписок</summary>
+<summary>Prohibit Collapsing Subscriptions</summary>
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
-Эта функция отключает возможность сворачивать подписку: список серверов всегда отображается полностью, в развёрнутом виде.\
+This function disables the ability to collapse the subscription: the server list is always displayed in full, expanded view.
 
-
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 subscriptions-collapse: [String] 
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -1086,7 +1045,7 @@ subscriptions-collapse: 1
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #subscriptions-collapse: 1
 vless://70cc48c5‑b2f4…
@@ -1098,22 +1057,21 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Режим отображения пинга</summary>
+<summary>Ping Display Mode</summary>
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
-Позволяет отобразить иконки вместо временных значений\
+Allows displaying icons instead of time values.
 
-
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 ping-result: [time,icon]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -1124,7 +1082,7 @@ ping-result: icon
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #ping-result: icon
 vless://70cc48c5‑b2f4…
@@ -1138,9 +1096,9 @@ vmess://zkIAU1JitkI…
 
 <summary>Mux</summary>
 
-Mux в xray-core — это функция мультиплексирования (multiplexing), которая позволяет передавать данные нескольких виртуальных TCP-соединений через одно физическое TCP-соединение. Она предназначена для снижения задержек от TCP-handshake, но не для повышения пропускной способности (может даже замедлить большие загрузки). Настраивается в outbound-конфигурации с параметрами вроде enabled и concurrency (min -1 max 1024).
+Mux in xray-core is a multiplexing function that allows transmitting data from multiple virtual TCP connections through one physical TCP connection. It is designed to reduce delays from TCP-handshake, but not to increase bandwidth (it may even slow down large downloads). Configured in the outbound configuration with parameters like enabled and concurrency (min -1 max 1024).
 
-**Пример настройки данного параметра:**
+**Example of setting this parameter:**
 
 ```
 mux-enable: [true / 1]
@@ -1149,9 +1107,9 @@ mux-xudp-connections: [String]
 mux-quic: [String]
 ```
 
-**Способы передачи:**
+**Transmission methods:**
 
-{% code title="Через HTTP Headers:" %}
+{% code title="Via HTTP Headers:" %}
 ```
 HTTP/2 200 
 date: Wed, 24 Nov 2024 10:00:52 GMT
@@ -1165,159 +1123,12 @@ mux-quic: skip
 ```
 {% endcode %}
 
-{% code title="Через тело подписки:" %}
+{% code title="Via subscription body:" %}
 ```
 #mux-enable: 1
 #mux-tcp-connections: 100
 #mux-xudp-connections: 200
 #mux-quic: skip
-vless://70cc48c5‑b2f4…
-vmess://zkIAU1JitkI…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>Режим Proxy \ TUN (только для Desktop)</summary>
-
-Необходимо <mark style="color:$warning;">**использовать только один**</mark> из двух перечисленных параметров! Эти параметры определяют тип подключения при добавлении\обновлении подписки.
-
-**Пример настройки данного параметра:**
-
-```
-proxy-enable: [true / 1]
-tun-enable: [true / 1]
-```
-
-**Способы передачи:**
-
-{% code title="Через HTTP Headers:" %}
-```
-HTTP/2 200 
-date: Wed, 24 Nov 2024 10:00:52 GMT
-content-type: application/json
-content-length: 3798
-content-disposition: attachment; filename="213"
-proxy-enable: 1
-```
-{% endcode %}
-
-{% code title="Через тело подписки:" %}
-```
-#proxy-enable: 1
-vless://70cc48c5‑b2f4…
-vmess://zkIAU1JitkI…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>Режим TUN (только для Desktop)</summary>
-
-Определяет какой режим будет использоваться для TUN подключения.
-
-* **`system`** — использует системный сетевой стек ОС.\
-  Быстро и эффективно, но зависит от корректной настройки маршрутов и файрвола .
-* **`gvisor`** — пользовательский стек gVisor (userspace).\
-  Меньше зависимостей от правил ядра и конфликтов с iptables/nftables/Docker, лучше изоляция; возможен небольшой минус к производительности.
-
-**Пример настройки данного параметра:**
-
-```
-tun-mode: [system,gvisor]
-```
-
-**Способы передачи:**
-
-{% code title="Через HTTP Headers:" %}
-```
-HTTP/2 200 
-date: Wed, 24 Nov 2024 10:00:52 GMT
-content-type: application/json
-content-length: 3798
-content-disposition: attachment; filename="213"
-tun-mode: gvisor
-```
-{% endcode %}
-
-{% code title="Через тело подписки:" %}
-```
-#tun-mode: gvisor
-vless://70cc48c5‑b2f4…
-vmess://zkIAU1JitkI…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>Выбор ядра туннеля (только для Desktop)</summary>
-
-Определяет какое ядро будет использоваться для TUN подключения. Для выбора доступно [sing-box](https://github.com/SagerNet/sing-box), [tun2proxy](https://github.com/tun2proxy/tun2proxy)
-
-**Пример настройки данного параметра:**
-
-```
-tun-type: [singbox, tun2proxy]
-```
-
-**Способы передачи:**
-
-{% code title="Через HTTP Headers:" %}
-```
-HTTP/2 200 
-date: Wed, 24 Nov 2024 10:00:52 GMT
-content-type: application/json
-content-length: 3798
-content-disposition: attachment; filename="213"
-tun-type: tun2proxy
-```
-{% endcode %}
-
-{% code title="Через тело подписки:" %}
-```
-#tun-type: tun2proxy
-vless://70cc48c5‑b2f4…
-vmess://zkIAU1JitkI…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>Exclude routes</summary>
-
-Определяет перечень подсетей и IP-адресов, трафик которых не должен проходить через туннель.\
-Адреса указываются в одной строке, разделяя их пробелами и запятыми.
-
-**Пример настройки данного параметра:**
-
-```
-exclude-routes: [String]
-```
-
-**Способы передачи:**
-
-{% code title="Через HTTP Headers:" %}
-```
-HTTP/2 200 
-date: Wed, 24 Nov 2024 10:00:52 GMT
-content-type: application/json
-content-length: 3798
-content-disposition: attachment; filename="213"
-exclude-routes: 192.169.1.0/24, 10.0.0.0/8
-```
-{% endcode %}
-
-{% code title="Через тело подписки:" %}
-```
-#exclude-routes: 192.169.1.0/24, 10.0.0.0/8
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```

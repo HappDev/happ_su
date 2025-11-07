@@ -1,28 +1,28 @@
 # Ping
 
-Приложение поддерживает три типа пинга: **ICMP**, **TCP** и **через прокси (via Proxy)**.
+The application supports three types of ping: **ICMP**, **TCP**, and **via Proxy**.
 
 **ICMP Ping**
 
-Использует ICMP-пакеты (аналогично команде `ping` в терминале).\
-Малоудобен, так как требует временного отключения туннеля для выполнения теста.
+Uses ICMP packets (similar to the `ping` command in a terminal).\
+It is less convenient because it requires temporarily disabling the tunnel to perform the test.
 
 **TCP Ping**
 
-Измеряет задержку, отправляя TCP-пакет напрямую к серверу.\
-Не требует отключения туннеля.\
-Однако при использовании CDN может не отражать реальную задержку до конечного сервера — измеряется только до ближайшей точки CDN.
+Measures latency by sending a TCP packet directly to the server.\
+Does not require disabling the tunnel.\
+However, when a CDN is used, it may not reflect the real latency to the destination server — the ping only reaches the nearest CDN node.
 
-**Ping через прокси (via Proxy Ping)**
+**via Proxy Ping**
 
-Выполняется через активное VPN-соединение, включая весь путь до целевого сервера.\
-Это наиболее точный и показательный метод, так как учитывает все этапы подключения, включая установку TLS.
+Runs through the active VPN connection and includes the full path to the target server.\
+This is the most accurate and representative method, as it includes all stages of connection, including TLS handshake.
 
-**Пример последовательности при via Proxy Ping:**
+**Example of the via Proxy Ping sequence:**
 
-1. Резолвим доменное имя сервера (если точка подключения задана в виде домена).
-2. Устанавливаем TCP-соединение с сервером.
-3. Если используется TLS — устанавливаем TLS-соединение.
-4. На стороне сервера резолвится домен тестируемого ресурса.
-5. Сервер устанавливает TLS-соединение с целевым сайтом (если он использует HTTPS).
-6. Получаем и измеряем ответ от тестируемого сайта.
+1. Resolve the server's domain name (if the connection point is specified as a domain).
+2. Establish a TCP connection to the server.
+3. If TLS is used — initiate a TLS handshake.
+4. On the server side, resolve the domain of the test target.
+5. Establish a TLS connection to the test site (if it uses HTTPS).
+6. Receive and measure the response from the test site.

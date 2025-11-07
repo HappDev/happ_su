@@ -1,33 +1,29 @@
-# Зашифрованная ссылка
+# Crypto link
 
-Приложение поддерживает зашифрованные ссылки. Ссылка может быть зашифрована с использованием RSA-4096. ~~Обычно используется ключ RSA-1024, однако, если длина ссылки превышает 110 символов, применяется ключ RSA-4096.~~ Теперь рекомндуется использовать только RSA-4096 он называется happ://crypt3/
+The application supports encrypted links. A link can be encrypted using RSA-4096. It is now recommended to use only RSA-4096, which is referred to as `happ://crypt3/`.\
+Link encryption is designed to hide the subscription address from the user. After adding an encrypted subscription, the user cannot edit, view, or share the server configurations contained in the subscription. The encryption keys themselves are securely embedded in the application, ensuring the protection of subscription data.
 
-Шифрование ссылок предназначено для скрытия адреса подписки от пользователя. После добавления зашифрованной подписки пользователь не может редактировать, просматривать или делиться конфигурациями серверов, содержащимися в подписке. Сами ключи шифрования надежно встроены в приложение, что обеспечивает защиту данных подписки.
+***
 
-Вы можете зашифровать ссылку тремя способами:
+You can encrypt a link in three ways:
 
-1. С использованием [веб-страницы](https://crypto.happ.su).
-2. Через [API](crypto-link.md#instrukciya-po-api).
-3. С помощью [RSA-ключа](crypto-link.md#rsa-klyuchi).
+1. Using this [web page](https://crypto.happ.su)
+2. Using the [API](crypto-link.md#api-instructions)
+3. Using [RSA key](crypto-link.md#rsa-key-rsa-4096)
 
-#### **Инструкция по API**
+#### API Instructions
 
-Для использования API необходимо отправить запрос по следующему адресу:\
-`https://crypto.happ.su/api.php`
+To use the API, you need to send a request to the following address: `https://crypto.happ.su/api.php`
 
-**Пример:**
+**Example:**
 
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"url":"https://your_url.com"}' "https://crypto.happ.su/api.php"
 ```
 
-В результате будет возвращена зашифрованная версия вашей ссылки, которую можно использовать в приложении.
+The result will return an encrypted version of your link, which can then be used in the application.
 
-#### **RSA-ключ**
-
-Если вы предпочитаете зашифровать ссылку самостоятельно, используйте предоставленный RSA-ключ ниже.
-
-**RSA-ключ (RSA-4096):**
+#### **RSA Key (RSA-4096):**
 
 ```
 -----BEGIN PUBLIC KEY-----
@@ -44,5 +40,5 @@ IenvMhzJh1fq7xwX94otdd5eLB2vRFavrnhOcN2JJAkKTnx9dwQwFpGEkg+8U613
 Zb/Zq+kK2hSIhphY172Uvs8X2Qp2ac9UoTPM71tURsA9IvPNvUwSIo/aKlX5KE3I
 VE0tje7twWXL5Gb1sfcXRzsCAwEAAQ==
 -----END PUBLIC KEY-----
-
 ```
+

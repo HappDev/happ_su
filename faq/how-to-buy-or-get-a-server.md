@@ -1,3 +1,3 @@
-# Как купить или получить сервер
+# How to buy or get a server
 
-Приложение Happ — это инструмент для подключения к серверам по различным протоколам. Мы не предоставляем и не продаем доступ к серверам. Используйте приложение в личных целях в соответствии с законодательством вашей страны.
+Happ App is a tool for connecting to servers via various protocols. We do not provide or sell access to servers. Use this app for personal purposes in compliance with the laws of your country.

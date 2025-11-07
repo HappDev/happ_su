@@ -10,30 +10,26 @@
 {% endcolumn %}
 {% endcolumns %}
 
-Чтобы передать подписку на телевизор пользователя, необходимо знать 5-значный код, сгенерированный устройством. Этот код отображается при первом запуске приложения на Android TV — достаточно выбрать пункт **Web Import**.
+To transfer a subscription to a user’s TV, you need to know the 5-digit code generated when the app is first launched on the Android TV. The user can get this code by selecting the **Web Import** option in the app interface.
 
-После этого необходимо выполнить **POST-запрос** на адрес:\
+After that, you must send a **POST** request to:\
 `https://check.happ.su/sendtv/[uid]`\
-где **\[uid]** — это 5-значный код, отображённый на экране телевизора.
+where **\[uid]** is the 5-digit code displayed on the TV.
 
-Запрос должен быть в формате JSON:
+The request body should be in JSON format:
 
 ```json
 { "data": "base64" }
 ```
 
-Значение `base64` — это конфигурация сервера или подписки, закодированная в формате Base64.
+The `data` field contains the server or subscription configuration encoded in **Base64**.
 
-#### Пример запроса с использованием `curl`:
+#### Example `curl` request:
 
 ```bash
-curl -X POST https://check.happ.su/sendtv/QWET5 \
+curl -X POST https://check.happ.su/sendtv/12345 \
   -H "Content-Type: application/json" \
   -d '{"data":"aHR0cHM6Ly90ZXN0LXN1YnMuaGFwcC5zdS9wYWdlLnBocD9pZD14Y3huV254Uw=="}'
 ```
 
-В этом примере:
-
-* `QWET5` — это UID телевизора (тот самый 5-значный код).
-* Значение поля `"data"` — это пример конфигурации, закодированной в Base64
-
+In this example, `12345` is the TV’s UID, and `data` holds the Base64-encoded configuration string.

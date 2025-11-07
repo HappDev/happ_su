@@ -1,8 +1,8 @@
-# Добавление конфигурации/подписки
+# Adding Configuration/Subscription
 
-### Поддерживаемые протоколы
+Supported Protocols
 
-На данный момент приложение поддерживает следующие типы конфигураций:
+Currently, the application supports the following configuration types:
 
 * **VLESS**
 * **VMess**
@@ -10,31 +10,31 @@
 * **Trojan**
 * **Shadowsocks**
 
-Конфигурации можно добавить тремя способами:
+Configurations can be added using three methods:
 
-1. [**Ручное добавление**](adding-configuration-subscription.md#id-1.-ruchnoe-dobavlenie)
-2. [**Добавление через URL-ссылку**](adding-configuration-subscription.md#id-2.-dobavlenie-cherez-url-ssylku)
-3. [**Добавление подписки**](adding-configuration-subscription.md#id-3.-dobavlenie-podpiski)
-
-***
-
-### 1. Ручное добавление
-
-Чтобы добавить конфигурацию вручную, выполните следующие шаги:
-
-1. Нажмите кнопку «+» в верхнем правом углу главного экрана.
-2. Выберите опцию «Ручной ввод».
-3. Выберите нужный протокол из списка.
-4. Заполните все обязательные поля с параметрами.
-5. Нажмите кнопку «Готово» в верхнем правом углу окна для сохранения конфигурации.
-
-После сохранения конфигурация появится в разделе «Список серверов» на главном экране.
+1. [**Manual Entry**](adding-configuration-subscription.md#id-1.-manual-entry)
+2. [**Adding via URL Link**](adding-configuration-subscription.md#id-2.-adding-via-url-link)
+3. [**Adding Subscription**](adding-configuration-subscription.md#id-3.-adding-subscription)
 
 ***
 
-### 2. Добавление через URL-ссылку
+#### 1. Manual Entry
 
-Приложение поддерживает добавление конфигураций с помощью URL-ссылок. Допустимые форматы ссылок:
+To add a configuration manually, follow these steps:
+
+1. Click the **“+”** button in the upper right corner of the main screen.
+2. Select **“Manual Input”**.
+3. Choose the desired protocol from the list.
+4. Fill in all required fields with the appropriate parameters.
+5. Click **“Done”** in the upper right corner of the window to save the configuration.
+
+After saving, the configuration will appear in the **“Server List”** section on the main screen.
+
+***
+
+#### 2. Adding via URL Link
+
+The application supports adding configurations through URL links. Supported link formats include:
 
 * `vmess://`
 * `vless://`
@@ -42,26 +42,27 @@
 * `trojan://`
 * `ss://`
 
-Ссылки можно передавать в приложение следующими способами:
+Links can be provided to the application using the following methods:
 
-* Копированием из буфера обмена
-* Сканированием QR-кода
-* Использованием диплинка
+* Copying from the clipboard
+* Scanning a QR code
+* Using a deep link
 
 ***
 
-### 3. Добавление подписки
+#### 3. Adding Subscription
 
-Приложение поддерживает два типа подписок:
+The application supports two types of subscriptions:
 
-* **Зашифрованная подписка:**\
-  Ссылки начинаются с `happ://crypto...`. При использовании зашифрованной подписки настройки серверов и адрес подписки скрыты.
-* **Обычная подписка:**\
-  Это стандартный веб-URL, содержащий конфигурации серверов в открытом виде.
+* **Encrypted Subscription:**\
+  The link begins with `happ://crypto...`. In an encrypted subscription, the server settings and the subscription URL are hidden.
+* **Standard Subscription:**\
+  This is a regular web URL that contains server configurations in an open format.
 
-Подписку можно добавить через:
+A subscription can be added via:
 
-* Буфер обмена
-* QR-код
-* Диплинк
+* Clipboard
+* QR code
+* Deep link
 
+###
