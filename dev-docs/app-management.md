@@ -2,12 +2,12 @@
 description: Manage application settings via subscription
 ---
 
-# Application Management
+# App management
 
 **The application management functionality** includes two areas:
 
 * [Standard parameters](app-management.md#standartnye-parametry) that work for most panels.
-* [Advanced parameters](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) for which you need to specify the [Provider ID](provider-id.md[...)
+* [Advanced parameters](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) for which you need to specify the [Provider ID](provider-id.md\[...)
 
 To enable a parameter, pass the value `true` or `1`; to disable it, pass any other non-empty value.
 
@@ -17,10 +17,10 @@ To enable a parameter, pass the value `true` or `1`; to disable it, pass any oth
 
 <summary>Subscription Auto-Update</summary>
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
-The system creates a task to perform the operation at a specified interval. Depending on internal priorities, the operation may be delayed but will still occur asynchronously.
-If for any reason the update wasn’t performed within the specified interval, it will be automatically triggered at the next available opportunity.
+A task is created in the system to perform the operation at the specified interval. Depending on internal priorities, the system tries to run the subscription update at the set time.\
+If for any reason the update was not performed within the specified interval, it will occur automatically on the next app launch.\
 The interval is set in hours and must be a multiple of one hour.
 
 **Example of configuring this parameter:**
@@ -56,9 +56,9 @@ vmess://zkIAU1JitkI…
 
 <summary>Subscription Name</summary>
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
-The name of the subscription profile. Can be passed as plain text or base64 (UTF-8). **Restriction:** Maximum length — 20 characters.
+The name of the subscription profile. Can be passed as plain text or base64 (UTF-8). **Restriction:** Maximum length — 25 characters.
 
 In the subscription body, specify the parameter with a # (e.g., #profile-title)
 
@@ -95,12 +95,12 @@ vmess://zkIAU1JitkI…
 
 <summary>Subscription Status String (traffic, expiration date)</summary>
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
-Displays information about balance, traffic usage, and subscription validity period.\
-The app shows the used traffic (upload + download) on the left side of the scale, and the total on the right.\
-The subscription end date is specified in the **expire** parameter.\
-**Note:** All data is sent in a single header separated by **;**.
+Displays information about balance, used traffic volume, and subscription expiration date.\
+On the left side of the scale in the app, the amount of used traffic (upload + download) is shown, and on the right — the total volume (total) after the "/" symbol.\
+The subscription expiration date is specified in the **expire** parameter.\
+**Note:** all data is transmitted in one header and separated by the **;** symbol.
 
 **Example of configuring this parameter:**
 
@@ -135,7 +135,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Support Page Link</summary>
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 A button to go to the support page.\
 Displayed as a blue icon on the right.\
@@ -174,7 +174,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Website Link</summary>
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
 A button to go to the subscription website.\
 Displayed as a blue icon on the left.\
@@ -213,7 +213,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Announcement</summary>
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
 The subscription can contain an announcement message, passed as **plain text** or **Base64**.\
 **Restriction:** maximum length of displayed text — **200 characters**.
@@ -327,7 +327,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Change Subscription URL</summary>
 
-If your domain is blocked by your provider but users can still connect to servers and update subscriptions, you can specify a new subscription link.
+If your domain is blocked by the provider, and users can only connect to servers and update the subscription via VPN, this parameter is for you. By setting a new domain name in this parameter value, you ensure its automatic replacement for all subscription users.
 
 **Example of configuring this parameter:**
 
@@ -362,7 +362,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Change Subscription Domain</summary>
 
-Change the site domain without changing the full URL and preserving the rest of the address.
+Change the site domain without changing the full URL, keeping the rest of the address.
 
 **Example of configuring this parameter:**
 
@@ -397,13 +397,13 @@ vmess://zkIAU1JitkI…
 
 <summary>Server Description in Subscription</summary>
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
 
-Allows you to set an additional label displayed below the server name instead of the default text.
+Allows setting an additional caption displayed under the server name instead of the standard text (e.g., "VMess", "VLESS", "Trojan").
 
 * Maximum length — 30 characters.
-* If it doesn't fit on the screen, it will be truncated with an ellipsis.
-* Set after `title` separated by `?`.
+* If it doesn't fit on the screen, it will be shortened with an ellipsis.
+* Set after `title` via the `?` separator.
 
 **Examples:**
 
@@ -469,15 +469,11 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 
 <summary>Subscription Fragmentation and Fronting</summary>
 
-Some CDNs support domain fronting. This allows you to connect to your site using a third-party domain.
+Some CDNs support domain fronting. This allows connecting to your site through a third-party domain. For example, by specifying the connection address `visa.com` and Host header `my-domain.com`, the provider will only see a request to `visa.com`. \
+You can also access your domain for the server list using packet fragmentation in SNI TLSHello. \
+By default, fragmentation is enabled for all subscriptions. The user can add the subscription only once; on repeat attempts, if the account is not premium, the update will not be allowed.
 
-For example, specifying the connection address `visa.com` and the Host header as `my-domain.com`, the provider will only see the request to `visa.com`.
-
-You can also fetch server lists from your domain using SNI TLSHello packet fragmentation.
-
-By default, fragmentation is enabled for all subscriptions. The user can only add a subscription once; [...]
-
-#### &#x20;URL Scheme with Parameters
+**URL Scheme with Parameters**
 
 ```
 [link]#title?[fragment]&[resolve-address]&[host]&[insecure]
@@ -491,7 +487,7 @@ mydomain.com/123#MyVPN?fragment=80-250,10-100,tlshello
 
 Fragmentation has three parameters: `[length]`, `[interval]` and `[packets]`.
 
-For fronting, specify the URL with the domain used for connection first, [...]
+For fronting, specify the URL with the domain used for connection first, \[...]
 
 </details>
 
@@ -507,7 +503,7 @@ This feature is currently in closed testing and will be available soon...
 
 <summary>Non-disableable HWID</summary>
 
-By default, HWID is enabled on all Happ applications. If you want users to be unable to disable HWID forwarding, enable this parameter.
+By default, HWID is enabled in all Happ apps. But if you want the user to be unable to disable the transmission of this parameter by turning it off in the app settings, you can send a special parameter with the subscription.
 
 **Example of configuring this parameter:**
 
@@ -543,7 +539,7 @@ vmess://zkIAU1JitkI…
 <summary>Subscription Expiration Notification</summary>
 
 You can enable automatic notifications about subscription expiration.\
-The user will receive reminders 3 days before the subscription ends: the app will send one notification per day.
+The user will receive reminders 3 days before expiration: the app will send one notification per day for three days. This helps the user not forget to renew the subscription on time.
 
 Notification text:
 
@@ -584,7 +580,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Hide Server Settings in Subscription</summary>
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
 Disable the ability to view and edit server configurations for users of your subscription. Not available for all apps.
 
@@ -621,11 +617,10 @@ vmess://zkIAU1JitkI…
 
 <summary>Domain Resolving</summary>
 
-The app can pre-resolve server domains before establishing a connection.\
-You can specify any DoH server, and when connecting to the Xray server, the domain will be replaced with the returned IP.
-
-If multiple IPs are returned, the app will automatically select the one with the lowest latency.\
-However, note: with a large number of IPs, connection time may increase since all IPs will be checked.
+The app can perform preliminary domain resolution for servers before establishing a connection.\
+You can specify any DoH server, and when connecting to an Xray server, the domain name will be replaced with the received IP address.\
+If multiple IP addresses are returned for a domain, the app will automatically select the one with the minimum response time (ping).\
+However, note: with a large number of IP addresses, connection may take longer as all options will be pre-tested.
 
 **Example of configuring this parameter:**
 
@@ -672,7 +667,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Auto Connect</summary>
 
-Allows you to automatically connect the user to servers when the application starts. Additionally, you can specify the behavior.
+Allows automatically connecting the user to servers when launching the app. Additionally, using the **subscription-autoconnect-type** parameter, you can specify the criterion for connecting to a specific server.
 
 **Example of configuring this parameter:**
 
@@ -710,7 +705,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Auto Ping</summary>
 
-Run automatic server list testing when the app is opened if needed.
+Run automatic server list testing when opening the app if necessary.
 
 **Example of configuring this parameter:**
 
@@ -745,7 +740,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Auto-Update Subscriptions</summary>
 
-You can enable or disable auto-updating for all subscriptions in the app — this setting applies globally.
+In the app, you can enable or disable auto-update for all subscriptions at once — this setting applies to all subscriptions simultaneously. If you need to set auto-update only for a specific subscription, use the Subscription auto-update functionality. When the global setting is disabled, each subscription independently determines its update time.
 
 **Example of configuring this parameter:**
 
@@ -780,7 +775,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Fragmentation</summary>
 
-This is a global control parameter for fragmentation for all subscriptions. For specific subscriptions, set fragmentation individually.
+This is a global fragmentation management parameter for all subscriptions. If you need to assign fragmentation only to a specific subscription or server, use the free functionality and instructions from the general app documentation. When the global setting is disabled, each subscription independently determines fragmentation settings.
 
 **Example of configuring this parameter:**
 
@@ -842,7 +837,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Ping</summary>
 
-This function allows you to select how ping is performed in the app. There are three options available: "via Proxy", "TCP" and "ICMP".
+This function allows selecting the ping execution method in the app. Three options are available: “via Proxy”, “TCP”, and “ICMP”. For “via Proxy” mode, you can additionally specify a URL for ping checking.
 
 **Example of configuring this parameter:**
 
@@ -880,7 +875,7 @@ vmess://zkIAU1JitkI…
 
 <summary>User-Agent</summary>
 
-This function allows you to change the User-Agent used in headers when obtaining a subscription. Useful if default User-Agent is blocked.
+This function allows changing the User-Agent used in headers when fetching the subscription. Useful when the provider blocks requests with non-standard or unsuitable headers.
 
 **Example of configuring this parameter:**
 
@@ -915,7 +910,7 @@ vmess://zkIAU1JitkI…
 
 <summary>App Auto-Start</summary>
 
-This enables automatic app startup when the device is powered on. Currently available ...
+This function allows automatically launching the app when the device is turned on. Currently available only on Android.
 
 **Example of configuring this parameter:**
 
@@ -985,7 +980,7 @@ vmess://zkIAU1JitkI…
 
 <summary>App-specific Proxy (Android)</summary>
 
-In this parameter, you can specify a list of apps that should use the VPN or, vice versa, bypass it. [...]
+This parameter allows specifying a list of apps that should use VPN or, conversely, bypass it. If an app is not yet installed on the device but is listed, it will be automatically taken into account on first VPN connection after installation.
 
 **Example of configuring this parameter:**
 
@@ -1023,8 +1018,8 @@ vmess://zkIAU1JitkI…
 
 <summary>Packet Analysis (Sniffing)</summary>
 
-In **xray-core**, sniffing is used to analyze the first packets of the connection and automatically determine the **protocol** (HTTP, etc.).
-It may affect media loading in the WeChat app. Enabled by default.
+In **xray-core**, sniffing is needed to analyze the first packets of a connection and automatically determine the **protocol** (HTTP, TLS, BitTorrent, etc.) and **domain** (SNI/Host).\
+May affect media loading in the WeChat app. Enabled by default.
 
 **Example of configuring this parameter:**
 
@@ -1059,7 +1054,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Disable Subscription Collapse</summary>
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
 This function disables the ability to collapse a subscription: the server list is always fully displayed.
 
@@ -1096,7 +1091,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Ping Display Mode</summary>
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
 
 Allows displaying icons instead of time values.
 
@@ -1133,7 +1128,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Mux</summary>
 
-Mux in xray-core is a multiplexing feature that allows the transfer of data of multiple virtual sessions over a single connection.
+Mux in xray-core is a multiplexing function that allows transmitting data from multiple virtual TCP connections over one physical TCP connection. It is designed to reduce delays from TCP handshakes but not to increase bandwidth (may even slow down large downloads). Configured in outbound with parameters like enabled and concurrency (min -1, max 1024).
 
 **Example of configuring this parameter:**
 
@@ -1177,7 +1172,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Proxy \ TUN Mode (Desktop only)</summary>
 
-You must <mark style="color:$warning;">**use only one**</mark> of the two parameters listed! These settings ...
+<mark style="color:$warning;">**Use only one**</mark> of the two listed parameters! These parameters determine the connection type when adding/updating the subscription.
 
 **Example of configuring this parameter:**
 
@@ -1251,7 +1246,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Tunnel Core Selection (Desktop only)</summary>
 
-Determines which core will be used for TUN connection. Available: [sing-box](https://github.com/SagerNet/sing-box[...])
+Determines which core will be used for TUN connection. Available: [sing-box](https://github.com/SagerNet/sing-box\[...])
 
 **Example of configuring this parameter:**
 
