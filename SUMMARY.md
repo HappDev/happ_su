@@ -10,6 +10,7 @@
   * [Подключения из локальной сети](faq/local-network-connections.md)
   * [Android TV](faq/android-tv.md)
   * [Apple TV (tvOS)](faq/apple-tv-tvos.md)
+  * [Ping](faq/ping.md)
   * [Errors](faq/errors.md)
 * [Техническая документация](dev-docs/README.md)
   * [Зашифрованная ссылка](dev-docs/crypto-link.md)
