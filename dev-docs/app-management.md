@@ -1,502 +1,333 @@
 ---
-description: Manage app settings through the subscription
+description: Manage application settings via subscription
 ---
-
-# App Management
-
-**App management functionality** includes two directions:
-
-* [Standard parameters](app-management.md#standartnye-parametry) that work for most panels.
-* [Advanced parameters](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) that require specifying a [Provider ID](provider-id.md) in the subscription.
-
-To enable a parameter, pass `true` or `1`; to disable it, pass any other non-empty value (for example, `0` or `false`).
+# Application Management
+**Application management functionality** includes two directions:
+* [Standard parameters](app-management.md#standard-parameters) that work for most panels.
+* [Advanced parameters](app-management.md#advanced-parameters) for which you need to specify [Provider ID](provider-id.md) in the subscription.
+To activate a parameter, pass the value `true` or `1`; to disable — any other non-empty value (for example, `0` or `false`).
 
 ## Standard parameters
-
 <details>
-
-<summary>Subscription auto-refresh</summary>
-
+<summary>Subscription auto-update</summary>
 <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
-
-A task is created in the system to run the operation at a given interval. Depending on internal priorities, the system attempts to refresh the subscription at the scheduled time.
-If for any reason the refresh is not executed within the specified interval, it will happen automatically the next time the app is launched.
+A task is created in the system to perform the operation at the specified interval. Depending on internal priorities, the system tries to run the subscription update at the set time.\
+If for any reason the update was not performed within the specified interval, it will occur automatically on the next app launch.\
 The interval is set in hours and must be a multiple of one hour.
-
-**Example:**
-
+**Example of setting this parameter:**
 ```
 profile-update-interval: [int]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 profile-update-interval: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #profile-update-interval: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Subscription name</summary>
-
 <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
-
-The subscription profile name. Can be passed as plain text or Base64 (UTF-8). **Limit:** Maximum length — 25 characters.
-
-Pass it in the subscription body by prefixing the parameter with # (for example, #profile-title)
-
-**Example:**
-
+Subscription profile name. Can be passed as plain text or in base64 (UTF-8). **Limit**: Maximum length — 25 characters.
+Via subscription body, prefix the parameter with # (e.g., #profile-title).
+**Example of setting this parameter:**
 ```
 profile-title: [string]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 profile-title: Name VPN
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #profile-title: Name VPN
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Subscription status string (traffic, expiration date)</summary>
-
+<summary>Subscription status line (traffic, expiration date)</summary>
 <figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
-
-Shows balance, used traffic volume, and subscription validity period.
-In the app, the left side of the bar shows the amount of traffic used (upload + download), and the right side — the total volume after the “/” symbol.
-The subscription end date is provided in the **expire** parameter.
-**Note:** all data is passed in a single header and separated by **;**.
-
-**Example:**
-
+Displays information about balance, used traffic volume, and subscription expiration date.\
+On the left side of the scale in the app, the amount of used traffic (upload + download) is shown, and on the right — the total volume (total) after the "/" symbol.\
+The subscription expiration date is specified in the **expire** parameter.\
+**Note:** all data is transmitted in one header and separated by the **;** symbol.
+**Example of setting this parameter:**
 ```
 subscription-userinfo: [string]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
-№subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
-vless://70cc48c5-b2f4…
+#subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Support page link</summary>
-
 <figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
-
-A button to go to the support page.
-Displayed as a blue icon on the right side of the row.
-If the link is to Telegram, a Telegram icon is shown; otherwise a standard link icon is used.
-
-**Example:**
-
+Button to go to the support page.\
+Displayed as a blue icon located on the right side of the line.\
+If the link leads to Telegram, the Telegram icon is displayed; otherwise, the standard link icon is used.
+**Example of setting this parameter:**
 ```
 support-url: [string]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 support-url: https://t.me/happ_chat
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #support-url: https://t.me/happ_chat
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Website link</summary>
-
+<summary>Website page link</summary>
 <figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
-
-A button to go to the subscription website.
-Displayed as a blue icon on the left side of the row.
+Button to go to the subscription website.\
+Displayed as a blue icon located on the left side of the line.\
 If the parameter is not set, the icon will be gray.
-
-**Example:**
-
+**Example of setting this parameter:**
 ```
 profile-web-page-url: [string]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 profile-web-page-url: https://happ.su
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #profile-web-page-url: https://happ.su
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Announcement</summary>
-
 <figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
-
-A subscription can include an announcement text, passed as **plain text** or **Base64**.
-**Limit:** maximum displayed length — **200 characters**.
-
-**Example:**
-
+The subscription can contain announcement text transmitted in **plain text** or **Base64** format.\
+**Limit:** maximum displayed text length — **200 characters**.
+**Example of setting this parameter:**
 ```
 announce: [string]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 announce: base64:SGFwcCB0aGUgYmVzdCE=
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #announce: base64:SGFwcCB0aGUgYmVzdCE=
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Disable routing</summary>
-
-A global parameter to disable routing in the app.
-
-**Example:**
-
+Global parameter to disable routing in the app.
+**Example of setting this parameter:**
 ```
 routing-enable: [string]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 routing-enable: 0
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #routing-enable: 0
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Tunnel configuration (Desktop only)</summary>
-
-Pass your own tunnel configuration for the sing-box engine.
-
-**Example:**
-
+Pass your own tunnel configuration for the sing-box core.
+**Example of setting this parameter:**
 ```
 custom-tunnel-config: [json]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 custom-tunnel-config: {...}
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #custom-tunnel-config: {...}
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
-## Advanced parameters <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
-
+## Advanced parameters <a href="#advanced-parameters" id="advanced-parameters"></a>
 {% hint style="warning" %}
-The [Provider ID](provider-id.md) parameter is required!
+Requires [Provider ID](provider-id.md) parameter!
 {% endhint %}
-
 <details>
-
 <summary>Change subscription URL</summary>
-
-If your domain is blocked by your ISP and users can connect to servers and refresh the subscription only via VPN, this parameter is for you. By specifying a new domain name as the parameter value, it will be automatically replaced for all users of the subscription.
-
-**Example:**
-
+If your domain is blocked by the provider, and users can only connect to servers and update the subscription via VPN, this parameter is for you. By setting a new domain name in this parameter value, you ensure its automatic replacement for all subscription users.
+**Example of setting this parameter:**
 ```
 new-url: [url]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 new-url: https://mynew-domain.com/3J3jrb4jfc
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
-#new-url https://mynew-domain.com/3J3jrb4jfc
-vless://70cc48c5-b2f4…
+#new-url: https://mynew-domain.com/3J3jrb4jfc
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Change subscription domain</summary>
-
-Change the site domain without changing the full URL, keeping the rest of the address intact.
-
-**Example:**
-
+Change the site domain without changing the full URL, keeping the rest of the address.
+**Example of setting this parameter:**
 ```
 new-domain: [domain]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 new-domain: mynew-domain.com
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
-#new-domain mynew-domain.com
-vless://70cc48c5-b2f4…
+#new-domain: mynew-domain.com
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Server description in subscription</summary>
-
 <figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
-
-Allows you to set an additional caption displayed under the server name instead of the standard text (e.g., "VMess", "VLESS", "Trojan").
-
+Allows setting an additional caption displayed under the server name instead of the standard text (e.g., "VMess", "VLESS", "Trojan").
 * Maximum length — 30 characters.
-* If it does not fit on the screen, it will be truncated with an ellipsis.
-* Set after `title` using the `?` separator.
-
+* If it doesn't fit on the screen, it will be shortened with an ellipsis.
+* Set after `title` via the `?` separator.
 **Examples:**
-
 {% code title="VLESS" %}
-
 ```
 vless://1fb46fdc-e3e4-35d1-bd46-605d773b5762@5.5.8.9:443?encryption=none&node_id=482&headerType=none&type=tcp&security=reality&sni=booking.com&fp=chrome&pbk=YqHW8a4iAc1SZYpTrFVoOQg1F3yAdX1tWXuROZUCsEU&sid=6ba85179e30d4fc2&flow=xtls-rprx-vision&xtls=2#title?serverDescription=SGFwcCB0aGUgYmVzdA==
 ```
-
 {% endcode %}
-
 {% code title="VMESS" %}
-
 ```
 vmess://eyJob3N0IjoiZWxhaG9tZWtpdGNoZW4uY29tIiwicGF0aCI6IiIsInRscyI6IiIsImFkZCI6ImVsYWhvbWVraXRjaGVuLmNvbSIsInBvcnQiOjUwMDAsImFpZCI6MCwibmV0IjoidGNwIiwidHlwZSI6Im5vbmUiLCJ2IjoiMiIsInBzIjoi4piB77iPIDogNTMuM0dCIiwiaWQiOiI4N2ZhN2VmMC1jM2ZjLTNiOTAtYTJkOC01OGZjYjhkZmZmMjYiLCJzZXJ2ZXJEZXNjcmlwdGlvbiI6IkhhcHAgdGhlIGJlc3QifQ==
 ```
-
 {% endcode %}
-
 {% code title="Trojan" %}
-
 ```
 trojan://8GXLP3dEzm7T8wP5Jx0Ufg@199.107.164.105:443?security=tls&insecure=1&fragment=3,1,tlshello&type=ws&headerType=&path=%2F&host=quictest.burncommunity.ru&sni=quictest.burncommunity.ru&fp=chrome&alpn=http%2F1.1#title?serverDescription=SGFwcCB0aGUgYmVzdA==
 ```
-
 {% endcode %}
-
 {% code title="Socks5" %}
-
 ```
 socks://pkg-private2-country-us-city-new_york_city:w0e20i55uuq6pxqg@quality.proxywing.com:1080#title?serverDescription=SGFwcCB0aGUgYmVzdA==
 ```
-
 {% endcode %}
-
 {% code title="Shadowsocks" %}
-
 ```
 ss://YWVzLTI1Ni1jZmI6UzdLd1V1N3lCeTU4UzNHYQ==@80.92.204.106:9042#title?serverDescription=SGFwcCB0aGUgYmVzdA==
 ```
-
 {% endcode %}
-
 {% code title="Wireguard" %}
-
 ```
 wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.ru&allowinsecure=1&mtu=1500&reserved=1,22,33#title?serverDescription=SGFwcCB0aGUgYmVzdA==
 ```
-
 {% endcode %}
-
 {% code title="JSON" %}
-
 ```
 {
   "dns": {
@@ -514,199 +345,129 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
   }
 }
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Subscription fragmentation & fronting</summary>
-
-Some CDNs support domain fronting. This allows you to connect to your site through a third-party domain.
-
-For example, by specifying the connection address `visa.com` and setting the Host header to `my-domain.com`, the ISP will only see a request to `visa.com`.
-
-You can also request your domain for the server list while using packet fragmentation in SNI TLSHello.
-
-By default, fragmentation is enabled for all subscriptions. A user can add a subscription only once; on repeat attempts, if the account is not premium, an update will not be allowed.
-
+<summary>Subscription fragmentation and fronting</summary>
+Some CDNs support domain fronting. This allows connecting to your site through a third-party domain.
+For example, by specifying the connection address `visa.com` and Host header `my-domain.com`, the provider will only see a request to `visa.com`.
+You can also access your domain for the server list using packet fragmentation in SNI TLSHello.
+By default, fragmentation is enabled for all subscriptions. The user can add the subscription only once; on repeat attempts, if the account is not premium, the update will not be allowed.
 #### URL scheme with parameters
-
 ```
 [link]#title?[fragment]&[resolve-address]&[host]&[insecure]
-
 Fronting:
 visa.com/123#MyVPN?resolve-address=visa.com&host=mydomain.com
-
 Fragmentation:
 mydomain.com/123#MyVPN?fragment=80-250,10-100,tlshello
 ```
-
 Fragmentation contains three parameters: `[length]`, `[interval]`, and `[packets]`.
-
-When using fronting, you must first specify the URL with the domain through which the connection will be made. You also need to set `resolve-address` — this can be a domain or an IP address — and `host` corresponding to your host within the chosen provider’s network.
-
+When using fronting, first specify the URL with the domain through which the connection will be made. Also set `resolve-address` — this can be a domain or IP address — and `host`, corresponding to your host in the selected provider's network.
 </details>
-
 <details>
-
 <summary>Advanced fragmentation</summary>
-
 This feature is currently in closed testing and will be available soon...
-
 </details>
-
 <details>
-
-<summary>Non-disablable HWID</summary>
-
-By default, HWID is enabled in all Happ apps. If you want to prevent the user from turning off sending this parameter in the app settings, you can send a special parameter together with the subscription.
-
-**Example:**
-
+<summary>Non-disableable HWID</summary>
+By default, HWID is enabled in all Happ apps. But if you want the user to be unable to disable the transmission of this parameter by turning it off in the app settings, you can send a special parameter with the subscription.
+**Example of setting this parameter:**
 ```
 subscription-always-hwid-enable: [true / 1]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 subscription-always-hwid-enable: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #subscription-always-hwid-enable: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Subscription expiration notification</summary>
-
-You can enable automatic notifications about subscription expiration.
-The user will receive reminders 3 days before expiration: the app will send one notification per day for three days. This helps the user remember to renew on time.
-
+You can enable automatic notifications about subscription expiration.\
+The user will receive reminders 3 days before expiration: the app will send one notification per day for three days. This helps the user not forget to renew the subscription on time.
 Notification text:
-
 ```
- Your subscription [name] is about to expire — don’t forget to renew it.
+Your subscription [name] is about to expire, don't forget to renew it.
 ```
-
-**Example:**
-
+**Example of setting this parameter:**
 ```
 notification-subs-expire: [true / 1]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 notification-subs-expire: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #notification-subs-expire: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Hide server settings in subscription</summary>
-
 <figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
-
-Disable the ability for users of your subscription to view and edit server configurations. The setting applies both to subscriptions already added and those added in the future.
-
-**Example:**
-
+Disable the ability to view and edit server configurations for your subscription users. The setting applies to both already added subscriptions and those that will be added in the future.
+**Example of setting this parameter:**
 ```
 hide-settings: [true / 1]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 hide-settings: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #hide-settings: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Domain resolving</summary>
-
-The app can pre-resolve server domains even before a connection is established.
-You can specify any DoH server, and when connecting to an Xray server the domain name will be replaced with the obtained IP address.
-
-If multiple IP addresses are returned for a domain, the app will automatically choose the one with the lowest latency (ping).
-However, keep in mind: with a large number of IPs, connecting may take longer because all options will be tested in advance.
-
-**Example:**
-
+<summary>Domain resolution</summary>
+The app can perform preliminary domain resolution for servers before establishing a connection.\
+You can specify any DoH server, and when connecting to an Xray server, the domain name will be replaced with the received IP address.
+If multiple IP addresses are returned for a domain, the app will automatically select the one with the minimum response time (ping).\
+However, note: with a large number of IP addresses, connection may take longer as all options will be pre-tested.
+**Example of setting this parameter:**
 ```
 server-address-resolve-enable: [true / 1]
 server-address-resolve-dns-domain: [url]
 server-address-resolve-dns-ip: [ip]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
@@ -715,48 +476,33 @@ server-address-resolve-enable: 1
 server-address-resolve-dns-domain: https://common.dot.dns.yandex.net/dns-query
 server-address-resolve-dns-ip: 77.88.8.8
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #server-address-resolve-enable: 1
 #server-address-resolve-dns-domain: https://common.dot.dns.yandex.net/dns-query
 #server-address-resolve-dns-ip: 77.88.8.8
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
-#### App settings management <a href="#upravlenie-nastroikami-prilozheniya" id="upravlenie-nastroikami-prilozheniya"></a>
-
+#### Application settings management <a href="#application-settings-management" id="application-settings-management"></a>
 {% hint style="warning" %}
-The [Provider ID](provider-id.md) parameter is required!
+Requires [Provider ID](provider-id.md) parameter!
 {% endhint %}
-
 <details>
-
 <summary>Auto-connect</summary>
-
-Automatically connects the user to servers when the app starts. Additionally, with **subscription-autoconnect** you can specify a criterion for choosing which server to connect to.
-
-**Example:**
-
+Allows automatically connecting the user to servers when launching the app. Additionally, using the **subscription-autoconnect-type** parameter, you can specify the criterion for connecting to a specific server.
+**Example of setting this parameter:**
 ```
 subscription-autoconnect: [true / 1]
 subscription-autoconnect-type: [“lastused“/”lowestdelay”]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
@@ -764,108 +510,72 @@ content-disposition: attachment; filename="213"
 subscription-autoconnect: 1
 subscription-autoconnect-type: lowestdelay
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #subscription-autoconnect: 1
 #subscription-autoconnect-type: lastused
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Auto-ping</summary>
-
-Run automatic server list tests when opening the app if needed.
-
-**Example:**
-
+Run automatic server list testing when opening the app if necessary.
+**Example of setting this parameter:**
 ```
 subscription-ping-onopen-enabled: [true / 1]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 subscription-ping-onopen-enabled: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #subscription-ping-onopen-enabled: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Auto-update subscriptions</summary>
-
-You can enable or disable auto-update for all subscriptions at once — this setting applies to all subscriptions simultaneously. If you need to set auto-update only for a specific subscription, use the Subscription auto-refresh feature. When the global setting is disabled, each subscription determines its own refresh time.
-
-**Example:**
-
+<summary>Subscriptions auto-update</summary>
+In the app, you can enable or disable auto-update for all subscriptions at once — this setting applies to all subscriptions simultaneously. If you need to set auto-update only for a specific subscription, use the Subscription auto-update functionality. When the global setting is disabled, each subscription independently determines its update time.
+**Example of setting this parameter:**
 ```
-subscription-auto-update-enable: [true / 1] 
+subscription-auto-update-enable: [true / 1]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 subscription-auto-update-enable: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
-#new-url: https:/mynew-domain.com/3J3jrb4jfc
-vless://70cc48c5-b2f4…
+#subscription-auto-update-enable: 1
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Fragmentation</summary>
-
-This is a global fragmentation control parameter for all subscriptions. If you need to set fragmentation only for a specific subscription or server, use the free functionality and instructions in the general app documentation. When the global setting is disabled, each subscription determines its own fragmentation settings.
-
-**Example:**
-
+This is a global fragmentation management parameter for all subscriptions. If you need to assign fragmentation only to a specific subscription or server, use the free functionality and instructions from the general app documentation. When the global setting is disabled, each subscription independently determines fragmentation settings.
+**Example of setting this parameter:**
 ```
 fragmentation-enable: [true / 1]
 fragmentation-packets: [tlshello,1-2,1-3,1-5]
@@ -878,13 +588,10 @@ noises-packet: [String]
 noises-delay: [String]
 noises-applyto: [ip,ipv4,ipv6]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
@@ -900,11 +607,8 @@ noises-packet: 10-20
 noises-delay: 10-16
 noises-applyto: ipv4
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #fragmentation-enable: 1
 #fragmentation-packets: tlshello
@@ -916,33 +620,23 @@ noises-applyto: ipv4
 #noises-packet: 10-20
 #noises-delay: 10-16
 #noises-applyto: ipv4
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Ping</summary>
-
-This feature lets you choose how ping is performed in the app. Three options are available: “via Proxy”, “TCP”, and “ICMP”. For “via Proxy”, you can additionally specify a URL to check ping.
-
-**Example:**
-
+This function allows selecting the ping execution method in the app. Three options are available: “via Proxy”, “TCP”, and “ICMP”. For “via Proxy” mode, you can additionally specify a URL for ping checking.
+**Example of setting this parameter:**
 ```
-ping-type: ["proxy", "proxy-head', "tcp","icmp"]
+ping-type: ["proxy", "proxy-head", "tcp","icmp"]
 check-url-via-proxy: [url]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
@@ -950,158 +644,106 @@ content-disposition: attachment; filename="213"
 ping-type: proxy
 check-url-via-proxy: https://cp.cloudflare.com/generate_204
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
-#ping-type proxy
+#ping-type: proxy
 #check-url-via-proxy: https://cp.cloudflare.com/generate_204
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>User-Agent</summary>
-
-This feature allows changing the User-Agent used in headers when fetching the subscription. Useful when a provider blocks requests with non-standard or unsuitable headers.
-
-**Example:**
-
+This function allows changing the User-Agent used in headers when fetching the subscription. Useful when the provider blocks requests with non-standard or unsuitable headers.
+**Example of setting this parameter:**
 ```
-change-user-agent: [String] 
+change-user-agent: [String]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 change-user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #change-user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>App auto-start</summary>
-
-Automatically launch the app when the device powers on. Currently available on Android only. 
-
-**Example:**
-
+This function allows automatically launching the app when the device is turned on. Currently available only on Android.&#x20;
+**Example of setting this parameter:**
 ```
-app-auto-start: [String] 
+app-auto-start: [String]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 app-auto-start: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #app-auto-start: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Update subscriptions on app launch</summary>
-
-Automatically refresh all subscriptions each time the app is opened.
-
-**Example:**
-
+<summary>Update subscription on app launch</summary>
+This function automatically updates all subscriptions in the app every time the app is opened.
+**Example of setting this parameter:**
 ```
-subscription-auto-update-open-enable: [String] 
+subscription-auto-update-open-enable: [String]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 subscription-auto-update-open-enable: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #subscription-auto-update-open-enable: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Per-app proxy (Android)</summary>
-
-Specify a list of apps that should use the VPN, or bypass it. If an app is not yet installed on the device but is listed here, it will be automatically accounted for on the first VPN connection after installation.
-
-**Example:**
-
+<summary>Proxy for selected apps (Android)</summary>
+This parameter allows specifying a list of apps that should use VPN or, conversely, bypass it. If an app is not yet installed on the device but is listed, it will be automatically taken into account on first VPN connection after installation.
+**Example of setting this parameter:**
 ```
-per-app-proxy-mode: [off/on/bypass] \\Specify one of the three options
-per-app-proxy-list: [com.google.chrome,com.meta.instagram] \\app IDs separated by ','
+per-app-proxy-mode: [off/on/bypass] \\Specify one of the three parameters
+per-app-proxy-list: [com.google.chrome,com.meta.instagram] \\list of appIDs separated by ','
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
@@ -1109,165 +751,111 @@ content-disposition: attachment; filename="213"
 per-app-proxy-mode: on
 per-app-proxy-list: com.google.chrome,com.meta.instagram
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #per-app-proxy-mode: on
 #per-app-proxy-list: com.google.chrome,com.meta.instagram
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Packet inspection (Sniffing)</summary>
-
-In **xray-core**, sniffing analyzes the first packets of a connection to automatically detect the **protocol** (HTTP, TLS, BitTorrent, etc.) and **domain** (SNI/Host).
-May affect media loading in WeChat. Enabled by default.\
-
-**Example:**
-
+<summary>Packet analysis (Sniffing)</summary>
+In **xray-core**, sniffing is needed to analyze the first packets of a connection and automatically determine the **protocol** (HTTP, TLS, BitTorrent, etc.) and **domain** (SNI/Host).\
+May affect media loading in the WeChat app. Enabled by default.\
+**Example of setting this parameter:**
 ```
-sniffing-enable: [String] 
+sniffing-enable: [String]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 sniffing-enable: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #sniffing-enable: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Disable subscription collapsing</summary>
-
 <figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
-
-This feature disables the ability to collapse a subscription: the server list is always shown fully expanded.\
-
-**Example:**
-
+This function disables the ability to collapse subscriptions: the server list is always displayed fully expanded.\
+**Example of setting this parameter:**
 ```
-subscriptions-collapse: [String] 
+subscriptions-collapse: [String]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 subscriptions-collapse: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #subscriptions-collapse: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Ping display mode</summary>
-
 <figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
-
-Allows showing icons instead of time values\
-
-**Example:**
-
+Allows displaying icons instead of time values.\
+**Example of setting this parameter:**
 ```
 ping-result: [time,icon]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 ping-result: icon
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #ping-result: icon
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Mux</summary>
-
-Mux in xray-core is a multiplexing feature that allows data from multiple virtual TCP connections to be sent over a single physical TCP connection. It’s designed to reduce delays from TCP handshakes, not to increase throughput (it may even slow large downloads). Configured in the outbound with parameters like enabled and concurrency (min -1, max 1024).
-
-**Example:**
-
+Mux in xray-core is a multiplexing function that allows transmitting data from multiple virtual TCP connections over one physical TCP connection. It is designed to reduce delays from TCP handshakes but not to increase bandwidth (may even slow down large downloads). Configured in outbound with parameters like enabled and concurrency (min -1, max 1024).
+**Example of setting this parameter:**
 ```
 mux-enable: [true / 1]
 mux-tcp-connections: [String]
 mux-xudp-connections: [String]
 mux-quic: [String]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
@@ -1277,183 +865,125 @@ mux-tcp-connections: 100
 mux-xudp-connections: 200
 mux-quic: skip
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #mux-enable: 1
 #mux-tcp-connections: 100
 #mux-xudp-connections: 200
 #mux-quic: skip
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Proxy \ TUN mode (Desktop only)</summary>
-
-You must <mark style="color:$warning;">**use only one**</mark> of the two parameters below! These parameters determine the connection type when adding/updating a subscription.
-
-**Example:**
-
+<summary>Proxy / TUN mode (Desktop only)</summary>
+<mark style="color:$warning;">**Use only one**</mark> of the two listed parameters! These parameters determine the connection type when adding/updating the subscription.
+**Example of setting this parameter:**
 ```
 proxy-enable: [true / 1]
 tun-enable: [true / 1]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 proxy-enable: 1
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #proxy-enable: 1
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>TUN mode (Desktop only)</summary>
-
-Determines which mode will be used for the TUN connection.
-
-* **`system`** — uses the OS’s system network stack.
-  Fast and efficient, but depends on correct routing and firewall configuration.
-* **`gvisor`** — gVisor userspace stack.
-  Fewer dependencies on kernel rules and conflicts with iptables/nftables/Docker, better isolation; may have a slight performance penalty.
-
-**Example:**
-
+Determines which mode will be used for TUN connection.
+* **`system`** — uses the OS system network stack.\
+  Fast and efficient, but depends on correct route and firewall settings.
+* **`gvisor`** — gVisor userspace stack.\
+  Fewer dependencies on kernel rules and conflicts with iptables/nftables/Docker, better isolation; possible slight performance penalty.
+**Example of setting this parameter:**
 ```
 tun-mode: [system,gvisor]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 tun-mode: gvisor
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #tun-mode: gvisor
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
-<summary>Select tunnel engine (Desktop only)</summary>
-
-Determines which engine will be used for the TUN connection. Available options: [sing-box](https://github.com/SagerNet/sing-box), [tun2proxy](https://github.com/tun2proxy/tun2proxy)
-
-**Example:**
-
+<summary>Tunnel core selection (Desktop only)</summary>
+Determines which core will be used for TUN connection. Available: [sing-box](https://github.com/SagerNet/sing-box), [tun2proxy](https://github.com/tun2proxy/tun2proxy)
+**Example of setting this parameter:**
 ```
 tun-type: [singbox, tun2proxy]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 tun-type: tun2proxy
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #tun-type: tun2proxy
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
-
 <details>
-
 <summary>Exclude routes</summary>
-
-Defines subnets and IP addresses whose traffic should not pass through the tunnel.
-Addresses are specified on a single line, separated by spaces and commas.
-
-**Example:**
-
+Determines the list of subnets and IP addresses whose traffic should not pass through the tunnel.\
+Addresses are specified in one line, separated by spaces and commas.
+**Example of setting this parameter:**
 ```
 exclude-routes: [String]
 ```
-
-**Ways to pass:**
-
+**Transmission methods:**
 {% code title="Via HTTP Headers:" %}
-
 ```
-HTTP/2 200 
+HTTP/2 200
 date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 exclude-routes: 192.169.1.0/24, 10.0.0.0/8
 ```
-
 {% endcode %}
-
 {% code title="Via subscription body:" %}
-
 ```
 #exclude-routes: 192.169.1.0/24, 10.0.0.0/8
-vless://70cc48c5-b2f4…
+vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
-
 {% endcode %}
-
 </details>
