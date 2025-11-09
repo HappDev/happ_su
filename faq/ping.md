@@ -1,121 +1,121 @@
 # Ping
 
-## Ping (задержка соединения)
+### Ping (Connection Latency)
 
-**Ping** показывает, за сколько миллисекунд сервер отвечает на запрос. Меньшее значение — быстрее и стабильнее соединение. Помните: Ping отражает задержку, а не пропускную способность.
-
-***
-
-### Как проверить Ping
-
-#### 1) Для всей подписки
-
-<figure><img src="../.gitbook/assets/image (20).png" alt="" width="188"><figcaption></figcaption></figure>
-
-1. Откройте главный экран.
-2. В шапке нужной подписки нажмите на иконку спидометра.
-3. Рядом с каждым сервером этой подписки появится его Ping.
-
-<figure><img src="../.gitbook/assets/image (21).png" alt="" width="188"><figcaption></figcaption></figure>
-
-#### 2) Для отдельной конфигурации
-
-<figure><img src="../.gitbook/assets/image (22).png" alt="" width="188"><figcaption></figcaption></figure>
-
-1. На главном экране смахните элемент конфигурации вправо — появится панель действий.
-2. Нажмите на иконку спидометра — рядом отобразится Ping именно этой конфигурации.
-
-#### 3) Для текущего соединения
-
-1. Нажмите **«Проверить текущее соединение»**.
-2. Отобразится:
-   * значение Ping в миллисекундах (всегда **мс**);
-   * при недоступности — ошибка **«Тайм-аут»**.
+**Ping** shows how many milliseconds it takes for a server to respond to a request. Lower value = faster and more stable connection. Remember: Ping reflects latency, not bandwidth.
 
 ***
 
-### Что влияет на Ping
+#### How to Check Ping
 
-* удалённость сервера (ближе — меньше задержка);
-* качество и загруженность вашего интернет-канала;
-* нагрузка на сеть и устройство;
-* фоновые процессы (загрузки, обновления и т. п.).
+**1) For an entire subscription**
 
-***
+<figure><img src="../.gitbook/assets/0001-min.png" alt="" width="188"><figcaption></figcaption></figure>
 
-### Типы Ping в Happ
+1. Open the main screen.
+2. Tap the speedometer icon in the header of the desired subscription.
+3. The Ping for each server in that subscription will appear next to it.
 
-Приложение поддерживает три способа измерения. Они решают разные задачи и могут давать немного отличающиеся результаты.
+<figure><img src="../.gitbook/assets/0002-min.png" alt="" width="188"><figcaption></figcaption></figure>
 
-#### ICMP Ping
+**2) For an individual configuration**
 
-Проверяет базовую сетевую доступность ICMP-пакетами (аналог команды `ping`).
+<figure><img src="../.gitbook/assets/0003-min (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
-* Требует **временного отключения VPN-туннеля**.
-* Используется реже из-за неудобства в повседневной работе.
+1. On the main screen, swipe the configuration element to the right — an actions panel will appear.
+2. Tap the speedometer icon — the Ping for this specific configuration will be displayed.
 
-#### TCP Ping
+**3) For the current connection**
 
-Измеряет время установления TCP-соединения до сервера.
-
-* **Не требует** отключать VPN-туннель.
-* Может отражать задержку до **ближайшей точки CDN**, если сервер использует контент-сеть — потому реальная задержка до конечного узла может отличаться.
-
-#### Ping через прокси (Via Proxy)
-
-Измеряет задержку **через активное VPN-соединение**, учитывая весь путь.\
-Это самый показательный метод для пользователя.
-
-**Как происходит проверка:**
-
-1. Приложение резолвит доменное имя сервера (если указан домен).
-2. Устанавливает TCP-соединение; при необходимости — TLS-рукопожатие.
-3. На стороне сервера резолвится домен тестируемого ресурса.
-4. Сервер устанавливает TLS-соединение с целевым сайтом (если HTTPS).
-5. Измеряется время получения ответа от целевого ресурса.
-
-**Преимущества:**
-
-* учитывает шифрование и весь маршрут данных;
-* даёт наиболее реалистичное значение задержки при работе с VPN.
-
-**Режимы Via Proxy:**
-
-* **Via Proxy GET** — используется **по умолчанию**; стандартный HTTP-запрос.
-* **Via Proxy HEAD** — запрос без тела; **чуть легче** для серверов.
+1. Tap **"Check Current Connection"**.
+2. It will display:
+   * Ping value in milliseconds (always **ms**);
+   * **"Timeout"** error if unavailable.
 
 ***
 
-### Как изменить способ отображения Ping
+#### What Affects Ping
 
-**Путь:** Настройки → **Ping**
-
-Доступны два варианта:
-
-* **Время (мс)** — точное значение задержки (например, _42 мс_).
-* **Иконка состояния** — только доступность:
-  * зелёная с галочкой — сервер доступен;
-  * красная с восклицательным знаком — сервер недоступен.
-
-> Выбранный вариант сохраняется автоматически и применяется ко всем серверам.
+* Server distance (closer = lower latency);
+* Quality and load of your internet channel;
+* Network and device load;
+* Background processes (downloads, updates, etc.).
 
 ***
 
-### Автоматическая проверка при запуске
+#### Ping Types in Happ
 
-Функция **«Пинг при запуске»** проверяет доступность всех серверов сразу при открытии приложения — вы сразу видите актуальный статус без ручного теста.
+The app supports three measurement methods. They solve different tasks and may show slightly different results.
 
-**Как включить:**\
-Настройки → **Подписки** → включите **«Пинг при запуске»**.
+**ICMP Ping**
 
-<figure><img src="../.gitbook/assets/image (25).png" alt="" width="188"><figcaption></figcaption></figure>
+Checks basic network availability with ICMP packets (similar to the `ping` command).
 
-После активации при каждом запуске приложения происходит измерение Ping всех серверов и обновляется их статус (время отклика или иконка).
+* Requires **temporarily disconnecting the VPN tunnel**.
+* Used less frequently due to inconvenience in daily use.
+
+**TCP Ping**
+
+Measures the time to establish a TCP connection to the server.
+
+* **Does not require** disconnecting the VPN tunnel.
+* May reflect latency to the **nearest CDN point** if the server uses a content network — so actual latency to the final node may differ.
+
+**Ping via Proxy**
+
+Measures latency **through the active VPN connection**, accounting for the entire path.\
+This is the most indicative method for users.
+
+**How the check works:**
+
+1. The app resolves the server's domain name (if a domain is specified).
+2. Establishes a TCP connection; performs TLS handshake if necessary.
+3. The test resource's domain is resolved on the server side.
+4. The server establishes a TLS connection with the target site (if HTTPS).
+5. Measures the time to receive a response from the target resource.
+
+**Advantages:**
+
+* Accounts for encryption and the entire data route;
+* Provides the most realistic latency value when working with VPN.
+
+**Via Proxy Modes:**
+
+* **Via Proxy GET** — used **by default**; standard HTTP request.
+* **Via Proxy HEAD** — request without body; **slightly lighter** on servers.
 
 ***
 
-### Советы по использованию
+#### How to Change Ping Display Method
 
-* Сравнивайте Ping **в одинаковых условиях** (одна сеть, схожая нагрузка устройства).
-* Повторяйте тесты: разовые всплески задержки возможны из-за перегрузки сети.
-* Для оценки реального пользовательского опыта ориентируйтесь на **Ping через прокси (Via Proxy)**.
+**Path:** Settings → **Ping**
+
+Two options are available:
+
+* **Time (ms)** — precise latency value (e.g., _42 ms_).
+* **Status Icon** — availability only:
+  * green with checkmark — server is available;
+  * red with exclamation mark — server is unavailable.
+
+> The selected option is saved automatically and applies to all servers.
+
+***
+
+#### Automatic Check on Launch
+
+The **"Ping on Launch"** feature checks the availability of all servers at once when opening the app — you immediately see the current status without manual testing.
+
+**How to enable:**\
+Settings → **Subscriptions** → enable **"Ping on Launch"**.
+
+<figure><img src="../.gitbook/assets/0004-min (1).png" alt="" width="188"><figcaption></figcaption></figure>
+
+After activation, Ping is measured for all servers and their status is updated (response time or icon) every time the app launches.
+
+***
+
+#### Usage Tips
+
+* Compare Ping **under identical conditions** (same network, similar device load).
+* Repeat tests: one-off latency spikes are possible due to network overload.
+* For assessing real user experience, focus on **Ping via Proxy**.
