@@ -1,7 +1,5 @@
 # Apple TV (tvOS)
 
-## Apple TV (tvOS)
-
 The **Happ — Proxy Utility for TV** application is a **standalone** product, distinct from the iOS version, due to the peculiarities and limitations of the tvOS platform. Details are in the "Features and Limitations of tvOS" section below.
 
 ***
