@@ -1,115 +1,117 @@
 # Apple TV (tvOS)
 
-Приложение **Happ — Proxy Utility for TV** является **самостоятельным** продуктом, отличным от версии для iOS, из-за особенностей и ограничений платформы tvOS. Подробности — в разделе «Особенности и ограничения» ниже.
+## Apple TV (tvOS)
+
+The **Happ — Proxy Utility for TV** application is a **standalone** product, distinct from the iOS version, due to the peculiarities and limitations of the tvOS platform. Details are in the "Features and Limitations of tvOS" section below.
 
 ***
 
-### 1) Импорт по локальной сети
+#### 1) Import via local network
 
-<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FEbxinW2CB6hZbBzBDS3d%2Fimage.png?alt=media&#x26;token=e676520f-c327-429a-aec3-b229004ac3d8" alt=""><figcaption></figcaption></figure>
 
-При первом запуске автоматически откроется **экран импорта** (аналог нажатия «+»). Вы можете передать:
+On first launch, the **import screen** will automatically open (equivalent to pressing "+"). You can transfer:
 
-* отдельные конфигурации серверов,
-* одну или несколько подписок,
-* или всё сразу.
+* individual server configurations,
+* one or more subscriptions,
+* or everything at once.
 
-**Требования:**
+**Requirements:**
 
-* iPhone/Android с установленным Happ и Apple TV должны быть в **одной Wi-Fi сети**.
-* На экране TV отсканируйте **QR-код** с помощью Happ на iOS/Android.
+* iPhone/Android with Happ installed and Apple TV must be on the **same Wi-Fi network**.
+* Scan the **QR code** on the TV screen using Happ on iOS/Android.
 
-**Как это работает:**
+**How it works:**
 
-1. Откройте Happ на iOS/Android.
-2. Сканируйте QR-код с экрана TV.
-3. Выберите, что отправлять (конфигурации/подписки) и подтвердите.
+1. Open Happ on iOS/Android.
+2. Scan the QR code from the TV screen.
+3. Select what to send (configurations/subscriptions) and confirm.
 
-**Важно:**
+**Important:**
 
-* **Не закрывайте экран импорта** на TV до окончания передачи — иначе соединение может оборваться и данные импортируются частично или не импортируются вовсе.
-* При передаче с iOS система покажет запрос **разрешения на подключения по локальной сети**. Если отказать, повторный системный диалог не появится (особенность API Apple), и локальные запросы будут блокироваться. См. решение в разделе «Особенности и ограничения».
+* **Do not close the import screen** on the TV until the transfer is complete — otherwise the connection may be interrupted and data may be imported partially or not at all.
+* When transferring from iOS, the system will prompt for **permission to connect to the local network**. If you deny it, the system dialog will not appear again (a quirk of Apple's API), and local requests will be blocked. See the solution in the "Features and Limitations of tvOS" section.
 
-**После передачи:**
+**After transfer:**
 
-* При успехе экран импорта скрывается, начинается обработка полученных данных (например, получение конфигураций по URL подписки).
-* При ошибках (не удалось разобрать конфигурацию или получить данные по ссылке подписки) приложение покажет сообщение об ошибке.
-* **QR-код обновляется автоматически**.
-
-***
-
-### 2) Веб-импорт через удалённый сервер
-
-<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
-
-Если локальная сеть недоступна или заблокирована разрешениями, используйте **Web Import**.
-
-**Шаги:**
-
-1. На экране импорта выберите **«Web Import»**.
-2. Выберите один из вариантов:
-   * Откройте в любом браузере сайт **tv.happ.su**, введите **временный код** с экрана TV, затем добавьте данные и нажмите «Отправить».
-   * Отсканируйте **QR-код** с экрана TV — он содержит и адрес, и временный код.
-
-**Важно:**
-
-* **Не закрывайте экран импорта** на TV до завершения операции — иначе соединение может быть закрыто, а данные — не доставлены полностью.
-* **QR-код обновляется автоматически**.
-
-**Результат:**
-
-* После успешной передачи приложение скроет экран импорта и выполнит те же действия, что и при импорте по локальной сети.
+* On success, the import screen closes and processing of received data begins (e.g., fetching configurations from subscription URLs).
+* On failure (unable to parse configuration or fetch subscription data), the app will display an error message.
+* **The QR code is updated automatically**.
 
 ***
 
-### 3) Подключение
+#### 2) Web import via remote server
 
-После успешного импорта на **домашнем экране** появится список полученных подписок/серверов. Первый доступный сервер будет выбран автоматически.
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FjcQiOIZf3AeEL4YohkoR%2Fimage.png?alt=media&#x26;token=e5ecab0f-e9fe-4834-9a38-e8772ed9903b" alt=""><figcaption></figcaption></figure>
 
-Поддерживаются стандартные операции:
+If the local network is unavailable or permissions are blocked, use **Web Import**.
 
-* выбор сервера,
-* подключение/отключение,
-* пинг,
-* обновление подписки.
+**Steps:**
 
-Поведение в целом соответствует версиям для iOS/Android/Desktop.
+1. On the import screen, select **"Web Import"**.
+2. Choose one of the options:
+   * Open **tv.happ.su** in any browser, enter the **temporary code** from the TV screen, add the data, and click "Send".
+   * Scan the **QR code** from the TV screen — it contains both the URL and the temporary code.
 
-***
+**Important:**
 
-### 4) Настройки
+* **Do not close the import screen** on the TV until the operation is complete — otherwise the connection may be closed and data may not be delivered fully.
+* **The QR code is updated automatically**.
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+**Result:**
 
-Настройки на tvOS **визуально отличаются** от других платформ.
-
-Ключевое отличие — на tvOS нет классического **роутинга**. Вместо него доступен упрощённый механизм **правил Direct**:
-
-* Встроен **дефолтный список Direct-правил**.
-* Вы можете их включать/выключать и редактировать под свои задачи.
-
-<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+* After successful transfer, the app will hide the import screen and perform the same actions as with local network import.
 
 ***
 
-### 5) Особенности и ограничения tvOS
+#### 3) Connection
 
-**Хранилище и очистка данных**
+After successful import, the list of received subscriptions/servers will appear on the **home screen**. The first available server will be selected automatically.
 
-* На Apple TV (tvOS) отсутствует «гарантированно постоянное» хранилище для приложений. При нехватке памяти система может **самостоятельно удалить сохранённые данные** приложения (конфигурации/подписки). Рекомендуется хранить важные данные в подписке/на сервере и уметь быстро повторить импорт.
+Standard operations are supported:
 
-**Лимит памяти на туннель**
+* server selection,
+* connect/disconnect,
+* ping,
+* subscription update.
 
-* tvOS (как и iOS) жёстко ограничивает потребление памяти для сетевого туннеля — около **50 МБ**. При превышении лимита система может **завершить процесс туннеля** (фактически «отключить» соединение). Это системное ограничение.
-
-**Разрешение «Локальная сеть» на iOS**
-
-* В iOS известна особенность (баг API): если при первом запросе **разрешения на локальные подключения** вы выбрали «Не разрешать», **повторный системный диалог не появится**. Даже после включения разрешения в настройках приложения iOS может **продолжать блокировать** такие подключения.
-* **Решение:** переустановите приложение на iOS-устройстве (после этого система снова покажет диалог) или используйте **Web Import**.
+Overall behavior matches the iOS/Android/Desktop versions.
 
 ***
 
-#### Подсказки
+#### 4) Settings
 
-* Если импорт «по воздуху» не проходит из-за разрешений/сети — **сразу используйте Web Import**: это надёжно и не зависит от локальных ограничений.
-* Для минимизации риска потери данных держите **актуальные подписки** и при необходимости повторно импортируйте их на TV всего в пару шагов.
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FXBZO5juJcPFlSh5Lz7rL%2Fimage.png?alt=media&#x26;token=3802b4e7-12d3-421e-9289-1eb736d031ed" alt=""><figcaption></figcaption></figure>
+
+Settings on tvOS **visually differ** from those on other platforms.
+
+The key difference is that tvOS does not have classic **routing**. Instead, it offers a simplified **Direct Rules** mechanism:
+
+* A **default Direct Rules list** is built in.
+* You can enable/disable and edit them for your needs.
+
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FlHkcm1uVJyMUcnFJSNPM%2Fimage.png?alt=media&#x26;token=f782e449-97a7-40d9-a51d-4669518cc50a" alt=""><figcaption></figcaption></figure>
+
+***
+
+#### 5) Features and Limitations of tvOS
+
+**Storage and data cleanup**
+
+* Apple TV (tvOS) does not have "guaranteed persistent" storage for applications. When memory is low, the system may **automatically delete saved app data** (configurations/subscriptions). It is recommended to keep important data in subscriptions/on a server and be able to quickly re-import it.
+
+**Tunnel memory limit**
+
+* tvOS (like iOS) strictly limits memory consumption for network tunnels — about **50 MB**. If the limit is exceeded, the system may **terminate the tunnel process** (essentially "disconnecting" the connection). This is a system limitation.
+
+**"Local Network" permission on iOS**
+
+* iOS has a known quirk (API bug): if you selected "Don't Allow" on the first request for **local network permission**, **the system dialog will not appear again**. Even after enabling the permission in app settings, iOS may **continue to block** such connections.
+* **Solution:** Reinstall the app on your iOS device (the system will show the dialog again) or use **Web Import**.
+
+***
+
+**Tips**
+
+* If "over-the-air" import fails due to permissions/network issues — **use Web Import right away**: it is reliable and does not depend on local restrictions.
+* To minimize data loss risk, keep **current subscriptions** and re-import them to TV in just a couple of steps when needed.

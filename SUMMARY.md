@@ -9,6 +9,7 @@
   * [Share Configuration](faq/share-configuration.md)
   * [Local Network Connections](faq/local-network-connections.md)
   * [Android TV](faq/android-tv.md)
+  * [Apple TV (tvOS)](faq/apple-tv-tvos.md)
   * [Errors](faq/errors.md)
 * [Developer Documentation](dev-docs/README.md)
   * [Crypto link](dev-docs/crypto-link.md)
