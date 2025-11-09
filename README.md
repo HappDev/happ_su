@@ -6,7 +6,11 @@
 | [Testflight](https://testflight.apple.com/join/XMls6Ckd)                   | [Download APK](https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ.apk)           | macOS: [Global](https://apps.apple.com/us/app/happ-proxy-utility/id6504287215), [Rus](https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973) | [Android apk](https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ.apk) |
 |                                                                            | [Download Beta APK](https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ_beta.apk) | Linux: [alpha](https://github.com/Happ-proxy/happ-desktop/releases/)                                                                                      | [Apple TV](https://apps.apple.com/us/app/happ-proxy-utility-for-tv/id6748297274)            |
 
-Happ 是一款跨平台的代理管理应用程序，基于强大的 Xray 核心构建，支持 Windows、macOS、Linux 以及移动设备。凭借直观的界面和灵活的设置，Happ 成为新手和高级用户都可以信赖的工具。
+**Happ** 是一款基于强大 **Xray** 内核构建的跨平台代理工具应用，旨在让代理服务器的使用更加便捷。
+
+该应用支持 **Windows、macOS、Linux、移动设备（iOS/Android）** 以及 **电视平台（tvOS/Android TV）**。
+
+直观的界面与灵活的设置，使 Happ 成为新手和高级用户都能信赖的高效工具。
 
 **Happ 的主要功能包括：**
 
