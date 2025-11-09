@@ -16,7 +16,6 @@
   * [Crypto link](dev-docs/crypto-link.md)
   * [Limited Links](dev-docs/limited-links.md)
   * [HWID Links](dev-docs/hwid-links.md)
-  * [Meta Info](dev-docs/meta-info.md)
   * [App management](dev-docs/app-management.md)
   * [Provider ID](dev-docs/provider-id.md)
   * [Routing](dev-docs/routing.md)
