@@ -15,6 +15,7 @@
 * [Техническая документация](dev-docs/README.md)
   * [Зашифрованная ссылка](dev-docs/crypto-link.md)
   * [Лимитированные ссылки](dev-docs/limitirovannye-ssylki.md)
+  * [HWID ссылки](dev-docs/hwid-ssylki.md)
   * [Управление приложением](dev-docs/app-management.md)
   * [Provider ID](dev-docs/provider-id.md)
   * [Отображение Meta info](dev-docs/meta-info.md)
