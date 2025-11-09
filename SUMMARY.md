@@ -19,7 +19,6 @@
   * [Provide ID](dev-docs/provide-id.md)
   * [路由](dev-docs/routing.md)
   * [显示国旗和表情符号](dev-docs/emoji.md)
-  * [链接和参数的示例](dev-docs/examples-of-links-and-parameters.md)
-  * [Ping](dev-docs/ping.md)
+  * [链接和参数示例](dev-docs/examples-of-links-and-parameters.md)
   * [Android TV API](dev-docs/android-tv-api.md)
 * [联系方式](contacts.md)

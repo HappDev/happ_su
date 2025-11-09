@@ -2,12 +2,12 @@
 
 ## 应用管理
 
-**应用管理功能** 包括两个方向：
+**应用管理功能**包括两个方向：
 
 * 标准参数，适用于大多数面板。
-* 高级参数，需要传递 [Provider ID](provide-id.md) 和订阅。
+* 高级参数，需要在订阅中指定 [Provider ID](https://www.happ.su/main/ru/dev-docs/provider-id)。
 
-要激活参数，请传递值 `true` 或 `1`；要禁用 — 任何其他非空值（例如，`0` 或 `false`）。
+要启用参数，请传递值 `true` 或 `1`；要禁用，请传递任何其他非空值（例如 `0` 或 `false`）。
 
 ### 标准参数
 
@@ -15,11 +15,11 @@
 
 <summary>订阅自动更新</summary>
 
-系统创建任务以指定的间隔执行操作。根据内部优先级，系统尝试在设定的时间启动订阅更新。\
-如果由于某种原因未在指定间隔内执行更新，它将在下次应用启动时自动发生。\
-间隔以小时为单位，必须是 1 小时的倍数。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2Fd2xihMt7tB8cpcR1RXZd%2Fimage.png?alt=media&#x26;token=9010f024-545a-48db-80e5-2f5f8ab8451d" alt=""><figcaption></figcaption></figure>
 
-**设置此参数的示例：**
+在系统中创建定时任务。根据系统内部优先级，系统会尝试在设定时间启动订阅更新。如果因任何原因未在指定时间间隔内执行更新，则会在下次启动应用时自动执行。时间间隔以小时为单位，必须是 1 小时的倍数。
+
+**该参数配置示例：**
 
 ```
 profile-update-interval: [int]
@@ -38,7 +38,7 @@ profile-update-interval: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #profile-update-interval: 1
 vless://70cc48c5‑b2f4…
@@ -52,11 +52,13 @@ vmess://zkIAU1JitkI…
 
 <summary>订阅名称</summary>
 
-订阅配置文件的名称。可以作为纯文本或 base64 (UTF-8) 传递。**限制**：最大长度 — 25 个字符。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2F7bgkYeVyXOGKw6QAudYM%2Fimage.png?alt=media&#x26;token=cc9bb7cd-020f-4414-84ab-6b40192914a0" alt=""><figcaption></figcaption></figure>
 
-通过订阅主体，在参数前添加 # 符号（例如 #profile-title）
+订阅配置文件名称。可以是纯文本或 base64（UTF-8）。**限制**：最大长度为 25 个字符。
 
-**设置此参数的示例：**
+通过订阅内容传递时，在参数前添加 # 符号（例如 #profile-title）
+
+**该参数配置示例：**
 
 ```
 profile-title: [string]
@@ -75,7 +77,7 @@ profile-title: Name VPN
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #profile-title: Name VPN
 vless://70cc48c5‑b2f4…
@@ -87,14 +89,13 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>订阅状态字符串（流量、到期日期）</summary>
+<summary>订阅状态栏（流量、到期日期）</summary>
 
-显示有关余额、已用流量量和订阅到期日期的信息。\
-在应用中，刻度的左侧显示已消耗流量量（upload + download），右侧 — 总容量 (total) 在 “/” 符号后。\
-订阅到期日期在 **expire** 参数中指定。\
-**注意：** 所有数据在一个标头中传递，并用 **;** 符号分隔。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FTU1hir0t04S4hYOxqs0D%2Fimage.png?alt=media&#x26;token=d754d3a1-42f5-4457-a040-e39cdae50725" alt=""><figcaption></figcaption></figure>
 
-**设置此参数的示例：**
+显示订阅的余额、已使用流量和有效期。在应用中，刻度尺左侧显示已使用流量（上传 + 下载），右侧显示“/”符号后的总流量。订阅到期日期在 **expire** 参数中指定。**注意**：所有数据在一个标头中传递，并以 **;** 符号分隔。
+
+**该参数配置示例：**
 
 ```
 subscription-userinfo: [string]
@@ -113,9 +114,9 @@ subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
-#subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
+№subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -127,11 +128,11 @@ vmess://zkIAU1JitkI…
 
 <summary>支持页面链接</summary>
 
-转到支持页面的按钮。\
-显示为位于行右侧的蓝色图标。\
-如果链接指向 Telegram，则显示 Telegram 图标；在其他情况下，使用标准链接图标。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FPGjTQfpKAQlhf1EXWVax%2Fimage.png?alt=media&#x26;token=37bc2b33-45eb-4744-ac25-ce3dac1703f2" alt=""><figcaption></figcaption></figure>
 
-**设置此参数的示例：**
+跳转到支持页面的按钮。显示为位于行右侧的蓝色图标。如果链接指向 Telegram，则显示 Telegram 图标；其他情况使用标准链接图标。
+
+**该参数配置示例：**
 
 ```
 support-url: [string]
@@ -150,7 +151,7 @@ support-url: https://t.me/happ_chat
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #support-url: https://t.me/happ_chat
 vless://70cc48c5‑b2f4…
@@ -164,11 +165,11 @@ vmess://zkIAU1JitkI…
 
 <summary>网站页面链接</summary>
 
-转到订阅网站页面的按钮。\
-显示为位于行左侧的蓝色图标。\
-如果未设置参数，图标将为灰色。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FBMPDmdzIiV9j7jXuFyO0%2Fimage.png?alt=media&#x26;token=a371b358-e5d6-431b-ae1a-dcc20ea62c44" alt=""><figcaption></figcaption></figure>
 
-**设置此参数的示例：**
+跳转到订阅网站页面的按钮。显示为位于行左侧的蓝色图标。如果未设置参数，图标将为灰色。
+
+**该参数配置示例：**
 
 ```
 profile-web-page-url: [string]
@@ -187,7 +188,7 @@ profile-web-page-url: https://happ.su
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #profile-web-page-url: https://happ.su
 vless://70cc48c5‑b2f4…
@@ -201,10 +202,11 @@ vmess://zkIAU1JitkI…
 
 <summary>公告</summary>
 
-订阅可以包含公告文本，以 **纯文本** 或 **Base64** 格式传递。\
-**限制：** 最大显示文本长度 — **200 个字符**。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FZbCR6gfKfxy3pT66DoEg%2Fimage.png?alt=media&#x26;token=2beab1b7-981e-40d5-8458-bef8738dc767" alt=""><figcaption></figcaption></figure>
 
-**设置此参数的示例：**
+订阅可以包含以 **纯文本** 或 **Base64** 格式传递的公告文本。**限制**：显示文本的最大长度为 **200 个字符**。
+
+**该参数配置示例：**
 
 ```
 announce: [string]
@@ -223,7 +225,7 @@ announce: base64:SGFwcCB0aGUgYmVzdCE=
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #announce: base64:SGFwcCB0aGUgYmVzdCE=
 vless://70cc48c5‑b2f4…
@@ -235,14 +237,49 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>隧道配置（仅限桌面版）</summary>
+<summary>禁用路由</summary>
 
-为 sing-box 内核传递自己的隧道配置。
+用于在应用中禁用路由的全局参数。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
-custom-tunnel-config: [string]
+routing-enable: [string]
+```
+
+**传递方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+routing-enable: 0
+```
+{% endcode %}
+
+{% code title="通过订阅内容：" %}
+```
+#routing-enable: 0
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>隧道配置（仅适用于桌面版）</summary>
+
+为 sing-box 核心传递自定义隧道配置。
+
+**该参数配置示例：**
+
+```
+custom-tunnel-config: [json]
 ```
 
 **传递方式：**
@@ -258,7 +295,7 @@ custom-tunnel-config: {...}
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #custom-tunnel-config: {...}
 vless://70cc48c5‑b2f4…
@@ -271,16 +308,16 @@ vmess://zkIAU1JitkI…
 ### 高级参数 <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
 
 {% hint style="warning" %}
-需要 [Provider ID](provide-id.md) 参数！
+需要 Provider ID 参数！
 {% endhint %}
 
 <details>
 
 <summary>更改订阅 URL</summary>
 
-如果域被您的提供商阻止，并且用户只能通过 VPN 连接到服务器并更新订阅，此参数适合您。通过在此参数的值中设置新域名，您将确保所有订阅用户自动替换它。
+如果您的域名被提供商屏蔽，而用户只能通过 VPN 连接服务器并更新订阅，则此参数正是为您设计的。在此参数值中设置新的域名，即可确保订阅的所有用户自动替换该域名。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 new-url: [url]
@@ -299,7 +336,7 @@ new-url: https://mynew-domain.com/3J3jrb4jfc
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #new-url https://mynew-domain.com/3J3jrb4jfc
 vless://70cc48c5‑b2f4…
@@ -311,11 +348,11 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>更改订阅域</summary>
+<summary>更改订阅域名</summary>
 
-更改网站域而不更改完整 URL，保留地址的其余部分。
+更改网站域名而不更改完整 URL，保留地址的其余部分。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 new-domain: [domain]
@@ -334,7 +371,7 @@ new-domain: mynew-domain.com
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #new-domain mynew-domain.com
 vless://70cc48c5‑b2f4…
@@ -348,11 +385,13 @@ vmess://zkIAU1JitkI…
 
 <summary>订阅中的服务器描述</summary>
 
-允许设置附加标题，显示在服务器名称下而不是标准文本（例如，“VMess”、“VLESS”、“Trojan”）。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FoDU5uorhG21AqBg91iwz%2Fimage.png?alt=media&#x26;token=833d487e-b712-4848-ba63-1a1a8a1a4465" alt=""><figcaption></figcaption></figure>
 
-* 最大长度 — 30 个字符。
-* 如果不适合屏幕，将用省略号缩短。
-* 通过 `?` 分隔符在 `title` 后设置。
+允许设置额外的说明文字，该文字显示在服务器名称下方，代替标准文本（例如 "VMess"、"VLESS"、"Trojan"）。
+
+* 最大长度为 30 个字符。
+* 如果无法完整显示在屏幕上，将以省略号截断。
+* 在 `title` 之后通过分隔符 `?` 设置。
 
 **示例：**
 
@@ -395,19 +434,19 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 {% code title="JSON" %}
 ```
 {
-  "dns": {
-  ...
-  },
-  "inbounds": [
-  ...
-  ],
-  "outbounds": [
-  ...
-  ],
-  "remarks": "🇭🇰 Hong Kong",
-  "meta": {
-    "serverDescription": "Happ the best"
-  }
+  "dns": {
+  ...
+  },
+  "inbounds": [
+  ...
+  ],
+  "outbounds": [
+  ...
+  ],
+  "remarks": "🇭🇰 Hong Kong",
+  "meta": {
+    "serverDescription": "Happ the best"
+  }
 }
 ```
 {% endcode %}
@@ -416,39 +455,37 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 
 <details>
 
-<summary>订阅的分段和前端</summary>
+<summary>订阅分片与前置域名</summary>
 
-某些 CDN 支持域前端。这允许通过第三方域连接到您的站点。
+某些 CDN 支持域名前置。这允许您通过第三方域名连接到您的网站。例如，将连接地址指定为 `visa.com`，而 Host 标头为 `my-domain.com`，提供商将只看到对 `visa.com` 的请求。
 
-例如，通过指定连接地址 `visa.com`，并在 Host 标头中指定 `my-domain.com`，提供商只会看到对 `visa.com` 的请求。
+此外，您还可以使用 TLSHello 中的数据包分片访问您的域名以获取服务器列表。
 
-您还可以使用 SNI TLSHello 中的数据包分段访问您的域以获取服务器列表。
+默认情况下，所有订阅都启用了分片。用户只能添加一次订阅；如果账户不是高级账户，则不允许更新。
 
-默认情况下，所有订阅都启用分段。用户只能添加订阅一次；在重复尝试时，如果帐户不是高级帐户，则不允许更新。
-
-**带参数的 URL 方案**
+**带参数的 URL 结构**
 
 ```
-[link]#title?[fragment]&[resolve-address]&[host]&[insecure]
+[链接]#标题?[分片参数]&[解析地址]&[主机]&[不安全模式]
 
-前端：
+前置域名示例：
 visa.com/123#MyVPN?resolve-address=visa.com&host=mydomain.com
 
-分段：
+分片示例：
 mydomain.com/123#MyVPN?fragment=80-250,10-100,tlshello
 ```
 
-分段包含三个参数：`[length]`、`[interval]` 和 `[packets]`。
+分片包含三个参数：`[length]`、`[interval]` 和 `[packets]`。
 
-使用前端时，必须首先指定通过其进行连接的域的 URL。您还需要设置 `resolve-address` — 这可以是域或 IP 地址 — 和 `host`，对应于所选提供商网络中的主机。
+使用前置域名时，需要首先指定将通过其建立连接的域名 URL。还需要设置 `resolve-address` —— 可以是域名或 IP 地址 —— 以及 `host`，其对应于您所选网络中的主机。
 
 </details>
 
 <details>
 
-<summary>高级分段</summary>
+<summary>高级分片</summary>
 
-此功能目前正在进行封闭测试，并将很快可用...
+此功能目前正在进行封闭测试，即将推出...
 
 </details>
 
@@ -456,9 +493,9 @@ mydomain.com/123#MyVPN?fragment=80-250,10-100,tlshello
 
 <summary>不可禁用的 HWID</summary>
 
-默认情况下，所有 Happ 应用都启用 HWID。但如果您希望用户无法通过在应用设置中关闭它来禁用此参数的转发，您可以与订阅一起发送特殊参数。
+默认情况下，HWID 在所有 Happ 应用中均为启用状态。但如果您希望用户无法在应用设置中禁用此参数的转发，则可以随订阅一起发送此特殊参数。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 subscription-always-hwid-enable: [true / 1]
@@ -477,7 +514,7 @@ subscription-always-hwid-enable: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #subscription-always-hwid-enable: 1
 vless://70cc48c5‑b2f4…
@@ -491,16 +528,15 @@ vmess://zkIAU1JitkI…
 
 <summary>订阅到期通知</summary>
 
-您可以启用自动订阅到期通知功能。\
-用户将在订阅结束前 3 天收到提醒：应用将在三天内每天发送一个通知。这将帮助用户及时续订订阅。
+您可以启用订阅到期的自动通知功能。用户将在订阅到期前 3 天收到提醒：连续三天每天发送一条通知。这有助于用户及时续订订阅。
 
 通知文本：
 
 ```
-您的订阅 [name] 即将到期，别忘了续订它。
+ У вашей подписки [name] скоро истечёт срок действия, не забудьте продлить её.
 ```
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 notification-subs-expire: [true / 1]
@@ -519,7 +555,7 @@ notification-subs-expire: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #notification-subs-expire: 1
 vless://70cc48c5‑b2f4…
@@ -531,11 +567,13 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>在订阅中隐藏服务器设置</summary>
+<summary>隐藏订阅中的服务器设置</summary>
 
-禁用您的订阅用户查看和编辑服务器配置的功能。该设置适用于已添加的订阅以及将来添加的订阅。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FtaLP0j0QXiaI459X2UMY%2Fimage.png?alt=media&#x26;token=4cb840e3-8f54-4be3-b6be-2bac7e244952" alt=""><figcaption></figcaption></figure>
 
-**设置此参数的示例：**
+禁用订阅用户查看和编辑服务器配置的功能。该设置适用于已添加的订阅以及将来要添加的订阅。
+
+**该参数配置示例：**
 
 ```
 hide-settings: [true / 1]
@@ -554,7 +592,7 @@ hide-settings: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #hide-settings: 1
 vless://70cc48c5‑b2f4…
@@ -566,15 +604,13 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>域解析</summary>
+<summary>域名解析</summary>
 
-应用可以在建立连接之前执行服务器域的初步解析。\
-您可以指定任何 DoH 服务器，并在连接到 Xray 服务器时，域名将被替换为接收到的 IP 地址。
+应用可以在建立连接之前预先解析服务器的域名。您可以指定任何 DoH 服务器，在连接到 Xray 服务器时，域名将被替换为获取的 IP 地址。
 
-如果域返回多个 IP 地址，应用将自动选择响应时间 (ping) 最小的地址。\
-但是请注意：如果 IP 地址数量较多，连接可能需要更长时间，因为所有选项都会提前测试。
+如果域名返回多个 IP 地址，应用将自动选择延迟时间（ping）最低的那个。但需要注意的是：如果 IP 地址数量较多，连接可能需要更长时间，因为所有选项都会提前测试。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 server-address-resolve-enable: [true / 1]
@@ -597,7 +633,7 @@ server-address-resolve-dns-ip: 77.88.8.8
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #server-address-resolve-enable: 1
 #server-address-resolve-dns-domain: https://common.dot.dns.yandex.net/dns-query
@@ -609,19 +645,19 @@ vmess://zkIAU1JitkI…
 
 </details>
 
-**管理应用设置**
+**应用设置管理**
 
 {% hint style="warning" %}
-需要 [Provider ID](provide-id.md) 参数！
+需要 Provider ID 参数！
 {% endhint %}
 
 <details>
 
 <summary>自动连接</summary>
 
-允许在启动应用时自动将用户连接到服务器。此外，使用 **subscription-autoconnect** 参数，可以指定连接到特定服务器的标准。
+允许在启动应用时自动将用户连接到服务器。此外，可以通过参数 **subscription-autoconnect-type** 指定连接到特定服务器的条件。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 subscription-autoconnect: [true / 1]
@@ -642,7 +678,7 @@ subscription-autoconnect-type: lowestdelay
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #subscription-autoconnect: 1
 #subscription-autoconnect-type: lastused
@@ -655,11 +691,11 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>自动 ping</summary>
+<summary>自动 Ping</summary>
 
-如果需要，在打开应用时启动服务器列表的自动测试。
+如有必要，在打开应用时自动测试服务器列表。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 subscription-ping-onopen-enabled: [true / 1]
@@ -678,7 +714,7 @@ subscription-ping-onopen-enabled: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #subscription-ping-onopen-enabled: 1
 vless://70cc48c5‑b2f4…
@@ -690,11 +726,11 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>自动更新订阅</summary>
+<summary>订阅自动更新</summary>
 
-在应用中，可以一次性启用或禁用所有订阅的自动更新 — 此设置同时适用于所有订阅。如果需要仅为特定订阅设置自动更新，请使用订阅自动更新功能。禁用全局设置时，每个订阅独立确定其更新时间。
+可以在应用中同时启用或禁用所有订阅的自动更新——此设置会同时应用于所有订阅。如果只需要为特定订阅设置自动更新，请使用“订阅自动更新”功能。禁用全局设置后，每个订阅将独立确定其更新时间。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 subscription-auto-update-enable: [true / 1] 
@@ -713,7 +749,7 @@ subscription-auto-update-enable: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #new-url: https:/mynew-domain.com/3J3jrb4jfc
 vless://70cc48c5‑b2f4…
@@ -725,11 +761,11 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>分段</summary>
+<summary>分片</summary>
 
-这是所有订阅的分段管理的全局参数。如果需要仅为特定订阅或服务器分配分段，请使用免费功能和应用通用文档中的说明。禁用全局设置时，每个订阅独立确定分段设置。
+这是控制所有订阅分片的全局参数。如果只需要为特定订阅或服务器设置分片，请使用免费功能和应用通用文档中的说明。禁用全局设置后，每个订阅将独立确定分片设置。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 fragmentation-enable: [true / 1]
@@ -766,7 +802,7 @@ noises-applyto: ipv4
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #fragmentation-enable: 1
 #fragmentation-packets: tlshello
@@ -789,9 +825,9 @@ vmess://zkIAU1JitkI…
 
 <summary>Ping</summary>
 
-此函数允许您选择应用中的 ping 方法。有三种选项：“via Proxy”、“TCP” 和 “ICMP”。对于 “via Proxy” 模式，您可以额外指定用于 ping 检查的 URL。
+此功能允许选择应用中执行 ping 的方式。提供三个选项："via Proxy"、"TCP" 和 "ICMP"。对于 "via Proxy" 模式，可以额外指定用于 ping 检查的 URL。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 ping-type: ["proxy", "proxy-head', "tcp","icmp"]
@@ -812,7 +848,7 @@ check-url-via-proxy: https://cp.cloudflare.com/generate_204
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #ping-type proxy
 #check-url-via-proxy: https://cp.cloudflare.com/generate_204
@@ -827,9 +863,9 @@ vmess://zkIAU1JitkI…
 
 <summary>User-Agent</summary>
 
-此函数允许更改在接收订阅时标头中使用的 User-Agent。在提供商阻止具有非标准或不合适标头的请求的情况下很有用。
+此功能允许更改获取订阅时标头中使用的 User-Agent。在提供商屏蔽非标准或不合适标头的请求时非常有用。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 change-user-agent: [String] 
@@ -848,7 +884,7 @@ change-user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/5
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #change-user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
 vless://70cc48c5‑b2f4…
@@ -862,9 +898,9 @@ vmess://zkIAU1JitkI…
 
 <summary>应用自动启动</summary>
 
-此函数允许在设备开启时自动启动应用。目前仅适用于 Android。
+允许在设备开机时自动启动应用。目前仅在 Android 上可用。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 app-auto-start: [String] 
@@ -883,7 +919,7 @@ app-auto-start: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #app-auto-start: 1
 vless://70cc48c5‑b2f4…
@@ -897,9 +933,9 @@ vmess://zkIAU1JitkI…
 
 <summary>应用启动时更新订阅</summary>
 
-此函数在每次打开应用时自动更新应用中的所有订阅。
+此功能会在每次打开应用时自动更新应用中的所有订阅。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 subscription-auto-update-open-enable: [String] 
@@ -918,7 +954,7 @@ subscription-auto-update-open-enable: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #subscription-auto-update-open-enable: 1
 vless://70cc48c5‑b2f4…
@@ -930,15 +966,15 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>选定应用的代理 (Android)</summary>
+<summary>选定应用的代理（Android）</summary>
 
-在此参数中，您可以指定应使用 VPN 或相反绕过它的应用列表。如果应用尚未安装在设备上但在列表中，则在安装后第一次连接到 VPN 时将自动考虑它。
+可以在此参数中指定应使用 VPN 或绕过 VPN 的应用列表。如果应用尚未安装在设备上但已在列表中指定，则在首次安装后连接到 VPN 时会自动将其计入。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
-per-app-proxy-mode: [off/on/bypass] \\指定三个参数之一
-per-app-proxy-list: [com.google.chrome,com.meta.instagram] \\通过 ',' 分隔的 appID 列表
+per-app-proxy-mode: [off/on/bypass] \\请从三个参数中选择一个
+per-app-proxy-list: [com.google.chrome,com.meta.instagram] \\以 ',' 分隔的 appID 列表
 ```
 
 **传递方式：**
@@ -955,7 +991,7 @@ per-app-proxy-list: com.google.chrome,com.meta.instagram
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #per-app-proxy-mode: on
 #per-app-proxy-list: com.google.chrome,com.meta.instagram
@@ -968,12 +1004,11 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>数据包分析 (Sniffing)</summary>
+<summary>数据包分析（Sniffing）</summary>
 
-在 **xray-core** 中，sniffing 需要分析第一个连接数据包并自动确定 **协议** (HTTP, TLS, BitTorrent 等) 和 **域** (SNI/Host)。\
-可能影响 WeChat 应用中的媒体加载。默认启用。
+xray-core 中的 sniffing 用于分析连接的前几个数据包，并自动确定**协议**（HTTP、TLS、BitTorrent 等）和**域名**（SNI/Host）。可能会影响微信应用中的媒体加载。默认已启用。\\
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 sniffing-enable: [String] 
@@ -992,7 +1027,7 @@ sniffing-enable: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #sniffing-enable: 1
 vless://70cc48c5‑b2f4…
@@ -1006,9 +1041,11 @@ vmess://zkIAU1JitkI…
 
 <summary>禁止折叠订阅</summary>
 
-此函数禁用折叠订阅的功能：服务器列表始终以完整、展开视图显示。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FLg7CkkHrYquuQ9vFarVb%2Fimage.png?alt=media&#x26;token=a3be4696-2140-419e-8dff-80e549aad507" alt=""><figcaption></figcaption></figure>
 
-**设置此参数的示例：**
+此功能禁用折叠订阅的能力：服务器列表始终以完全展开的方式显示。\\
+
+**该参数配置示例：**
 
 ```
 subscriptions-collapse: [String] 
@@ -1027,7 +1064,7 @@ subscriptions-collapse: 1
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #subscriptions-collapse: 1
 vless://70cc48c5‑b2f4…
@@ -1041,9 +1078,11 @@ vmess://zkIAU1JitkI…
 
 <summary>Ping 显示模式</summary>
 
-允许显示图标而不是时间值。
+<figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2F1F3qDFUQfJqGYEDQrETt%2Fimage.png?alt=media&#x26;token=e3921af0-ea18-42ce-bd0c-b3422dc765a1" alt=""><figcaption></figcaption></figure>
 
-**设置此参数的示例：**
+允许显示图标而不是时间值\\
+
+**该参数配置示例：**
 
 ```
 ping-result: [time,icon]
@@ -1062,7 +1101,7 @@ ping-result: icon
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #ping-result: icon
 vless://70cc48c5‑b2f4…
@@ -1076,9 +1115,9 @@ vmess://zkIAU1JitkI…
 
 <summary>Mux</summary>
 
-xray-core 中的 Mux 是多路复用功能，允许通过一个物理 TCP 连接传输多个虚拟 TCP 连接的数据。它旨在减少 TCP-handshake 的延迟，但不是为了增加带宽（甚至可能减慢大下载）。在 outbound 配置中配置，具有 enabled 和 concurrency 等参数 (min -1 max 1024)。
+Mux 在 xray-core 中是多路复用（multiplexing）功能，允许通过单个物理 TCP 连接传输多个虚拟 TCP 连接的数据。旨在降低 TCP 握手的延迟，而不是提高带宽（甚至可能减慢大量下载）。在出站配置中设置，参数包括 enabled 和 concurrency（最小 -1，最大 1024）。
 
-**设置此参数的示例：**
+**该参数配置示例：**
 
 ```
 mux-enable: [true / 1]
@@ -1103,12 +1142,158 @@ mux-quic: skip
 ```
 {% endcode %}
 
-{% code title="通过订阅主体：" %}
+{% code title="通过订阅内容：" %}
 ```
 #mux-enable: 1
 #mux-tcp-connections: 100
 #mux-xudp-connections: 200
 #mux-quic: skip
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>代理 \ TUN 模式（仅适用于桌面版）</summary>
+
+必须**仅使用**以下两个参数之一！这些参数在添加/更新订阅时确定连接类型。
+
+**该参数配置示例：**
+
+```
+proxy-enable: [true / 1]
+tun-enable: [true / 1]
+```
+
+**传递方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+proxy-enable: 1
+```
+{% endcode %}
+
+{% code title="通过订阅内容：" %}
+```
+#proxy-enable: 1
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>TUN 模式（仅适用于桌面版）</summary>
+
+确定 TUN 连接使用的模式。
+
+* **`system`** — 使用操作系统的系统网络栈。\
+  快速高效，但依赖于路由和防火墙的正确配置。
+* **`gvisor`** — 使用 gVisor 的用户空间栈（userspace）。\
+  减少对内核规则及 iptables/nftables/Docker 冲突的依赖，隔离性更好；可能存在轻微的性能损失。
+
+**该参数配置示例：**
+
+```
+tun-mode: [system,gvisor]
+```
+
+**传递方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+tun-mode: gvisor
+```
+{% endcode %}
+
+{% code title="通过订阅内容：" %}
+```
+#tun-mode: gvisor
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>选择隧道核心（仅适用于桌面版）</summary>
+
+确定将用于 TUN 连接的核心。可选择 [sing-box](https://github.com/SagerNet/sing-box)、[tun2proxy](https://github.com/tun2proxy/tun2proxy)
+
+**该参数配置示例：**
+
+```
+tun-type: [singbox, tun2proxy]
+```
+
+**传递方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+tun-type: tun2proxy
+```
+{% endcode %}
+
+{% code title="通过订阅内容：" %}
+```
+#tun-type: tun2proxy
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>排除路由</summary>
+
+定义不应通过隧道传输流量的子网和 IP 地址列表。地址在同一行中指定，以空格和逗号分隔。
+
+**该参数配置示例：**
+
+```
+exclude-routes: [String]
+```
+
+**传递方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+exclude-routes: 192.169.1.0/24, 10.0.0.0/8
+```
+{% endcode %}
+
+{% code title="通过订阅内容：" %}
+```
+#exclude-routes: 192.169.1.0/24, 10.0.0.0/8
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
