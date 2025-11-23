@@ -1048,7 +1048,7 @@ vmess://zkIAU1JitkI…
 **该参数配置示例：**
 
 ```
-subscriptions-collapse: [String] 
+subscriptions-collapse: [false / 0] 
 ```
 
 **传递方式：**
@@ -1060,13 +1060,13 @@ date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
-subscriptions-collapse: 1
+subscriptions-collapse: 0
 ```
 {% endcode %}
 
 {% code title="通过订阅内容：" %}
 ```
-#subscriptions-collapse: 1
+#subscriptions-collapse: 0
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
