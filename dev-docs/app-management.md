@@ -1061,7 +1061,7 @@ This function disables the ability to collapse a subscription: the server list i
 **Example of configuring this parameter:**
 
 ```
-subscriptions-collapse: [String] 
+subscriptions-collapse: [false / 0]
 ```
 
 **Ways to pass it:**
@@ -1073,13 +1073,13 @@ date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
-subscriptions-collapse: 1
+subscriptions-collapse: 0
 ```
 {% endcode %}
 
 {% code title="Via subscription body:" %}
 ```
-#subscriptions-collapse: 1
+#subscriptions-collapse: 0
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
