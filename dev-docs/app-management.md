@@ -1068,7 +1068,7 @@ vmess://zkIAU1JitkI…
 **Пример настройки данного параметра:**
 
 ```
-subscriptions-collapse: [true / 1]
+subscriptions-collapse: [false / 0]
 ```
 
 **Способы передачи:**
@@ -1080,13 +1080,13 @@ date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
-subscriptions-collapse: 1
+subscriptions-collapse: 0
 ```
 {% endcode %}
 
 {% code title="Через тело подписки:" %}
 ```
-#subscriptions-collapse: 1
+#subscriptions-collapse: 0
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
