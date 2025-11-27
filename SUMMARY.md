@@ -12,7 +12,7 @@
   * [Apple TV (tvOS)](faq/apple-tv-tvos.md)
   * [Ping](faq/ping.md)
   * [Errors](faq/errors/README.md)
-    * [Обновлениe Windows](faq/errors/obnovlenie-windows.md)
+    * [Обновлениe Windows](faq/errors/windows-update.md)
 * [Техническая документация](dev-docs/README.md)
   * [Зашифрованная ссылка](dev-docs/crypto-link.md)
   * [Лимитированные ссылки](dev-docs/limitirovannye-ssylki.md)
