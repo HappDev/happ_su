@@ -9,11 +9,6 @@ noIndex: true
 {% tab title="Android" %}
 ## Third-Party Licenses — Happ Android
 
-This document lists all external Android software dependencies used in Happ Android and their respective licenses.\
-Source file:
-
-***
-
 ### Core Libraries (AndroidX, Google, Kotlin, System)
 
 | Dependency Group       | Components                                                                                                                                                                                                       | Version(s) | License    | Verification Link                                                                                                                          |
@@ -117,15 +112,73 @@ _Last updated: 2025-12-01_
 {% endtab %}
 
 {% tab title="iOS/Mac" %}
+## Third-Party Licenses — Happ iOS
 
+### Core Libraries (iOS)
+
+| Dependency     | Version   | License | Verification Link                                                                                                            |
+| -------------- | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **DeviceKit**  | 5.x – 6.x | MIT     | [https://github.com/devicekit/DeviceKit/blob/master/LICENSE](https://github.com/devicekit/DeviceKit/blob/master/LICENSE)     |
+| **SwiftyJSON** | 5.0.2+    | MIT     | [https://github.com/SwiftyJSON/SwiftyJSON/blob/master/LICENSE](https://github.com/SwiftyJSON/SwiftyJSON/blob/master/LICENSE) |
+| **SwiftyPing** | 1.x – 2.x | MIT     | [https://github.com/Flipkart/SwiftyPing/blob/main/LICENSE](https://github.com/Flipkart/SwiftyPing/blob/main/LICENSE)         |
+
+***
+
+### Networking & System Tools
+
+| Dependency               | Version    | License      | Verification Link                                                                                                |
+| ------------------------ | ---------- | ------------ | ---------------------------------------------------------------------------------------------------------------- |
+| **Xray-core (XrayCore)** | 25.x.x     | MPL 2.0      | [https://github.com/XTLS/Xray-core/blob/main/LICENSE](https://github.com/XTLS/Xray-core/blob/main/LICENSE)       |
+| **BadVPN (tun2socks)**   | 1.999.130+ | BSD-3 Clause | [https://github.com/ambrop72/badvpn/blob/master/COPYING](https://github.com/ambrop72/badvpn/blob/master/COPYING) |
+
+***
+
+### Summary by License Type
+
+| License          | Dependencies                      | Obligations                                                         |
+| ---------------- | --------------------------------- | ------------------------------------------------------------------- |
+| **MIT**          | DeviceKit, SwiftyJSON, SwiftyPing | Include copyright & license text                                    |
+| **BSD-3 Clause** | BadVPN (tun2socks)                | Include copyright & license text                                    |
+| **MPL 2.0**      | Xray-core                         | Include MPL license; make modified Xray-core source files available |
+
+***
+
+### License Compliance Notes
+
+#### MIT License (DeviceKit, SwiftyJSON, SwiftyPing)
+
+* Very permissive license.
+* Requires including copyright notice and the full license text.
+* No copyleft requirements.
+
+#### BSD-3 Clause License (BadVPN)
+
+* Similar to MIT, permissive.
+* Requires inclusion of license text and copyright.
+* Allows static or dynamic linking without obligations on your own code.
+
+#### Mozilla Public License 2.0 (Xray-core)
+
+* A _file-level_ copyleft license.
+* You must include MPL 2.0 license text in your distribution.
+* If you modify **Xray-core source code**, only the modified files must be published.
+* Your main proprietary application code is **not affected** as long as Xray-core is used as a separate component.
+
+***
+
+### Full License Texts
+
+* **MIT License** — [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
+* **BSD-3 Clause License** — [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+* **Mozilla Public License 2.0** — [https://www.mozilla.org/en-US/MPL/2.0/](https://www.mozilla.org/en-US/MPL/2.0/)
+
+***
+
+_Last updated: 2025-12-01_
 {% endtab %}
 
 {% tab title="Desktop " %}
 ## Third-Party Licenses - Happ Desktop
-
-This document lists all external software dependencies used in Happ Desktop and their respective licenses.
-
-***
 
 ### Core Libraries (Bundled/Linked)
 
