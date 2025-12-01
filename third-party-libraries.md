@@ -7,7 +7,7 @@ noIndex: true
 
 {% tabs %}
 {% tab title="Android" %}
-## Third-Party Licenses — Happ Android
+## Third-Party Licenses - Happ Android
 
 ### Core Libraries (AndroidX, Google, Kotlin, System)
 
@@ -112,7 +112,7 @@ _Last updated: 2025-12-01_
 {% endtab %}
 
 {% tab title="iOS/Mac" %}
-## Third-Party Licenses — Happ iOS
+## Third-Party Licenses - Happ iOS
 
 ### Core Libraries (iOS)
 
