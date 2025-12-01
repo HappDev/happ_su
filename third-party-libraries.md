@@ -7,145 +7,113 @@ noIndex: true
 
 {% tabs %}
 {% tab title="Android" %}
-## Third-Party Libraries and Components Licenses
+## Third-Party Licenses — Happ Android
 
-### AndroidX Libraries
-
-* activity-ktx, appcompat, camera-_, cardview, constraintlayout, core-splashscreen, datastore, fragment-ktx, legacy-support-v4, lifecycle-_, multidex, preference-ktx, recyclerview, viewpager2, work-\*, leanback\
-  **License:** [Apache License 2.0](https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt)
+This document lists all external Android software dependencies used in Happ Android and their respective licenses.\
+Source file:
 
 ***
 
-### Google Libraries
+### Core Libraries (AndroidX, Google, Kotlin, System)
 
-* Material Components for Android
-* Flexbox Layout
-* Gson
-* ZXing Core
-* Play In-App Updates (app-update-ktx)
-* Firebase BOM + Firebase Messaging\
-  **License:** [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-***
-
-### JetBrains / Kotlin
-
-* kotlin-reflect, kotlinx-coroutines-\*, kotlinx-collections-immutable, kotlinx-datetime, kotlinx-serialization-json\
-  **License:** [Apache License 2.0](https://github.com/JetBrains/kotlin/blob/master/license/LICENSE.txt)
+| Dependency Group       | Components                                                                                                                                                                                                       | Version(s) | License    | Verification Link                                                                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **AndroidX**           | activity-ktx, appcompat, camera-_, cardview, constraintlayout, core-splashscreen, datastore, fragment-ktx, legacy-support-v4, lifecycle-_, multidex, preference-ktx, recyclerview, viewpager2, work-\*, leanback | various    | Apache 2.0 | [https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt](https://github.com/androidx/androidx/blob/androidx-main/LICENSE.txt) |
+| **Google Libraries**   | Material Components, Flexbox Layout, Gson, ZXing Core, Play In-App Updates, Firebase BOM + Messaging                                                                                                             | various    | Apache 2.0 | [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)                                                 |
+| **Kotlin / JetBrains** | kotlin-reflect, kotlinx-coroutines-\*, kotlinx-collections-immutable, kotlinx-datetime, kotlinx-serialization-json                                                                                               | various    | Apache 2.0 | [https://github.com/JetBrains/kotlin/blob/master/license/LICENSE.txt](https://github.com/JetBrains/kotlin/blob/master/license/LICENSE.txt) |
+| **Conscrypt**          | conscrypt-android                                                                                                                                                                                                | 2.5.3      | Apache 2.0 | [https://github.com/google/conscrypt/blob/master/LICENSE](https://github.com/google/conscrypt/blob/master/LICENSE)                         |
+| **desugar\_jdk\_libs** | desugar\_jdk\_libs                                                                                                                                                                                               | 2.1.5      | Apache 2.0 | [https://github.com/google/desugar\_jdk\_libs/blob/master/LICENSE](https://github.com/google/desugar_jdk_libs/blob/master/LICENSE)         |
 
 ***
 
-### Conscrypt
+### Networking, Security & Storage Libraries
 
-* org.conscrypt:conscrypt-android 2.5.3\
-  **License:** [Apache License 2.0](https://github.com/google/conscrypt/blob/master/LICENSE)
-
-***
-
-### desugar\_jdk\_libs
-
-* com.android.tools:desugar\_jdk\_libs 2.1.5\
-  **License:** [Apache License 2.0](https://github.com/google/desugar_jdk_libs/blob/master/LICENSE)
+| Dependency                 | Version | License    | Verification Link                                                                                                        |
+| -------------------------- | ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **OkHttp (Square)**        | 4.12.0  | Apache 2.0 | [https://github.com/square/okhttp/blob/master/LICENSE.txt](https://github.com/square/okhttp/blob/master/LICENSE.txt)     |
+| **Coil 3 (Image Loading)** | 3.3.0   | Apache 2.0 | [https://github.com/coil-kt/coil/blob/main/LICENSE.txt](https://github.com/coil-kt/coil/blob/main/LICENSE.txt)           |
+| **java-jwt (Auth0)**       | 4.5.0   | MIT        | [https://github.com/auth0/java-jwt/blob/master/LICENSE](https://github.com/auth0/java-jwt/blob/master/LICENSE)           |
+| **MMKV (Tencent)**         | 1.3.14  | BSD-3      | [https://github.com/Tencent/MMKV/blob/master/LICENSE.TXT](https://github.com/Tencent/MMKV/blob/master/LICENSE.TXT)       |
+| **Sentry Android**         | 8.21.1  | MIT        | [https://github.com/getsentry/sentry-java/blob/main/LICENSE](https://github.com/getsentry/sentry-java/blob/main/LICENSE) |
 
 ***
 
-### OkHttp
+### Legacy / Rx / UI Utility Libraries
 
-* com.squareup.okhttp3:\* (okhttp, dnsoverhttps, logging-interceptor) 4.12.0\
-  **License:** [Apache License 2.0](https://github.com/square/okhttp/blob/master/LICENSE.txt)
-
-***
-
-### Coil 3
-
-* io.coil-kt.coil3:coil, coil-svg, coil-network-okhttp 3.3.0\
-  **License:** [Apache License 2.0](https://github.com/coil-kt/coil/blob/main/LICENSE.txt)
-
-***
-
-### java-jwt
-
-* com.auth0:java-jwt 4.5.0\
-  **License:** [MIT License](https://github.com/auth0/java-jwt/blob/master/LICENSE)
+| Dependency                       | Version | License    | Verification Link                                                                                                                                      |
+| -------------------------------- | ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **RxJava 1.x**                   | 1.3.8   | Apache 2.0 | [https://github.com/ReactiveX/RxJava/blob/1.x/LICENSE](https://github.com/ReactiveX/RxJava/blob/1.x/LICENSE)                                           |
+| **RxAndroid 1.x**                | 1.2.1   | Apache 2.0 | [https://github.com/ReactiveX/RxJava/blob/1.x/LICENSE](https://github.com/ReactiveX/RxJava/blob/1.x/LICENSE)                                           |
+| **RxPermissions**                | 0.9.3   | Apache 2.0 | [https://github.com/tbruyelle/RxPermissions/blob/master/LICENSE](https://github.com/tbruyelle/RxPermissions/blob/master/LICENSE) (inherited)           |
+| **Blacksquircle UI (EditorKit)** | 2.9.0   | Apache 2.0 | [https://github.com/blacksquircle/Android-Code-Editor/blob/master/LICENSE](https://github.com/blacksquircle/Android-Code-Editor/blob/master/LICENSE)   |
+| **RoundableLayout**              | 1.1.4   | Apache 2.0 | [https://github.com/zladnrms/RoundableLayout/blob/master/LICENSE](https://github.com/zladnrms/RoundableLayout/blob/master/LICENSE)                     |
+| **FABProgressCircle**            | 1.01    | Apache 2.0 | [https://github.com/JorgeCastilloPrz/FABProgressCircle/blob/master/LICENSE](https://github.com/JorgeCastilloPrz/FABProgressCircle/blob/master/LICENSE) |
+| **ToastCompat**                  | 1.1.0   | Apache 2.0 | [https://github.com/drakeet/ToastCompat/blob/master/LICENSE](https://github.com/drakeet/ToastCompat/blob/master/LICENSE)                               |
+| **BatteryPermissionHelper**      | 1.0.3   | Apache 2.0 | [https://github.com/waseemsabir/BatteryPermissionHelper/blob/main/LICENSE](https://github.com/waseemsabir/BatteryPermissionHelper/blob/main/LICENSE)   |
+| **JUnit 4**                      | 4.13.2  | EPL 1.0    | [https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt)                   |
 
 ***
 
-### MMKV
+### External Tools (Bundled / Runtime Dependencies)
 
-* com.tencent:mmkv-static 1.3.14\
-  **License:** [BSD 3-Clause License](https://github.com/Tencent/MMKV/blob/master/LICENSE.TXT)
-
-***
-
-### Sentry Android
-
-* io.sentry:sentry-android 8.21.1\
-  **License:** [MIT License](https://github.com/getsentry/sentry-java/blob/main/LICENSE)
+| Dependency    | Description                                               | License | Verification Link                                                                                          |
+| ------------- | --------------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| **Xray-core** | Network core used for tunneling (fork of V2Ray/Xray-core) | MPL 2.0 | [https://github.com/XTLS/Xray-core/blob/main/LICENSE](https://github.com/XTLS/Xray-core/blob/main/LICENSE) |
 
 ***
 
-### RxJava 1.x / RxAndroid 1.x / RxPermissions 0.9.3
+### Summary by License Type
 
-* io.reactivex:rxjava 1.3.8
-* io.reactivex:rxandroid 1.2.1
-* com.github.tbruyelle:rxpermissions 0.9.3\
-  **License:** [Apache License 2.0](https://github.com/ReactiveX/RxJava/blob/1.x/LICENSE)
-
-***
-
-### Blacksquircle UI (EditorKit)
-
-* com.blacksquircle.ui:editorkit, language-base, language-json 2.9.0\
-  **License:** [Apache License 2.0](https://github.com/blacksquircle/Android-Code-Editor/blob/master/LICENSE)
+| License          | Dependencies                                                                                                                                                                                                     |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Apache 2.0**   | AndroidX, Google libraries, Kotlin libs, Conscrypt, desugar\_jdk\_libs, OkHttp, Coil, RxJava/RxAndroid/RxPermissions, Blacksquircle UI, RoundableLayout, FABProgressCircle, ToastCompat, BatteryPermissionHelper |
+| **MIT**          | java-jwt, Sentry                                                                                                                                                                                                 |
+| **BSD-3 Clause** | MMKV                                                                                                                                                                                                             |
+| **EPL 1.0**      | JUnit                                                                                                                                                                                                            |
+| **MPL 2.0**      | Xray-core                                                                                                                                                                                                        |
 
 ***
 
-### RoundableLayout
+### License Compliance Notes
 
-* com.github.zladnrms:RoundableLayout 1.1.4\
-  **License:** [Apache License 2.0](https://github.com/zladnrms/RoundableLayout/blob/master/LICENSE)
+#### MPL 2.0 (Xray-core)
 
-***
+* Requires providing access to modified Xray-core source code if distributed.
+* Does **not** affect your proprietary application code.
+* Include MPL 2.0 license text in your distribution.
 
-### FABProgressCircle
+#### Apache 2.0 (Most Dependencies)
 
-* com.github.jorgecastilloprz:fabprogresscircle 1.01\
-  **License:** [Apache License 2.0](https://github.com/JorgeCastilloPrz/FABProgressCircle/blob/master/LICENSE)
+* Requires preserving copyright notice.
+* Requires including license text.
+* Patents grant included.
 
-***
+#### MIT (java-jwt, Sentry)
 
-### ToastCompat
+* Very permissive.
+* Only attribution required.
 
-* me.drakeet.support:toastcompat 1.1.0\
-  **License:** [Apache License 2.0](https://github.com/drakeet/ToastCompat/blob/master/LICENSE)
+#### BSD-3 (MMKV)
 
-***
+* Permissive; attribution required.
 
-### BatteryPermissionHelper
+#### EPL 1.0 (JUnit)
 
-* com.waseemsabir:betterypermissionhelper 1.0.3\
-  **License:** [Apache License 2.0](https://github.com/waseemsabir/BatteryPermissionHelper/blob/main/LICENSE)
-
-***
-
-### JUnit 4
-
-* junit:junit 4.13.2\
-  **License:** [Eclipse Public License 1.0](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt)
+* Test-only dependency; no runtime distribution obligations.
 
 ***
 
-### XRay (Xray-core / v2ray-core fork)
+### Full License Texts
 
-* The project includes XRay core (a fork of V2Ray / Xray-core)\
-  **License:** [Mozilla Public License 2.0 (MPL 2.0)](https://github.com/XTLS/Xray-core/blob/main/LICENSE)
+* **Apache 2.0** — [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
+* **MIT** — [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
+* **BSD-3 Clause** — [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+* **EPL 1.0** — [https://www.eclipse.org/legal/epl-v10.html](https://www.eclipse.org/legal/epl-v10.html)
+* **MPL 2.0** — [https://www.mozilla.org/en-US/MPL/2.0/](https://www.mozilla.org/en-US/MPL/2.0/)
 
 ***
 
-#### Notes
-
-All libraries listed above are used in accordance with their open-source licenses.\
-The source code of this application is proprietary and is not distributed under an open license.
+_Last updated: 2025-12-01_
 {% endtab %}
 
 {% tab title="iOS/Mac" %}
