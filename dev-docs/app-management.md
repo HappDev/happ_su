@@ -1324,7 +1324,7 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Изменение тем (только iOS)</summary>
+<summary>Темы (только iOS)</summary>
 
 <figure><img src="../.gitbook/assets/222223.png" alt="" width="375"><figcaption></figcaption></figure>
 
