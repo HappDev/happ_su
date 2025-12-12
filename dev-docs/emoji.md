@@ -40,4 +40,4 @@ vless://uuid@ip:80?flow=&type=tcp&security=none#Wrong2🥰🇯🇵
 ```
 
 请确保在服务器名称中正确使用 emoji，以实现预期的图标显示效果。\
-<img src="../.gitbook/assets/image.png" alt="" data-size="original">
+<img src="../.gitbook/assets/image (1).png" alt="" data-size="original">

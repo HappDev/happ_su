@@ -1300,3 +1300,126 @@ vmess://zkIAU1JitkI…
 {% endcode %}
 
 </details>
+
+<details>
+
+<summary>主题（仅限 iOS）</summary>
+
+<figure><img src="../.gitbook/assets/image.png" alt="" width="375"><figcaption></figcaption></figure>
+
+允许您将配色主题自定义为个人风格。您可以在编辑器中创建自己的主题——长按“外观主题”标签即可打开菜单。创建的主题可以导出到剪贴板，也可以从剪贴板、.happ 文件中导入，或通过订阅进行分享。
+
+{% code title="VIOLET Theme" overflow="wrap" expandable="true" %}
+```json
+{
+  "backgroundGradientRotationAngle" : 37.1,
+  "serverRowBackgroundColor" : "#21003D67",
+  "subsHeaderColor" : "#42296DFF",
+  "profileWebPageIconColor" : "#A2B8FFFF",
+  "selectedServerRowColor" : "#3E2F62B5",
+  "disclosureSubHeaderTextColor" : "#C1C2E2FF",
+  "buttonTextColor" : "#FFFFFFFF",
+  "buttonTimerColor" : "#FFFFFFFF",
+  "subscriptionInfoBackgroundColor" : "#21003CFF",
+  "backgroundColors" : [
+    "#3D2A7DFF",
+    "#6557BAFF",
+    "#9377FF7F"
+  ],
+  "disclosureHeaderTextColor" : "#FFFFFFFF",
+  "backgroundGradientColorIntensity" : 1,
+  "additionalOptionsButtonColor" : "#FFFFFFFF",
+  "buttonImageType" : "light",
+  "serverRowSubTitleTextColor" : "#C1C2E2FF",
+  "supportIconColor" : "#FFFFFFFF",
+  "topBarButtonsColor" : "#FFFFFFFF",
+  "subscriptionTrafficBackgroundColor" : "#533EA7FF",
+  "subHeaderButtonColor" : "#FFFFFFFF",
+  "buttonColor" : "#9377FFFF",
+  "powerIconColor" : "#3D2A7DFF",
+  "subscriptionInfoTextColor" : "#FFFFFFFF",
+  "serverRowTitleTextColor" : "#FFFFFFFF",
+  "backgroundImageType" : "system",
+  "elipseColors" : [
+    "#00B460FF",
+    "#CF72FFE0",
+    "#FFDD00FF"
+  ],
+  "serverRowChevronColor" : "#FFFFFFFF"
+}
+```
+{% endcode %}
+
+{% code title="Turquoise Theme" overflow="wrap" expandable="true" %}
+```json
+{
+  "backgroundGradientRotationAngle" : 39.21265661716461,
+  "serverRowChevronColor" : "#F3FFFDFF",
+  "buttonImageType" : "light",
+  "buttonTimerColor" : "#3B3C3DFF",
+  "subscriptionTrafficBackgroundColor" : "#00343BFF",
+  "subscriptionInfoBackgroundColor" : "#006B7AFF",
+  "serverRowTitleTextColor" : "#D0FFF3FF",
+  "serverRowBackgroundColor" : "#02424DFF",
+  "powerIconColor" : "#05525ACA",
+  "supportIconColor" : "#F3FFF9FF",
+  "profileWebPageIconColor" : "#F5FFF9FF",
+  "selectedServerRowColor" : "#006B7BFF",
+  "disclosureHeaderTextColor" : "#D0FFF3FF",
+  "subsHeaderColor" : "#007982FF",
+  "elipseColors" : [
+    "#4DFF00CC",
+    "#E2FF00FF",
+    "#FF6000FF"
+  ],
+  "subscriptionInfoTextColor" : "#E5FFF7FF",
+  "buttonColor" : "#8FFFFEFF",
+  "serverRowSubTitleTextColor" : "#ADD3CBFF",
+  "topBarButtonsColor" : "#FFFFFFD8",
+  "settingsControlsTintColor" : "#00C3C1FF",
+  "backgroundGradientColorIntensity" : 1,
+  "disclosureSubHeaderTextColor" : "#A4FFE599",
+  "additionalOptionsButtonColor" : "#FBFFFF99",
+  "backgroundImageType" : "light",
+  "backgroundColors" : [
+    "#003740FF",
+    "#003740FF",
+    "#005255FF",
+    "#00A6A1FF",
+    "#00C9DDFF"
+  ],
+  "subHeaderButtonColor" : "#BAD7CFFF",
+  "buttonTextColor" : "#000000FF"
+}
+```
+{% endcode %}
+
+**该参数配置示例：**
+
+```
+color-profile: [String] //base64 or plainString
+color-profile: resetcolors // full reset
+```
+
+**传递方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+color-profile: {"backgroundGradientRotationAngle":37.1,"serverRowBackgroundColor":"#21003D67","subsHeaderColor":"#42296DFF","profileWebPageIconColor":"#A2B8FFFF","selectedServerRowColor":"#3E2F62B5","disclosureSubHeaderTextColor":"#C1C2E2FF","buttonTextColor":"#FFFFFFFF","buttonTimerColor":"#FFFFFFFF","subscriptionInfoBackgroundColor":"#21003CFF","backgroundColors":["#3D2A7DFF","#6557BAFF","#9377FF7F"],"disclosureHeaderTextColor":"#FFFFFFFF","backgroundGradientColorIntensity":1,"additionalOptionsButtonColor":"#FFFFFFFF","buttonImageType":"light","serverRowSubTitleTextColor":"#C1C2E2FF","supportIconColor":"#FFFFFFFF","topBarButtonsColor":"#FFFFFFFF","subscriptionTrafficBackgroundColor":"#533EA7FF","subHeaderButtonColor":"#FFFFFFFF","buttonColor":"#9377FFFF","powerIconColor":"#3D2A7DFF","subscriptionInfoTextColor":"#FFFFFFFF","serverRowTitleTextColor":"#FFFFFFFF","backgroundImageType":"system","elipseColors":["#00B460FF","#CF72FFE0","#FFDD00FF"],"serverRowChevronColor":"#FFFFFFFF"}
+```
+{% endcode %}
+
+{% code title="通过订阅内容：" %}
+```
+#color-profile: {"backgroundGradientRotationAngle":37.1,"serverRowBackgroundColor":"#21003D67","subsHeaderColor":"#42296DFF","profileWebPageIconColor":"#A2B8FFFF","selectedServerRowColor":"#3E2F62B5","disclosureSubHeaderTextColor":"#C1C2E2FF","buttonTextColor":"#FFFFFFFF","buttonTimerColor":"#FFFFFFFF","subscriptionInfoBackgroundColor":"#21003CFF","backgroundColors":["#3D2A7DFF","#6557BAFF","#9377FF7F"],"disclosureHeaderTextColor":"#FFFFFFFF","backgroundGradientColorIntensity":1,"additionalOptionsButtonColor":"#FFFFFFFF","buttonImageType":"light","serverRowSubTitleTextColor":"#C1C2E2FF","supportIconColor":"#FFFFFFFF","topBarButtonsColor":"#FFFFFFFF","subscriptionTrafficBackgroundColor":"#533EA7FF","subHeaderButtonColor":"#FFFFFFFF","buttonColor":"#9377FFFF","powerIconColor":"#3D2A7DFF","subscriptionInfoTextColor":"#FFFFFFFF","serverRowTitleTextColor":"#FFFFFFFF","backgroundImageType":"system","elipseColors":["#00B460FF","#CF72FFE0","#FFDD00FF"],"serverRowChevronColor":"#FFFFFFFF"}
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
