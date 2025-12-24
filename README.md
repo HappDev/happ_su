@@ -27,4 +27,6 @@ Happ ensures your network activity remains private by not collecting any data; y
 
 It is important to note that Happ does not include any servers and does not provide VPN services. Users are responsible for configuring their own servers for personal use. Happ also asks its users to comply with the laws and regulations of their respective jurisdictions when using the application.
 
+New domain https://happ.info
+
 <p align="center">Official website of the Happ application.<br>© 2024-2025 Happ. All rights reserved. Flyfrog LLC.</p>
