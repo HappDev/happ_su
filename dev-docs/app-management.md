@@ -467,6 +467,80 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 
 <details>
 
+<summary>Расширенные объявления</summary>
+
+<div><figure><img src="../.gitbook/assets/3588.png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/3584.png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/3585.png" alt="" width="188"><figcaption></figcaption></figure></div>
+
+Более заметные обьявления. Делятся на два типа: произвольный информационный текст (`sub-info`) и системное уведомление об окончании подписки (`sub-expire`).
+
+Уведомления об истечении подписки имеют приоритет и отображаются автоматически за 3 дня до окончания или после истечения. Информационный блок показывается только при отсутствии активного expire-сообщения.
+
+Оба механизма можно явно отключить через http headers. Если параметры были переданы и не отменены, они остаются активными до удаления подписки.
+
+```markdown
+| META PARAM KEY              | TYPE     | REQUIRED | LIMITS / VALUES                  | DESCRIPTION |
+|----------------------------|----------|----------|----------------------------------|-------------|
+| sub-info-color             | String   | No       | red, blue, green (default blue)  | Цвет информационного блока |
+| sub-info-text              | String   | Yes*     | max 200 chars                    | Основной текст инфо-блока. Без параметра блок не отображается. Пустая строка отключает отображение |
+| sub-info-button-text       | String   | No       | max 25 chars                     | Текст кнопки. Если отсутствует — кнопка не показывается |
+| sub-info-button-link       | String   | No       | any string (URL / deeplink)      | Ссылка кнопки. Открывается в браузере, без валидации |
+| sub-expire                 | Boolean  | No       | true \| 1 = enabled              | Включает механизм показа информации об истечении подписки |
+| sub-expire-button-link     | String   | No       | any string (URL / deeplink)      | Ссылка на кнопку «Продлить». Без ссылки кнопка не показывается |
+```
+
+#### Логика отображения (summary)
+
+```markdown
+| CONDITION | RESULT |
+|----------|--------|
+| sub-expire = true и подписка истекает ≤ 3 дней | Показываем сообщение «Ваша подписка заканчивается через N д.» |
+| sub-expire = true и подписка истекла | Показываем сообщение «Подписка закончилась!» |
+| sub-expire = true и дней > 3 | Сообщение об истечении скрывается |
+| Нет даты истечения | Информация об истечении не отображается |
+| Есть активное expire-сообщение | sub-info блок не показывается |
+| Нет expire-сообщения и есть sub-info-text | Показываем sub-info блок |
+| sub-info-text = "" | sub-info блок отключается |
+| sub-expire ≠ true \| 1 | Механизм expire отключается |
+```
+
+#### Примечания
+
+```markdown
+| NOTE |
+|------|
+| Параметры применяются только к той подписке, для которой они были переданы |
+| Если параметры пришли через push и не были явно отключены, они остаются активными бессрочно |
+| Кнопка expire всегда имеет текст «Продлить» |
+| Количество дней (N) считается как полные дни, максимум 3 |
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+sub-expire: 1
+sub-expire-button-link: https:/t.me/generate
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#sub-expire: 1
+##sub-expire-button-link: https:/t.me/generate
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Фрагментация и фронтинг подписки</summary>
 
 Некоторые CDN поддерживают фронтинг доменов. Это позволяет подключаться к своему сайту через сторонний домен.
