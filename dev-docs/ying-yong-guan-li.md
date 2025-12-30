@@ -751,7 +751,7 @@ subscription-auto-update-enable: 1
 
 {% code title="通过订阅内容：" %}
 ```
-#new-url: https:/mynew-domain.com/3J3jrb4jfc
+#subscription-auto-update-enable: 1
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
