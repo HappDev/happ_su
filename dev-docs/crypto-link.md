@@ -45,7 +45,3 @@ Zb/Zq+kK2hSIhphY172Uvs8X2Qp2ac9UoTPM71tURsA9IvPNvUwSIo/aKlX5KE3I
 VE0tje7twWXL5Gb1sfcXRzsCAwEAAQ==
 -----END PUBLIC KEY-----
 ```
-
-***
-
-Would you like me to help you draft a README file or a technical guide based on this information?
