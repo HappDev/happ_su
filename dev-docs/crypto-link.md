@@ -1,29 +1,33 @@
 # Crypto link
 
-The application supports encrypted links. A link can be encrypted using RSA-4096. It is now recommended to use only RSA-4096, which is referred to as `happ://crypt3/`.\
-Link encryption is designed to hide the subscription address from the user. After adding an encrypted subscription, the user cannot edit, view, or share the server configurations contained in the subscription. The encryption keys themselves are securely embedded in the application, ensuring the protection of subscription data.
+The application supports encrypted links. Links can be encrypted using RSA-4096. ~~It is recommended to use only RSA-4096; it is designated as `happ://crypt4/`.~~ A new encryption type, `happ://crypt5/`, is now available.
 
-***
+Link encryption is designed to hide the subscription address from the user. Once an encrypted subscription is added, the user cannot edit, view, or share the server configurations contained within that subscription. The encryption keys themselves are securely embedded into the application, ensuring the protection of the subscription data.
 
-You can encrypt a link in three ways:
+You can encrypt a link in two ways:
 
-1. Using this [web page](https://crypto.happ.su)
-2. Using the [API](crypto-link.md#api-instructions)
-3. Using [RSA key](crypto-link.md#rsa-key-rsa-4096)
+1. Using the [web page](https://crypto.happ.su/).
+2. Via the [API](https://www.google.com/search?q=%23api-instructions).
 
-#### API Instructions
+**API Instructions**
 
-To use the API, you need to send a request to the following address: `https://crypto.happ.su/api.php`
+To use the API, you must send a request to the following address:
 
-**Example:**
+[https://crypto.happ.su/api-v2.php](https://crypto.happ.su/api-v2.php)
+
+Example:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"url":"https://your_url.com"}' "https://crypto.happ.su/api.php"
+curl -X POST -H "Content-Type: application/json" -d '{"url":"https://your-url.com"}' "https://crypto.happ.su/api-v2.php"
 ```
 
-The result will return an encrypted version of your link, which can then be used in the application.
+The request will return an encrypted version of your link, which can then be used in the application.
 
-#### **RSA Key (RSA-4096):**
+**RSA Key (Deprecated)**
+
+If you prefer to encrypt the link yourself, use the RSA key provided below. Note: This method is deprecated and not recommended for use!
+
+RSA Key (RSA-4096):
 
 ```
 -----BEGIN PUBLIC KEY-----
@@ -42,3 +46,6 @@ VE0tje7twWXL5Gb1sfcXRzsCAwEAAQ==
 -----END PUBLIC KEY-----
 ```
 
+***
+
+Would you like me to help you draft a README file or a technical guide based on this information?
