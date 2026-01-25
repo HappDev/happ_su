@@ -1,32 +1,33 @@
 # 加密链接
 
-应用支持加密链接。链接可以使用 **RSA-4096** 加密。现在推荐只使用 RSA-4096，它被称为 `happ://crypt3/`。\
-加密链接的目的是隐藏用户的订阅地址。添加加密订阅后，用户无法编辑、查看或分享订阅中包含的服务器配置。加密密钥本身被安全地内置在应用中，从而确保订阅数据的保护。。
+该应用程序支持加密链接。链接可以使用 RSA-4096 进行加密。 ~~建议仅使用 RSA-4096，其协议名称为 `happ://crypt4/`。~~ 现已推出新型加密方式 `happ://crypt5/`。
 
-您可以通过以下三种方式加密链接：
+链接加密旨在向用户隐藏订阅地址。添加加密订阅后，用户将无法编辑、查看或分享该订阅中包含的服务器配置。加密密钥本身已安全地嵌入在应用程序中，确保了订阅数据的安全性。
 
-* 使用本[网页](https://crypto.happ.su/)
-* 使用 [API](https://www.happ.su/main/ru/documentation/crypto-link#instrukciya-po-api)
-* 使用 [RSA](crypto-link.md#rsa-mi-yao) 密钥
+您可以通过以下两种方式加密链接：
 
-#### API 使用说明
+1. 使用 [网页端](https://crypto.happ.su/)。
+2. 通过 [API](https://www.google.com/search?q=%23api-%E8%AF%B4%E6%98%8E)。
 
-要使用 API，您需要发送请求至以下地址：\
-[https://crypto.happ.su/api.php](https://crypto.happ.su/api.php)
+**API 说明**
+
+如需使用 API，请向以下地址发送请求：
+
+[https://crypto.happ.su/api-v2.php](https://crypto.happ.su/api-v2.php)
 
 示例：
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"url":"https://your_url.com"}' "https://crypto.happ.su/api.php"
+curl -X POST -H "Content-Type: application/json" -d '{"url":"https://your-url.com"}' "https://crypto.happ.su/api-v2.php"
 ```
 
-结果将返回您链接的加密版本，可以在应用中使用。
+请求将返回您链接的加密版本，该版本可直接在应用程序中使用。
 
-#### RSA 密钥
+**RSA 密钥（已弃用）**
 
-如果您希望自行加密链接，请使用下面提供的 RSA 密钥。
+如果您倾向于自行加密链接，请使用下方提供的 RSA 密钥。注意：此方法已过时，不建议使用！
 
-**RSA 密钥 (RSA-4096)：**
+RSA 密钥 (RSA-4096):
 
 ```
 -----BEGIN PUBLIC KEY-----
@@ -43,7 +44,4 @@ IenvMhzJh1fq7xwX94otdd5eLB2vRFavrnhOcN2JJAkKTnx9dwQwFpGEkg+8U613
 Zb/Zq+kK2hSIhphY172Uvs8X2Qp2ac9UoTPM71tURsA9IvPNvUwSIo/aKlX5KE3I
 VE0tje7twWXL5Gb1sfcXRzsCAwEAAQ==
 -----END PUBLIC KEY-----
-
 ```
-
-使用这些密钥，您可以通过首选的 RSA 加密工具加密链接。
