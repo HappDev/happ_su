@@ -25,3 +25,4 @@
   * [Примеры ссылок и параметров](dev-docs/examples-of-links-and-parameters.md)
   * [Android TV API](dev-docs/android-tv-api.md)
 * [Контакты](contacts.md)
+* [Вакансии](vakansii.md)
