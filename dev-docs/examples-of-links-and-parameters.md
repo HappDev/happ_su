@@ -1,182 +1,82 @@
 # 链接和参数示例
 
-##
-
 {% hint style="warning" %}
 此信息**不是 VPN 配置指南**，也**不用于绕过封锁、访问违反您所在国家法律的禁止网站或应用程序**。
 {% endhint %}
 
-#### 参数
+### 1. 概述
 
-<details>
-
-<summary>allowinsecure</summary>
-
-允许在不验证 TLS 证书的情况下建立连接。\
-在配置 URL 中传递：
-
-* **VMess** 中指定为：\
-  `"allowInsecure": "1"`
-* 其他协议中作为 URL 参数：\
-  `allowInsecure=1`
-
-</details>
-
-<details>
-
-<summary>分片与「噪声」(fragmentation / noises)</summary>
-
-Xray 中的分片是将**出站流量拆分为更小的片段**的机制，具有可控的发送间隔和模式。\
-`noises` 是分片的补充，通过添加**伪数据包**来增加行为的多样性。
-
-> `noises` **仅在启用分片时**生效。
+HAPP 应用程序支持多种旨在保障安全和绕过网络审查的现代协议：VLESS、VMess、Shadowsocks、Socks5、Trojan 以及 Hysteria2（包括 `hy2` 方案）。
 
 ***
 
-#### 配置位置
+### 2. 添加配置的方式
 
-* **全局** — 在应用通用设置中启用，作用于**所有**订阅和服务器。\
-  参见章节：[应用管理](https://www.happ.su/main/dev-docs/app-management)
-* **本地（针对特定服务器）** — 在应用内**该**服务器的设置中启用。
-
-**同时启用时的行为：**\
-如果分片/「噪声」在**全局和本地均启用**，则应用**全局配置**。本地配置用于当全局**关闭**时，仅在特定服务器上启用该功能。
-
-***
-
-#### 1) 分片 (fragmentation)
-
-**字符串格式**
-
-```
-fragment=length,interval,packets[,maxSplit]
-```
-
-**参数说明**
-
-* **length** — 片段长度，格式为 `Int32Range`（例如 `3` 或 `1-3`）。
-* **interval** — 片段间隔，格式为 `Int32Range`（例如 `1` 或 `1-5`）。
-* **packets** — 数据包类型（例如 `tlshello`）。
-* **maxSplit** _（可选）_ — 最大拆分数量，格式为 `Int32Range`（例如 `100` 或 `100-200`）。\
-  从 **Xray 25.9.5** 版本开始支持。
-
-> `Int32Range` — 单个数字或 `min-max` 范围；使用范围时会动态选择数值。
-
-**示例（仅针对特定服务器）**
-
-*   **VMess（JSON 字段）：**
-
-    ```json
-    "fragment": "1-10,5-20,tlshello,100-200"
-    ```
-*   **其他协议（字符串形式）：**
-
-    ```
-    fragment=3,1,tlshello,100-200
-    ```
-
-    `maxSplit` 可省略：
-
-    ```
-    fragment=3,1,tlshello
-    ```
+* 手动输入： 通过主屏幕上的 “+” 按钮进行添加。允许对协议的每个参数进行细粒度配置。
+* URL/二维码导入： 自动识别剪贴板或通过摄像头扫描的方案链接（如 `vless://`、`vmess://` 等）。
+* 订阅：
+  * _标准订阅：_ 指向文本格式服务器列表的 URL 链接。
+  * _JSON 数组：_ 包含预设密钥、路由规则和 Reality 参数的高级数据集。
 
 ***
 
-#### 2) 「噪声」(noises)
+### 3. JSON 配置文件的处理特性
 
-**字符串格式**
+当以 JSON 格式将服务器配置导入 HAPP 应用程序时，程序在与 XRAY 内核 交互时会采用特殊的处理机制。
 
-```
-noises=type,packet,delay[,applyTo]
-```
+#### 3.1 直接透传原则 (1:1)
 
-**参数说明**
+启动 XRAY 内核时，此类 JSON 配置将以原始状态直接传递。
 
-* **type** — `rand` | `str` | `base64`
-* **packet** — 内容：
-  * 当 `rand` 时 — 长度或范围，格式为 `Int32Range`（例如 `50` 或 `50-150`）；
-  * 当 `str` 时 — 字符串（例如 `string`）；
-  * 当 `base64` 时 — base64 字符串（例如 `7nQBAAABAAAAAAAABnQtcmluZwZtc2VkZ2UDbmV0AAABAAE=`）。
-* **delay** — 延迟，格式为 `Int32Range`（例如 `10-50`）。
-* **applyTo** _（可选）_ — 应用范围：`ip` _（默认）_、`ipv4`、`ipv6`。
+> 重要提示： 在此模式下，HAPP 的标准路由规则和界面设置不会应用到该 JSON 文件上。配置将完全按照其源代码逻辑运行。
 
-**示例（仅针对特定服务器）**
+#### 3.2 通过 HAPP 进行间接管理
 
-*   **VMess（JSON 字段）：**
+尽管采用直接透传模式，应用程序仍可以通过路由方案控制内核的运行环境：
 
-    ```json
-    "noises": "rand,50-150,10-50,ip"
-    ```
-*   **其他协议（字符串形式）：**
-
-    ```
-    noises=rand,50-150,10-50,ip
-    ```
-
-    `applyTo` 可省略：
-
-    ```
-    noises=rand,50-150,10-50
-    ```
+* GEO 文件管理： 您可以控制传递给内核执行的地理数据（Geo-data）文件。
+* 优化（裁剪版 GEO 文件）： 启用此功能后，内核仅接收数据库的必要片段（带有选定标签的部分），从而节省系统资源。
+* DNS 隧道： 远程 DNS 设置继承自应用程序当前的活动路由方案，用户可根据需要调整系统行为。
 
 ***
 
-**注意事项与常见错误**
+### 4. 高级参数 (URI Scheme)
 
-* 使用**不带空格的逗号**。
-* 范围必须有效（`min <= max`）。
-* 未激活分片时，`noises` **不会生效**。
-* 过小的 `length`、过短的 `interval` 或过大的 `maxSplit` 可能会降低速度并增加延迟。
+#### 4.1 Hysteria 2 (`hy2://`)
 
-</details>
+| **参数**        | **说明**                          |
+| ------------- | ------------------------------- |
+| `auth`        | 认证数据（userpass 格式为 `用户名:密码`）。    |
+| `port`        | 支持多端口：例如 `1234,5000-6000,7044`。 |
+| `obfs`        | 混淆类型（例如 `salamander`）。          |
+| `mportHopInt` | 端口跳跃间隔（秒）。                      |
 
-<details>
+#### 4.2 分片与噪声 (Fragmentation & Noises)
 
-<summary>title</summary>
+用于绕过深度包检测 (DPI) 的工具。仅当应用程序的全局设置关闭时，单个服务器的本地设置才会生效。
 
-服务器名称（最多 30 个字符）。\
-如果宽度超出屏幕，显示名称可能会被截断并以省略号（`...`）结尾。\
-在配置字符串末尾、以 `#` 符号后指定。
+* 分片 (Fragmentation)： `fragment=length,interval,packets[,maxSplit]`
+  * _示例：_ `fragment=1-10,5-20,tlshello`
+* 噪声 (Noises)：（必须配合分片使用）`noises=type,packet,delay[,applyTo]`
+  * _示例：_ `noises=rand,50-150,10-50,ip`
 
-**示例：**\
-`vmess://...#Мой_Сервер`
+***
 
-</details>
+### 5. 可视化与元数据
 
-<details>
+为了方便管理服务器列表，可以在 URL 末尾的 `#` 符号后添加标签：
 
-<summary>serverDescription</summary>
+1. 标题 (`title`)： `#我的服务器`（最多 30 个字符）。
+2. 服务器描述 (`serverDescription`)： 将技术性副标题（如 "VMess"）替换为自定义文本。
+   * _格式：_ `#标题?serverDescription=<base64编码文本>`
+   * _JSON 格式：_ 使用字段 `"meta": {"serverDescription": "您的文本"}`。
 
-仅适用于本地服务器列表。对于订阅需要 `ProviderID` 参数。\
-允许设置额外说明文字，该文字显示在服务器名称下方，代替标准文本（例如 "VMess"、"VLESS"、"Trojan"）。
+***
 
-* 最大长度为 30 个字符。
-* 如果无法完整显示，将以省略号截断。
-* 在 `title` 之后通过分隔符 `?` 设置。
+### 6. Socks5 代理示例
 
-**示例：**\
-`vmess://...#MyServer?serverDescription=<base64>`
+应用程序支持解析以下三种记录格式：
 
-**JSON 示例：**\
-`"meta":{`\
-`"serverDescription":"此处为无需 base64 的文本！"`\
-`}`
-
-</details>
-
-<details>
-
-<summary>Socks 代理</summary>
-
-以下是应用可解析的同一配置的三种变体示例：
-
-**示例：**
-
-```
-socks://user123:pass321@12.8.8.8:443
-socks://dXNlcjEyMzpwYXNzMzIx@12.8.8.8:443#name
-socks://dXNlcjEyMzpwYXNzMzIxQDEyLjguOC44OjQ0Mw==
-```
-
-</details>
+* 明文格式： `socks://user:pass@1.2.3.4:443`
+* 部分 Base64： `socks://<base64编码的用户密码>@1.2.3.4:443#名称`
+* 全 Base64： `socks://<完整字符串的base64编码>`
