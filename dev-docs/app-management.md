@@ -404,7 +404,7 @@ If the primary URL is unreachable, returns an error between 300–599, or fails 
 **Example of configuring this parameter:**
 
 ```
-new-url: [url]
+fallback-url: [url]
 ```
 
 **Ways to pass it:**
@@ -416,13 +416,13 @@ date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
-new-url: https://mynew-domain.com/3J3jrb4jfc
+fallback-url: https://mynew-domain.com/3J3jrb4jfc
 ```
 {% endcode %}
 
 {% code title="Via subscription body:" %}
 ```
-#new-url https://mynew-domain.com/3J3jrb4jfc
+#fallback-url https://mynew-domain.com/3J3jrb4jfc
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
