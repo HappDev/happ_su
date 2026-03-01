@@ -581,6 +581,44 @@ For fronting, specify the URL with the domain used for connection first, \[...]
 
 <details>
 
+<summary>No Limit Mode</summary>
+
+No Limit Mode can be applied to all protocol types or specifically to xhttp. It increases the RAM limit for xray-core, enhancing stability and performance.
+
+> Important: This feature is currently in beta. Please use only one activation option (either for all protocols or for xhttp only) — enabling both simultaneously is not permitted.
+
+Example of setting this parameter:
+
+```
+no-limit-enabled: [true / 1]
+no-limit-xhttp-enabled: [true / 1]
+```
+
+**Ways to pass it:**
+
+{% code title="Via HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+no-limit-xhttp-enabled: 1
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#no-limit-xhttp-enabled: 1
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Advanced fragmentation</summary>
 
 This feature is currently in closed testing and will be available soon...
