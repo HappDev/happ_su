@@ -1207,6 +1207,41 @@ vmess://zkIAU1JitkI…
 
 <details>
 
+<summary>Принудительное разворачивание подписки</summary>
+
+При получении данного параметра через обновление подписки приложение принудительно развернет её, если она свернута. Значение `false` игнорируется: параметр служит только для разворачивания, свернуть подписку с его помощью нельзя.
+
+**Пример настройки данного параметра:**
+
+```
+subscriptions-expand-now: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+subscriptions-expand-now: 1
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#subscriptions-expand-now: 1
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Режим отображения пинга</summary>
 
 <figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
