@@ -395,6 +395,43 @@ vmess://zkIAU1JitkI…
 
 <details>
 
+<summary>Fallback URL</summary>
+
+<figure><img src="../.gitbook/assets/image.png" alt="" width="375"><figcaption></figcaption></figure>
+
+If the primary URL is unreachable, returns an error between 300–599, or fails to respond within 9 seconds, the app will switch to the Fallback URL (if provided).
+
+**Example of configuring this parameter:**
+
+```
+new-url: [url]
+```
+
+**Ways to pass it:**
+
+{% code title="Via HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+new-url: https://mynew-domain.com/3J3jrb4jfc
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#new-url https://mynew-domain.com/3J3jrb4jfc
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Server Description in Subscription</summary>
 
 <figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
@@ -462,6 +499,57 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 }
 ```
 {% endcode %}
+
+</details>
+
+<details>
+
+<summary>Advanced Announcements</summary>
+
+<div><figure><img src="../.gitbook/assets/5526.png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/5528.png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/5527.png" alt="" width="188"><figcaption></figcaption></figure></div>
+
+More prominent announcements divided into two types: custom informational text (sub-info) and system subscription expiration notifications (sub-expire).\
+Expiration notifications take priority and are displayed automatically 3 days before or after the subscription expires. The informational block is shown only if there is no active expire-message.\
+Both mechanisms can be explicitly disabled via HTTP headers. If parameters are passed and not cancelled, they remain active until the subscription is deleted.
+
+```
+| META PARAM KEY             | TYPE     | REQUIRED | LIMITS / VALUES                  | DESCRIPTION                                                                                                          |
+|----------------------------|----------|----------|----------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| sub-info-color             | String   | No       | red, blue, green (default blue)  | Color of the information block.                                                                                      |
+| sub-info-text              | String   | Yes*     | max 200 chars                    | Main text of the info block. The block is hidden if this parameter is missing. An empty string disables the display. |
+| sub-info-button-text       | String   | No       | max 25 chars                     | Button text. If omitted, the button will not be displayed.                                                           |
+| sub-info-button-link       | String   | No       | any string (URL / deeplink)      | utton link. Opens in the browser; no validation is performed.                                                        |
+| sub-expire                 | Boolean  | No       | true \| 1 = enabled              | Enables the subscription expiration notification mechanism.                                                          |
+| sub-expire-button-link     | String   | No       | any string (URL / deeplink)      | Link for the "Renew" button. If omitted, the button will not be displayed.                                           |
+```
+
+#### Display Logic Summary
+
+```
+| CONDITION                                      | RESULT                                          |
+|------------------------------------------------|-------------------------------------------------|
+| `sub-expire = true` and expiry $\le$ 3 days 	 | Display: "Your subscription expires in N days." |
+| `sub-expire = true` and subscription expired	 | Display: "Subscription has expired!" 		   |
+| `sub-expire = true` and days > 3 				 | Expiration message is hidden.                   |
+| No expiration date set 						 | Expiration info is not displayed.               |
+| Active `expire` message exists 				 | `sub-info` block is not shown (suppressed).     |
+| No `expire` message and `sub-info-text` exists | Display the `sub-info` block.                   |
+| `sub-info-text = ""` 							 | `sub-info` block is disabled.                   |
+| `sub-expire ≠ true/1` 						 | Expiration mechanism is disabled.               |
+```
+
+#### Notes
+
+```
+| NOTE 																								|
+|---------------------------------------------------------------------------------------------------|
+| Parameters are applied only to the specific subscription for which they were provided. 			|
+| If parameters are received via push and not explicitly disabled, they remain active indefinitely. |
+| The `expire` button always uses the text "Renew". 												|
+| The number of days (N) is calculated as full days, with a maximum of 3. 							|
+```
+
+
 
 </details>
 
@@ -1089,6 +1177,41 @@ vmess://zkIAU1JitkI…
 
 <details>
 
+<summary>Force-expand subscription</summary>
+
+Upon receiving this parameter via a subscription update, the app will force-expand the subscription if it is collapsed. The `false` value is ignored: the parameter is used only for expanding and cannot be used to collapse the subscription.
+
+**Example of configuring this parameter:**
+
+```
+subscriptions-expand-now: [true / 1]
+```
+
+**Ways to pass it:**
+
+{% code title="Via HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+subscriptions-expand-now: 1
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#subscriptions-expand-now: 1
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Ping Display Mode</summary>
 
 <figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
@@ -1317,7 +1440,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Themes (only for iOS)</summary>
 
-<figure><img src="../.gitbook/assets/image.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 Allows you to customize the color theme to your preference. You can create your own theme in the editor — just long-press the “Appearance Theme” label to open the menu. The created theme can be exported to the clipboard, as well as imported from the clipboard, from a .happ file, or transferred through a subscription.
 
