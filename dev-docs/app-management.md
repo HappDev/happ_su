@@ -608,6 +608,44 @@ mydomain.com/123#MyVPN?fragment=80-250,10-100,tlshello
 
 <details>
 
+<summary>No Limit Mode</summary>
+
+Режим No Limit Mode может использован быть для всех типов протоколов или только для xhttp. Увеличивает лимит оперативной памяти для xray-core, повышая стабильность и производительность.
+
+> Важно: Функция находится в стадии бета-тестирования. Используйте только один из вариантов активации (для всех или только для xhttp) — одновременное включение недопустимо.
+
+**Пример настройки данного параметра:**
+
+```
+no-limit-enabled: [true / 1]
+no-limit-xhttp-enabled: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+no-limit-xhttp-enabled: 1
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#no-limit-xhttp-enabled: 1
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Advanced fragmentation</summary>
 
 Данная функция пока что проходит закрытое тестирование и скоро будет доступна...
