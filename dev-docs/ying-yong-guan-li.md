@@ -383,6 +383,43 @@ vmess://zkIAU1JitkI…
 
 <details>
 
+<summary>Fallback URL</summary>
+
+<figure><img src="../.gitbook/assets/image (2).png" alt="" width="375"><figcaption></figcaption></figure>
+
+如果主 URL 无法访问、返回 300–599 错误或在 9 秒内未响应，应用程序将切换至备用 URL（如果已提供）。
+
+**该参数配置示例：**
+
+```
+fallback-url: [url]
+```
+
+**传递方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+fallback-url: https://mynew-domain.com/3J3jrb4jfc
+```
+{% endcode %}
+
+{% code title="通过订阅内容：" %}
+```
+#fallback-url https://mynew-domain.com/3J3jrb4jfc
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>订阅中的服务器描述</summary>
 
 <figure><img src="https://3543042857-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FQmSIGg7AmcgXo76saXyc%2Fuploads%2FoDU5uorhG21AqBg91iwz%2Fimage.png?alt=media&#x26;token=833d487e-b712-4848-ba63-1a1a8a1a4465" alt=""><figcaption></figcaption></figure>
