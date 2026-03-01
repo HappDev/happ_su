@@ -395,6 +395,43 @@ vmess://zkIAU1JitkI…
 
 <details>
 
+<summary>Fallback URL (запасной URL для подписки)</summary>
+
+<figure><img src="../.gitbook/assets/telegram-cloud-photo-size-2-5260524142723798836-w.jpg" alt="" width="375"><figcaption></figcaption></figure>
+
+Если основной URL недоступен, вернул ошибку 300–599 или не ответил в течение 9 секунд, приложение переключится на Fallback URL (при его наличии).
+
+**Пример настройки данного параметра:**
+
+```
+fallback-url: [url]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+fallback-url: https://mynew-domain.com/3J3jrb4jfc
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#fallback-url https://mynew-domain.com/3J3jrb4jfc
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Описание сервера в подписке</summary>
 
 <figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
