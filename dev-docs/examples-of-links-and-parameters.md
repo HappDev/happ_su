@@ -4,6 +4,135 @@
 Данная информация **не является инструкцией по настройке VPN**, а также **не предназначено для обхода блокировок, доступа к запрещённым сайтам или приложениям**, нарушающим законодательство вашей страны.
 {% endhint %}
 
+## Добавление конфигурации/подписки <a href="#id-dobavleniekonfiguracii-podpiski-dobavleniekonfiguracii-podpiski" id="id-dobavleniekonfiguracii-podpiski-dobavleniekonfiguracii-podpiski"></a>
+
+#### Поддерживаемые протоколы <a href="#id-dobavleniekonfiguracii-podpiski-podderzhivaemyeprotokoly" id="id-dobavleniekonfiguracii-podpiski-podderzhivaemyeprotokoly"></a>
+
+На данный момент приложение поддерживает следующие типы конфигураций:
+
+* **VLESS**
+* **VMess**
+* **Socks5**
+* **Trojan**
+* **Shadowsocks**
+* **Hysteria2**
+
+Конфигурации можно добавить тремя способами:
+
+1. [**Ручное добавление**](examples-of-links-and-parameters.md#id-dobavleniekonfiguracii-podpiski-1.ruchnoedobavlenie)
+2. [**Добавление через URL-ссылку**](examples-of-links-and-parameters.md#id-dobavleniekonfiguracii-podpiski-2.dobavleniecherezurl-ssylku)
+3. [**Добавление подписки**](examples-of-links-and-parameters.md#id-dobavleniekonfiguracii-podpiski-3.dobavleniepodpiski)
+
+***
+
+#### 1. Ручное добавление <a href="#id-dobavleniekonfiguracii-podpiski-1.ruchnoedobavlenie" id="id-dobavleniekonfiguracii-podpiski-1.ruchnoedobavlenie"></a>
+
+Чтобы добавить конфигурацию вручную, выполните следующие шаги:
+
+1. Нажмите кнопку «+» в верхнем правом углу главного экрана.
+2. Выберите опцию «Ручной ввод».
+3. Выберите нужный протокол из списка.
+4. Заполните все обязательные поля с параметрами.
+5. Нажмите кнопку «Готово» в верхнем правом углу окна для сохранения конфигурации.
+
+После сохранения конфигурация появится в разделе «Список серверов» на главном экране.
+
+***
+
+#### 2. Добавление через URL-ссылку <a href="#id-dobavleniekonfiguracii-podpiski-2.dobavleniecherezurl-ssylku" id="id-dobavleniekonfiguracii-podpiski-2.dobavleniecherezurl-ssylku"></a>
+
+Приложение поддерживает добавление конфигураций с помощью URL-ссылок. Допустимые форматы ссылок:
+
+* `vmess://`
+* `vless://`
+* `socks://`
+* `trojan://`
+* `ss://`
+* `hysteria2:// | hy2://`
+
+Ссылки можно передавать в приложение следующими способами:
+
+* Копированием из буфера обмена
+* Сканированием QR-кода
+* Использованием диплинка
+
+***
+
+#### 3. Добавление подписки <a href="#id-dobavleniekonfiguracii-podpiski-3.dobavleniepodpiski" id="id-dobavleniekonfiguracii-podpiski-3.dobavleniepodpiski"></a>
+
+Приложение поддерживает два типа подписок:
+
+* **Обычная подписка:**\
+  Это стандартный веб-URL, содержащий конфигурации серверов в открытом виде.
+* **JSON подписка:**\
+  JSON-массив, в котором прописаны все параметры: адреса серверов, протоколы (VLESS, VMess, Trojan, Reality), ключи шифрования и настройки маршрутизации.
+
+Подписку можно добавить через:
+
+* Буфер обмена
+* QR-код
+* Диплинк
+
+<details>
+
+<summary>Hysteria 2</summary>
+
+Схема URI Hysteria 2 разработана для обеспечения компактного представления необходимой информации для подключения к серверу Hysteria 2. Она включает в себя различные параметры, такие как адрес сервера, данные аутентификации, тип и параметры обфускации, а также настройки TLS.
+
+### Structure <a href="#hysteria2-structure" id="hysteria2-structure"></a>
+
+```
+hysteria2://[auth]@[hostname]:[port]/?[key=value]&[key=value]...
+hy2://[auth@]hostname[:port]/?[key=value]&[key=value]...
+
+```
+
+**Аутентификация -** `auth`
+
+Учетные данные для аутентификации должны быть указаны в компоненте auth URI.&#x20;
+
+Особый случай — когда сервер использует аутентификацию userpass, в этом случае компонент auth должен быть отформатирован как username:password.
+
+**Имя хоста -** `hostname`
+
+Имя хоста и необязательный порт сервера. Если порт опущен, по умолчанию используется 443.
+
+Часть порта поддерживает формат «многопортовой аутентификации», специальный многопортовый формат адресов:
+
+[example.com](http://example.com/):1234,5678,9012\
+[example.com](http://example.com/):20000-50000\
+[example.com](http://example.com/):1234,5000-6000,7044,8000-9000\
+Количество указываемых портов не ограничено.
+
+Клиент случайным образом выберет один из указанных портов для первоначального подключения и будет периодически переключаться на другой порт. Параметр управления интервалом — mportHopInt в разделе udphop:
+
+```
+"udphop": {
+  "port": "1234,5000-6000",
+  "interval": "30"
+}
+```
+
+Параметры запроса\
+obfs: Тип используемой обфускации. В настоящее время поддерживается только salamander.
+
+obfs-password: Пароль, необходимый для указанного типа обфускации, если применимо.
+
+sni: Индикация имени сервера, используемая для TLS-соединений. В случае если `hostname доменное имя и отсутcnвует SNI то serverName будет использоваться hostname`
+
+insecure: Определяет, разрешены ли небезопасные TLS-соединения. Принимает логические значения: "1" для true и "0" для false.&#x20;
+
+pinSHA256: Закрепленный отпечаток SHA-256 сертификата сервера. Так же можно просто передать дефолтный для xray параметр pcs. Он тоже будет использоваться как и pinSHA256. При наличии pinSHA256 он берётся приоритетно.\
+Import: Список портов для скачков. Можно не задавать после auth части, а передать параметров (не дефолтный ключ для hysteria2)
+
+```
+mportHopInt: Интервал прыжков по портам в секундах
+```
+
+<br>
+
+</details>
+
 ### Параметры
 
 <details>
