@@ -520,6 +520,44 @@ mydomain.com/123#MyVPN?fragment=80-250,10-100,tlshello
 
 <details>
 
+<summary>No Limit Mode</summary>
+
+No Limit 模式可用于所有协议类型或仅用于 xhttp。该模式通过增加 xray-core 的内存限制来提高稳定性和性能。
+
+> 重要提示： 此功能目前处于公测阶段。请仅选择一种激活方式（全部协议或仅 xhttp）—— 严禁同时开启两项。
+
+Example of setting this parameter:
+
+```
+no-limit-enabled: [true / 1]
+no-limit-xhttp-enabled: [true / 1]
+```
+
+**Ways to pass it:**
+
+{% code title="通过 HTTP 标头：" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+no-limit-xhttp-enabled: 1
+```
+{% endcode %}
+
+{% code title="通过订阅内容：" %}
+```
+#no-limit-xhttp-enabled: 1
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>高级分片</summary>
 
 此功能目前正在进行封闭测试，即将推出...
