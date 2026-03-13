@@ -54,3 +54,26 @@ https://check.happ-proxy.com/provider?id={ProviderID}
     content-disposition: attachment; filename="213"
     providerid: {ProviderID}
     ```
+
+### Примеры добавления Provider ID
+
+<details>
+
+<summary>Remnawave</summary>
+
+<figure><img src="../.gitbook/assets/telegram-cloud-document-2-5305500219448790093.jpg" alt="" width="375"><figcaption></figcaption></figure>
+
+
+
+#### Добавление ProviderID (на примере панели Remnawave)
+
+Скопируйте ваш ProviderID в панели управления happ-proxy.com.
+
+1. В Remnawave в левом сайдбаре перейдите в раздел "Subscription" → "Settings"
+2. Сверху выберите "Additional Response Headers"
+3. Чтобы добавить хэдер нажмите на кнопку "Add header"
+4. В поле "Key" пропишите название хедера: providerId
+5. В поле "Value" пропишите скопированный раннее ваш ProviderID
+6. Для применения изменений нажмите на кнопку "Save"
+
+</details>
