@@ -2118,6 +2118,15 @@ http-auth-password: pass1
 ```
 {% endcode %}
 
+{% code title="Через тело подписки:" %}
+```
+#http-auth-mode: manual
+#http-auth-user: user1
+#http-auth-password: pass1
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
 </details>
 
 <details>
@@ -2146,6 +2155,13 @@ user-agent-geo-files: chrome-win
 ```
 {% endcode %}
 
+{% code title="Через тело подписки:" %}
+```
+#user-agent-geo-files: chrome-win
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
 </details>
 
 <details>
@@ -2169,6 +2185,13 @@ proxy-ping-timeout: 10
 ```
 {% endcode %}
 
+{% code title="Через тело подписки:" %}
+```
+#proxy-ping-timeout: 10
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
 </details>
 
 <details>
@@ -2189,6 +2212,13 @@ hide-vpn-icon: [true / 1]
 {% code title="Через HTTP Headers:" %}
 ```
 hide-vpn-icon: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#hide-vpn-icon: true
+vless://70cc48c5‑b2f4…
 ```
 {% endcode %}
 
