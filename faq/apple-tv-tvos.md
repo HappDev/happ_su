@@ -6,7 +6,7 @@
 
 ### 1) Импорт по локальной сети
 
-<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
 При первом запуске автоматически откроется **экран импорта** (аналог нажатия «+»). Вы можете передать:
 
@@ -40,7 +40,7 @@
 
 ### 2) Веб-импорт через удалённый сервер
 
-<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
 
 Если локальная сеть недоступна или заблокирована разрешениями, используйте **Web Import**.
 
@@ -79,7 +79,7 @@
 
 ### 4) Настройки
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
 Настройки на tvOS **визуально отличаются** от других платформ.
 
@@ -88,7 +88,7 @@
 * Встроен **дефолтный список Direct-правил**.
 * Вы можете их включать/выключать и редактировать под свои задачи.
 
-<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
 ***
 

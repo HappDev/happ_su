@@ -10,17 +10,17 @@
 
 #### 1) Для всей подписки
 
-<figure><img src="../.gitbook/assets/image (20).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (21).png" alt="" width="188"><figcaption></figcaption></figure>
 
 1. Откройте главный экран.
 2. В шапке нужной подписки нажмите на иконку спидометра.
 3. Рядом с каждым сервером этой подписки появится его Ping.
 
-<figure><img src="../.gitbook/assets/image (21).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (22).png" alt="" width="188"><figcaption></figcaption></figure>
 
 #### 2) Для отдельной конфигурации
 
-<figure><img src="../.gitbook/assets/image (22).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (23).png" alt="" width="188"><figcaption></figcaption></figure>
 
 1. На главном экране смахните элемент конфигурации вправо — появится панель действий.
 2. Нажмите на иконку спидометра — рядом отобразится Ping именно этой конфигурации.
@@ -108,7 +108,7 @@
 **Как включить:**\
 Настройки → **Подписки** → включите **«Пинг при запуске»**.
 
-<figure><img src="../.gitbook/assets/image (25).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (26).png" alt="" width="188"><figcaption></figcaption></figure>
 
 После активации при каждом запуске приложения происходит измерение Ping всех серверов и обновляется их статус (время отклика или иконка).
 

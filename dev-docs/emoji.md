@@ -46,4 +46,4 @@ vless://uuid@ip:80?flow=&type=tcp&security=none#Wrong1%F0%9F%A5%B0%F0%9F%87%AF%F
 vless://uuid@ip:80?flow=&type=tcp&security=none#Wrong2🥰🇯🇵
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>

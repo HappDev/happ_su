@@ -17,7 +17,7 @@ description: Управляйте настройками приложения ч
 
 <summary>Автообновление подписки</summary>
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 В системе создаётся задача на выполнение операции с заданным интервалом. В зависимости от внутренних приоритетов система старается запустить обновление подписки в установленное время.\
 Если по какой-либо причине обновление не было выполнено в пределах указанного интервала, оно произойдёт автоматически при следующем запуске приложения.\
@@ -56,7 +56,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Имя подписки</summary>
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 Название профиля подписки. Может быть передано как plain text или в base64 (UTF-8). **Ограничение**: Максимальная длина — 25 символов.
 
@@ -95,7 +95,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Строка состояния подписки (трафик, дата истечения)</summary>
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 Отображается информация о балансе, объёме использованного трафика и сроке действия подписки.\
 В приложении левой части шкалы показано количество израсходованного трафика (upload + download), а в правой — общий объём (total) после символа «/».\
@@ -135,7 +135,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Ссылка на страницу поддержки</summary>
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 Кнопка для перехода на страницу поддержки.\
 Отображается в виде синей иконки, расположенной в правой части строки.\
@@ -174,7 +174,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Ссылка на страницу сайта</summary>
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 Кнопка для перехода на страницу сайта подписки.\
 Отображается в виде синей иконки, расположенной в левой части строки.\
@@ -213,7 +213,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Объявление</summary>
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 Подписка может содержать текст объявления, передаваемый в формате **plain text** или **Base64**.\
 **Ограничение:** максимальная длина отображаемого текста — **200 символов**.
@@ -434,7 +434,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Описание сервера в подписке</summary>
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 Позволяет задать дополнительную подпись, которая отображается под названием сервера вместо стандартного текста (например, "VMess", "VLESS", "Trojan").
 
@@ -733,7 +733,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Скрыть настройки серверов в подписке</summary>
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
 Отключите возможность просмотра и редактирования конфигураций серверов для пользователей вашей подписки. Настройка применяется как к уже добавленным подпискам, так и к тем, что будут добавлены в будущем.
 
@@ -1210,7 +1210,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Запрет сворачивания подписок</summary>
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
 Эта функция отключает возможность сворачивать подписку: список серверов всегда отображается полностью, в развёрнутом виде.<br>
 
@@ -1282,7 +1282,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Режим отображения пинга</summary>
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 Позволяет отобразить иконки вместо временных значений<br>
 
