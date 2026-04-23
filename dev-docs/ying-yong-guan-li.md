@@ -385,7 +385,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Fallback URL</summary>
 
-<figure><img src="../.gitbook/assets/image (2).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3).png" alt="" width="375"><figcaption></figcaption></figure>
 
 如果主 URL 无法访问、返回 300–599 错误或在 9 秒内未响应，应用程序将切换至备用 URL（如果已提供）。
 
