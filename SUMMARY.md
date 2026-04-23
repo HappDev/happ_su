@@ -8,6 +8,7 @@
   * [Добавление конфигурации/подписки](faq/adding-configuration-subscription.md)
   * [Поделиться конфигурацией](faq/podelitsya-konfiguraciei.md)
   * [Подключения из локальной сети](faq/local-network-connections.md)
+  * [Hysteria 2](faq/hysteria2.md)
   * [Android TV](faq/android-tv.md)
   * [Apple TV (tvOS)](faq/apple-tv-tvos.md)
   * [Ping](faq/ping.md)
