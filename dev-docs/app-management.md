@@ -350,7 +350,7 @@ new-url: https://mynew-domain.com/3J3jrb4jfc
 
 {% code title="Через тело подписки:" %}
 ```
-#new-url https://mynew-domain.com/3J3jrb4jfc
+#new-url: https://mynew-domain.com/3J3jrb4jfc
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -385,7 +385,7 @@ new-domain: mynew-domain.com
 
 {% code title="Через тело подписки:" %}
 ```
-#new-domain mynew-domain.com
+#new-domain: mynew-domain.com
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -422,7 +422,7 @@ fallback-url: https://mynew-domain.com/3J3jrb4jfc
 
 {% code title="Через тело подписки:" %}
 ```
-#fallback-url https://mynew-domain.com/3J3jrb4jfc
+#fallback-url: https://mynew-domain.com/3J3jrb4jfc
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -927,7 +927,7 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Фрагментация</summary>
+<summary>Фрагментация и шумы</summary>
 
 Это глобальный параметр управления фрагментацией для всех подписок. Если же нужно назначить фрагментацию только для конкретной подписки или серверу, воспользуйтесь бесплатным функционалом и инструкциями общей документации к приложению. При отключении глобальной настройки каждая подписка самостоятельно определяет настройки фрагментации.
 
@@ -939,11 +939,12 @@ fragmentation-packets: [tlshello,1-2,1-3,1-5]
 fragmentation-length: [50-100]
 fragmentation-interval: [10-20]
 fragmentation-maxsplit: [String]
-noises-enable: [true / 1]
-noises-type: [rand. str, base64]
-noises-packet: [String]
-noises-delay: [String]
-noises-applyto: [ip,ipv4,ipv6]
+noises-enable: [true / 1] — включение/выключение шумов.
+noises-packet-type: [array, str, hex, base64] — тип передаваемых данных (по умолчанию array).
+noises-packet: [String] — фиксированные данные для шума. Список строк, разделенных запятой.
+noises-delay: [String] — задержка между отправкой шумовых сигналов в миллисекундах.
+noises-rand: [String] — добавляет случайные байты или задает их длину (например, "1-8192").
+noises-rand-range: [String] — диапазон значений случайных байтов (по умолчанию "0-255").
 ```
 
 **Способы передачи:**
@@ -960,11 +961,11 @@ fragmentation-packets: tlshello
 fragmentation-length: 50-100
 fragmentation-interval: 5
 fragmentation-maxsplit: 100-200
-noises-enable: 1
-noises-type: rand
-noises-packet: 10-20
-noises-delay: 10-16
-noises-applyto: ipv4
+noises-enable: true
+noises-packet-type: base64
+noises-packet: 7nQBAAABAAAAAAAABnQtcmluZwZtc2VkZ2UDbmV0AAABAAE=
+noises-delay: 50
+noises-rand: 1-1024
 ```
 {% endcode %}
 
@@ -975,11 +976,11 @@ noises-applyto: ipv4
 #fragmentation-length: 50-100
 #fragmentation-interval: 5
 #fragmentation-maxsplit: 100-200
-#noises-enable: 1
-#noises-type: rand
-#noises-packet: 10-20
-#noises-delay: 10-16
-#noises-applyto: ipv4
+#noises-enable: true
+#noises-packet-type: base64
+#noises-packet: 7nQBAAABAAAAAAAABnQtcmluZwZtc2VkZ2UDbmV0AAABAAE=
+#noises-delay: 50
+#noises-rand: 1-1024
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -1018,7 +1019,7 @@ check-url-via-proxy: https://cp.cloudflare.com/generate_204
 
 {% code title="Через тело подписки:" %}
 ```
-#ping-type proxy
+#ping-type: proxy
 #check-url-via-proxy: https://cp.cloudflare.com/generate_204
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
@@ -1163,6 +1164,84 @@ per-app-proxy-list: com.google.chrome,com.meta.instagram
 ```
 #per-app-proxy-mode: on
 #per-app-proxy-list: com.google.chrome,com.meta.instagram
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Прокси для выбранных приложений Invert (Android)</summary>
+
+В этом параметре можно указать список приложений, которые должны использовать VPN или, наоборот, обходить его.\
+**Выделяет все приложения кроме указанных в списке.**
+
+**Пример настройки данного параметра:**
+
+```
+per-app-proxy-mode: [off/on/bypass] \\Укажите один из трех параметров
+per-app-proxy-list-invert: [com.google.chrome,com.meta.instagram] \\список appID через ','
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+per-app-proxy-mode: on
+per-app-proxy-list-invert: com.google.chrome,com.meta.instagram
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#per-app-proxy-mode: on
+#per-app-proxy-list-invert: com.google.chrome,com.meta.instagram
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Прокси для выбранных приложений Set (Android)</summary>
+
+В этом параметре можно указать список приложений, которые должны использовать VPN или, наоборот, обходить его.\
+**Очищаем все выбранные, и только потом выделяем приложения по указнному списку**
+
+**Пример настройки данного параметра:**
+
+```
+per-app-proxy-mode: [off/on/bypass] \\Укажите один из трех параметров
+per-app-proxy-list-set: [com.google.chrome,com.meta.instagram] \\список appID через ','
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+per-app-proxy-mode: on
+per-app-proxy-list-set: com.google.chrome,com.meta.instagram
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#per-app-proxy-mode: on
+#per-app-proxy-list-set: com.google.chrome,com.meta.instagram
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -1472,7 +1551,7 @@ vmess://zkIAU1JitkI…
 
 <details>
 
-<summary>Exclude routes</summary>
+<summary>Exclude Routes</summary>
 
 Определяет перечень подсетей и IP-адресов, трафик которых не должен проходить через туннель.\
 Адреса указываются в одной строке, разделяя их пробелами и запятыми.
@@ -1499,6 +1578,43 @@ exclude-routes: 192.169.1.0/24, 10.0.0.0/8
 {% code title="Через тело подписки:" %}
 ```
 #exclude-routes: 192.169.1.0/24, 10.0.0.0/8
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Exclude Routes Set</summary>
+
+Определяет перечень подсетей и IP-адресов, трафик которых не должен проходить через туннель.\
+Адреса указываются в одной строке, разделяя их пробелами и запятыми.\
+**Перед установкой текущий список очищается.**
+
+**Пример настройки данного параметра:**
+
+```
+exclude-routes-set: [String]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+exclude-routes-set: 192.169.1.0/24, 10.0.0.0/8
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#exclude-routes-set: 192.169.1.0/24, 10.0.0.0/8
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -1628,3 +1744,454 @@ vmess://zkIAU1JitkI…
 {% endcode %}
 
 </details>
+
+<details>
+
+<summary>Развернуть подписку</summary>
+
+При получении данного параметра через обновление подписки приложение принудительно развернет её, если она была свернута.
+
+**Пример настройки данного параметра:**
+
+```
+subscriptions-expand-now: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+subscriptions-expand-now: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#subscriptions-expand-now: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Включить все сети (Только iOS)</summary>
+
+Включает использование всех сетей в туннеле (NetworkExtension). Функция доступна в ОС начиная с iOS 16.4.\
+На устройствах с более старой версией iOS параметр не будет иметь эффекта, а соответствующие переключатели в DevSettings не появятся.
+
+**Пример настройки данного параметра:**
+
+```
+include-all-networks-enable: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+include-all-networks-enable: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#include-all-networks-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Исключить локальные сети (Только iOS)</summary>
+
+Если включена опция "Включить все сети", данный параметр позволяет исключить локальные сети из туннеля (NetworkExtension).\
+Трафик локальных сетей будет идти напрямую. Доступно для iOS 16.4+.
+
+**Пример настройки данного параметра:**
+
+```
+exclude-local-networks-enable: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+exclude-local-networks-enable: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#exclude-local-networks-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Исключить APNS (Только iOS)</summary>
+
+Если включена опция "Включить все сети", данный параметр позволяет исключить Apple Push Notification Service (APNS) из туннеля.\
+Все диапазоны работы уведомлений Apple будут идти напрямую. Доступно для iOS 16.4+.
+
+**Пример настройки данного параметра:**
+
+```
+exclude-apns-enable: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+exclude-apns-enable: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#exclude-apns-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Не использовать фильтрацию списка серверов</summary>
+
+По умолчанию в Premium-подписках работает автоматическая фильтрация:\
+* Если в имени сервера есть "only WiFi" — он виден только при Wi-Fi подключении.
+* Если в имени есть "only Mobile" — он виден только при мобильном интернете.
+Данная опция отключает это поведение.
+
+**Пример настройки данного параметра:**
+
+```
+dont-use-filter: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+dont-use-filter: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#dont-use-filter: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Закрепить текущую подписку</summary>
+
+Позволяет закрепить (Pin) или открепить подписку в общем списке.\
+* true — закрепляет подписку сверху.
+* false — открепляет.
+
+**Пример настройки данного параметра:**
+
+```
+subscription-pin: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+subscription-pin: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#subscription-pin: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Блокировка изменения User-Agent</summary>
+
+Блокирует возможность ручного изменения **User Agent** пользователем через интерфейс приложения.\
+При этом провайдер по-прежнему может менять его удаленно через параметр **change-user-agent**.
+
+**Пример настройки данного параметра:**
+
+```
+manual-block-user-agent: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+manual-block-user-agent: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#manual-block-user-agent: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Изменение сортировки серверов в подписке</summary>
+
+Определяет порядок отображения серверов внутри подписки:
+
+* **without** — без сортировки (как передано с бэкенда).
+* **ping** — по задержке (сервера с меньшим пингом выше, недоступные — в конце).
+* **alphabet** — по алфавиту.
+
+**Пример настройки данного параметра:**
+
+```
+subscriptions-sort-type: [without, ping, alphabet]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+subscriptions-sort-type: ping
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#subscriptions-sort-type: ping
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Брать DNS для туннеля из JSON</summary>
+
+Логика применяется только при одновременном соблюдении условий: используется конфигурация JSON,\
+отсутствует профиль маршрутизации и включен переключатель в настройках.\
+Система берет первый сервер из dns.servers в JSON.
+
+Алгоритм выбора:
+
+* **Прямой IP**: Если указан IPv4/IPv6, он ставится как DOU DNS-туннеля.
+* **DoH**: Если указан URL (https://), ищется IP в dns.hosts.
+  - iOS: Настраивается полноценный DoH-запрос.
+  - Android / Desktop: Используется IP из hosts (DOU).
+
+* **Объект**: Извлекается значение из поля address аналогично описанию выше.
+* **Резервный DNS (Fallback)**:\
+Если основной сервер невалиден, используется стандартный:
+  - Android / Desktop: 1.1.1.1 (DOU).
+  - iOS: Cloudflare DoH (https://cloudflare-dns.com/dns-query).
+
+**Пример настройки данного параметра:**
+
+```
+dns-from-json-enable: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+HTTP/2 200 
+dns-from-json-enable: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#dns-from-json-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Авторизация SOCKS Inbound</summary>
+
+Определяет режим работы и учетные данные для локального SOCKS-прокси.\
+
+* **auto** — автоматическая генерация и подставление данных в конфиги и тунель.
+* **manual** — использование заданных в настройках user и password.
+* **from-json** — брать настройки из JSON-конфигурации. Для URL config ов работает как режим auto в данном выборе.
+* **disable** — отключить авторизацию.
+
+**Параметры:**
+```
+socks-auth-mode: [auto, manual, from-json, disable]
+socks-auth-user: [String] — логин (для режима manual).
+socks-auth-password: [String] — пароль (для режима manual).
+```
+
+**Пример настройки:**
+
+```
+socks-auth-mode: manual
+socks-auth-user: myuser
+socks-auth-password: mypassword
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+socks-auth-mode: manual
+socks-auth-user: myuser
+socks-auth-password: mypassword
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#socks-auth-mode: manual
+#socks-auth-user: myuser
+#socks-auth-password: mypassword
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Авторизация HTTP Inbound</summary>
+
+Определяет режим работы и учетные данные для локального HTTP-прокси.\
+
+* **auto** — автоматическая генерация и подставление данных в конфиги и тунель.
+* **manual** — использование заданных в настройках user и password.
+* **from-json** — брать настройки из JSON-конфигурации. Для URL config ов работает как режим auto в данном выборе.
+* **disable** — отключить авторизацию.
+
+**Параметры:**
+```
+http-auth-mode: [auto, manual, from-json, disable]
+http-auth-user: [String] — логин (для режима manual).
+http-auth-password: [String] — пароль (для режима manual).
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+http-auth-mode: manual
+http-auth-user: user1
+http-auth-password: pass1
+```
+{% endcode %}
+
+</details>
+
+<details>
+<summary>User-Agent для скачивания гео-файлов</summary>
+
+Позволяет изменить значение заголовка User-Agent при скачивании Geo-IP и Geo-Site файлов.
+
+**Доступные значения:** 
+* **safari-mac**
+* **chrome-win**
+* **safari-ios**
+* **firefox-win**
+* **chrome-android**
+
+**Пример настройки:**
+
+```
+user-agent-geo-files: safari-mac
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+user-agent-geo-files: chrome-win
+```
+{% endcode %}
+
+</details>
+
+<details>
+<summary>Таймаут пинга через прокси (Только iOS)</summary>
+
+Устанавливает время ожидания (в секундах) при проверке доступности (пинге) через прокси-сервер.\
+Допустимый диапазон: **5 – 15** секунд.\
+Значения вне диапазона игнорируются, устанавливается дефолтное значение 7.
+
+**Пример настройки:**
+
+```
+proxy-ping-timeout: 10
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+proxy-ping-timeout: 10
+```
+{% endcode %}
+
+</details>
+
+<details>
+<summary>Скрыть иконку VPN (Hide Proxy Icon)</summary>
+
+Управляет отображением иконки VPN в статус-баре системы.\
+Переключатель реагирует на наличие обоих маршрутов (::/128 и 0.0.0.0/8) в списке исключений (excluded-routes).\
+При включении опции эти маршруты автоматически добавляются в список исключений, при выключении — удаляются.
+
+**Пример настройки:**
+
+```
+hide-vpn-icon: [true / 1]
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+hide-vpn-icon: true
+```
+{% endcode %}
+
+</details>
+
+
