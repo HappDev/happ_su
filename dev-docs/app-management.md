@@ -4,10 +4,10 @@ description: Управляйте настройками приложения ч
 
 # Управление приложением
 
-**Функционал управление приложения** включает два направления:
+**Функционал управления приложением** включает два направления:
 
-* [Стандартные параметры](app-management.md#standartnye-parametry) управления которые работают для большиства панелей.
-* [Расширенные параметры](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) для которых необходимо указывать [Provider ID](provider-id.md) в подписке.
+* [Стандартные параметры](app-management.md#standartnye-parametry) управления, которые работают для большинства панелей.
+* [Расширенные параметры](app-management.md#id-rasshirennyifunkcional-opisanieparametrov) для которых, необходимо указывать [Provider ID](provider-id.md) в подписке.
 
 Чтобы активировать параметр, передайте значение `true` или `1` ; чтобы отключить — любое другое непустое значение (например, `0` или `false`).
 
@@ -98,7 +98,7 @@ vmess://zkIAU1JitkI…
 <figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 Отображается информация о балансе, объёме использованного трафика и сроке действия подписки.\
-В приложении левой части шкалы показано количество израсходованного трафика (upload + download), а в правой — общий объём (total) после символа «/».\
+В приложении в левой части шкалы показано количество израсходованного трафика (upload + download), а в правой — общий объём (total) после символа «/».\
 Дата окончания подписки указывается в параметре **expire**.\
 **Примечание:** все данные передаются в одном заголовке и разделяются символом **;**. 
 
@@ -123,7 +123,7 @@ subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
 
 {% code title="Через тело подписки:" %}
 ```
-№subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
+#subscription-userinfo: upload=0; download=2153701362; total=0; expire=1790951622
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -178,7 +178,7 @@ vmess://zkIAU1JitkI…
 
 Кнопка для перехода на страницу сайта подписки.\
 Отображается в виде синей иконки, расположенной в левой части строки.\
-Если параметр не задан иконка будет серого цвета
+Если параметр не задан, иконка будет серого цвета
 
 **Пример настройки данного параметра:**
 
@@ -508,26 +508,23 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 
 <div><figure><img src="../.gitbook/assets/3588.png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/3584.png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/3585.png" alt="" width="188"><figcaption></figcaption></figure></div>
 
-Более заметные обьявления. Делятся на два типа: произвольный информационный текст (`sub-info`) и системное уведомление об окончании подписки (`sub-expire`).
+Более заметные объявления. Делятся на два типа: произвольный информационный текст (`sub-info`) и системное уведомление об окончании подписки (`sub-expire`).
 
 Уведомления об истечении подписки имеют приоритет и отображаются автоматически за 3 дня до окончания или после истечения. Информационный блок показывается только при отсутствии активного expire-сообщения.
 
 Оба механизма можно явно отключить через http headers. Если параметры были переданы и не отменены, они остаются активными до удаления подписки.
 
-```markdown
 | META PARAM KEY              | TYPE     | REQUIRED | LIMITS / VALUES                  | DESCRIPTION |
 |----------------------------|----------|----------|----------------------------------|-------------|
 | sub-info-color             | String   | No       | red, blue, green (default blue)  | Цвет информационного блока |
-| sub-info-text              | String   | Yes*     | max 200 chars                    | Основной текст инфо-блока. Без параметра блок не отображается. Пустая строка отключает отображение |
+| sub-info-text              | String   | Yes*     | max 200 chars                    | Основной текст инфо-блока. Без параметра блок не отображается. Или если в параметр отправили 0. Пустая строка отключает отображение |
 | sub-info-button-text       | String   | No       | max 25 chars                     | Текст кнопки. Если отсутствует — кнопка не показывается |
 | sub-info-button-link       | String   | No       | any string (URL / deeplink)      | Ссылка кнопки. Открывается в браузере, без валидации |
 | sub-expire                 | Boolean  | No       | true \| 1 = enabled              | Включает механизм показа информации об истечении подписки |
 | sub-expire-button-link     | String   | No       | any string (URL / deeplink)      | Ссылка на кнопку «Продлить». Без ссылки кнопка не показывается |
-```
 
 #### Логика отображения (summary)
 
-```markdown
 | CONDITION | RESULT |
 |----------|--------|
 | sub-expire = true и подписка истекает ≤ 3 дней | Показываем сообщение «Ваша подписка заканчивается через N д.» |
@@ -538,18 +535,15 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 | Нет expire-сообщения и есть sub-info-text | Показываем sub-info блок |
 | sub-info-text = 0 | sub-info блок отключается |
 | sub-expire ≠ true \| 1 | Механизм expire отключается |
-```
 
 #### Примечания
 
-```markdown
 | NOTE |
 |------|
 | Параметры применяются только к той подписке, для которой они были переданы |
 | Если параметры пришли через push и не были явно отключены, они остаются активными бессрочно |
 | Кнопка expire всегда имеет текст «Продлить» |
 | Количество дней (N) считается как полные дни, максимум 3 |
-```
 
 **Способы передачи:**
 
@@ -561,14 +555,14 @@ content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 sub-expire: 1
-sub-expire-button-link: https:/t.me/generate
+sub-expire-button-link: https://t.me/generate
 ```
 {% endcode %}
 
 {% code title="Через тело подписки:" %}
 ```
 #sub-expire: 1
-##sub-expire-button-link: https:/t.me/generate
+#sub-expire-button-link: https://t.me/generate
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
@@ -586,7 +580,7 @@ vmess://zkIAU1JitkI…
 
 Также вы можете обращаться к своему домену за списком серверов, используя фрагментацию пакетов в SNI TLSHello.
 
-По умолчанию фрагментация включена для всех подписок. Пользователь может добавить подписку только один раз; при повторной попытке, если аккаунт не премиумный, обновление не будет разрешено.
+По умолчанию фрагментация включена для всех подписок.
 
 #### &#x20;Схема URL c параметрами
 
@@ -596,7 +590,7 @@ vmess://zkIAU1JitkI…
 Fronting:
 visa.com/123#MyVPN?resolve-address=visa.com&host=mydomain.com
 
-Frgmentation:
+Fragmentation:
 mydomain.com/123#MyVPN?fragment=80-250,10-100,tlshello
 ```
 
@@ -610,7 +604,7 @@ mydomain.com/123#MyVPN?fragment=80-250,10-100,tlshello
 
 <summary>No Limit Mode</summary>
 
-Режим No Limit Mode может использован быть для всех типов протоколов или только для xhttp. Увеличивает лимит оперативной памяти для xray-core, повышая стабильность и производительность.
+Режим No Limit Mode может быть использован для всех типов протоколов или только для xhttp. Увеличивает лимит оперативной памяти для xray-core, повышая стабильность и производительность.
 
 > Важно: Функция находится в стадии бета-тестирования. Используйте только один из вариантов активации (для всех или только для xhttp) — одновременное включение недопустимо.
 
@@ -697,7 +691,7 @@ vmess://zkIAU1JitkI…
 Текст уведомления:
 
 ```
- У вашей подписки [name] скоро истечёт срок действия, не забудьте продлить её.
+У вашей подписки [name] скоро истечёт срок действия, не забудьте продлить её.
 ```
 
 **Пример настройки данного параметра:**
@@ -770,7 +764,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Резолвинг доменов</summary>
 
-Приложение может выполнять предварительное резолвинг доменов серверов ещё до установления подключения.\
+Приложение может выполнять предварительный резолвинг доменов серверов ещё до установления подключения.\
 Вы можете указать любой DoH-сервер, и при соединении с сервером Xray доменное имя будет заменено на полученный IP-адрес.
 
 Если для домена возвращается несколько IP-адресов, приложение автоматически выберет тот, у которого минимальное время отклика (ping).\
@@ -811,7 +805,7 @@ vmess://zkIAU1JitkI…
 
 </details>
 
-#### Управление настройками приложения <a href="#upravlenie-nastroikami-prilozheniya" id="upravlenie-nastroikami-prilozheniya"></a>
+## Управление настройками приложения <a href="#upravlenie-nastroikami-prilozheniya" id="upravlenie-nastroikami-prilozheniya"></a>
 
 {% hint style="warning" %}
 Необходим параметр [Provider ID](provider-id.md)!
@@ -821,13 +815,14 @@ vmess://zkIAU1JitkI…
 
 <summary>Автоподключение</summary>
 
-Позволяет автоматически подключать пользователя к серверам при запуске приложения. Дополнительно, с помощью параметра **subscription-autoconnect** можно указать критерий для подключения к определенному серверу.
+Позволяет автоматически подключать пользователя к серверам при запуске приложения.\
+Дополнительно, с помощью параметра **subscription-autoconnect-type** можно указать критерий для подключения к определенному серверу.
 
 **Пример настройки данного параметра:**
 
 ```
 subscription-autoconnect: [true / 1]
-subscription-autoconnect-type: [“lastused“/”lowestdelay”/”random”]
+subscription-autoconnect-type: [lastused/lowestdelay/random]
 ```
 
 **Способы передачи:**
@@ -992,14 +987,18 @@ vmess://zkIAU1JitkI…
 
 <summary>Пинг</summary>
 
-
-
-Эта функция позволяет выбрать способ выполнения пинга в приложении. Доступны три варианта: «via Proxy», «TCP» и «ICMP». Для режима «via Proxy» можно дополнительно указать URL для проверки пинга.
+Эта функция позволяет выбрать способ выполнения пинга в приложении.\
+Доступны четыре варианта:
+* **via Proxy - GET**
+* **via Proxy - HEAD**
+* **TCP**
+* **ICMP**
+Для режима «via Proxy» можно дополнительно указать URL для проверки пинга.
 
 **Пример настройки данного параметра:**
 
 ```
-ping-type: ["proxy", "proxy-head', "tcp","icmp"]
+ping-type: [proxy, proxy-head, tcp, icmp]
 check-url-via-proxy: [url]
 ```
 
@@ -1215,7 +1214,7 @@ vmess://zkIAU1JitkI…
 <summary>Прокси для выбранных приложений Set (Android)</summary>
 
 В этом параметре можно указать список приложений, которые должны использовать VPN или, наоборот, обходить его.\
-**Очищаем все выбранные, и только потом выделяем приложения по указнному списку**
+**Очищаем все выбранные, и только потом выделяем приложения по указанному списку**
 
 **Пример настройки данного параметра:**
 
@@ -1481,7 +1480,7 @@ vmess://zkIAU1JitkI…
 Определяет какой режим будет использоваться для TUN подключения.
 
 * **`system`** — использует системный сетевой стек ОС.\
-  Быстро и эффективно, но зависит от корректной настройки маршрутов и файрвола .
+  Быстро и эффективно, но зависит от корректной настройки маршрутов и файрвола.
 * **`gvisor`** — пользовательский стек gVisor (userspace).\
   Меньше зависимостей от правил ядра и конфликтов с iptables/nftables/Docker, лучше изоляция; возможен небольшой минус к производительности.
 
@@ -1519,9 +1518,10 @@ vmess://zkIAU1JitkI…
 <summary>Выбор ядра туннеля (только для Desktop)</summary>
 
 Определяет какое ядро будет использоваться для TUN подключения. Для выбора доступно\
+
 * [sing-box](https://github.com/SagerNet/sing-box)
 * [tun2proxy](https://github.com/tun2proxy/tun2proxy)
-* default(Happ TUN) наша реализация тунеля
+* default(Happ TUN) наша реализация туннеля 
 
 **Пример настройки данного параметра:**
 
@@ -1574,7 +1574,7 @@ date: Wed, 24 Nov 2024 10:00:52 GMT
 content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
-exclude-routes: 192.169.1.0/24, 10.0.0.0/8
+exclude-routes: 192.168.1.0/24, 10.0.0.0/8
 ```
 {% endcode %}
 
@@ -1743,37 +1743,6 @@ color-profile: {"backgroundGradientRotationAngle":37.1,"serverRowBackgroundColor
 #color-profile: {"backgroundGradientRotationAngle":37.1,"serverRowBackgroundColor":"#21003D67","subsHeaderColor":"#42296DFF","profileWebPageIconColor":"#A2B8FFFF","selectedServerRowColor":"#3E2F62B5","disclosureSubHeaderTextColor":"#C1C2E2FF","buttonTextColor":"#FFFFFFFF","buttonTimerColor":"#FFFFFFFF","subscriptionInfoBackgroundColor":"#21003CFF","backgroundColors":["#3D2A7DFF","#6557BAFF","#9377FF7F"],"disclosureHeaderTextColor":"#FFFFFFFF","backgroundGradientColorIntensity":1,"additionalOptionsButtonColor":"#FFFFFFFF","buttonImageType":"light","serverRowSubTitleTextColor":"#C1C2E2FF","supportIconColor":"#FFFFFFFF","topBarButtonsColor":"#FFFFFFFF","subscriptionTrafficBackgroundColor":"#533EA7FF","subHeaderButtonColor":"#FFFFFFFF","buttonColor":"#9377FFFF","powerIconColor":"#3D2A7DFF","subscriptionInfoTextColor":"#FFFFFFFF","serverRowTitleTextColor":"#FFFFFFFF","backgroundImageType":"system","elipseColors":["#00B460FF","#CF72FFE0","#FFDD00FF"],"serverRowChevronColor":"#FFFFFFFF"}
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>Развернуть подписку</summary>
-
-При получении данного параметра через обновление подписки приложение принудительно развернет её, если она была свернута.
-
-**Пример настройки данного параметра:**
-
-```
-subscriptions-expand-now: [true / 1]
-```
-
-**Способы передачи:**
-
-{% code title="Через HTTP Headers:" %}
-```
-HTTP/2 200 
-date: Wed, 24 Nov 2024 10:00:52 GMT
-subscriptions-expand-now: true
-```
-{% endcode %}
-
-{% code title="Через тело подписки:" %}
-```
-#subscriptions-expand-now: true
-vless://70cc48c5‑b2f4…
 ```
 {% endcode %}
 
