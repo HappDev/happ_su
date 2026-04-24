@@ -536,7 +536,7 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 | Нет даты истечения | Информация об истечении не отображается |
 | Есть активное expire-сообщение | sub-info блок не показывается |
 | Нет expire-сообщения и есть sub-info-text | Показываем sub-info блок |
-| sub-info-text = "" | sub-info блок отключается |
+| sub-info-text = 0 | sub-info блок отключается |
 | sub-expire ≠ true \| 1 | Механизм expire отключается |
 ```
 
@@ -827,7 +827,7 @@ vmess://zkIAU1JitkI…
 
 ```
 subscription-autoconnect: [true / 1]
-subscription-autoconnect-type: [“lastused“/”lowestdelay”]
+subscription-autoconnect-type: [“lastused“/”lowestdelay”/”random”]
 ```
 
 **Способы передачи:**
@@ -1518,12 +1518,15 @@ vmess://zkIAU1JitkI…
 
 <summary>Выбор ядра туннеля (только для Desktop)</summary>
 
-Определяет какое ядро будет использоваться для TUN подключения. Для выбора доступно [sing-box](https://github.com/SagerNet/sing-box), [tun2proxy](https://github.com/tun2proxy/tun2proxy)
+Определяет какое ядро будет использоваться для TUN подключения. Для выбора доступно\
+* [sing-box](https://github.com/SagerNet/sing-box)
+* [tun2proxy](https://github.com/tun2proxy/tun2proxy)
+* default(Happ TUN) наша реализация тунеля
 
 **Пример настройки данного параметра:**
 
 ```
-tun-type: [singbox, tun2proxy]
+tun-type: [singbox, tun2proxy, default]
 ```
 
 **Способы передачи:**
