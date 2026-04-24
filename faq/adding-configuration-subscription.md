@@ -9,6 +9,7 @@ Currently, the application supports the following configuration types:
 * **Socks5**
 * **Trojan**
 * **Shadowsocks**
+* **Hysteria2**
 
 Configurations can be added using three methods:
 
@@ -41,6 +42,8 @@ The application supports adding configurations through URL links. Supported link
 * `socks://`
 * `trojan://`
 * `ss://`
+* `hysteria2://`
+* `hy2://`
 
 Links can be provided to the application using the following methods:
 

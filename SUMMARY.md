@@ -8,6 +8,7 @@
   * [Adding Configuration/Subscription](faq/adding-configuration-subscription.md)
   * [Share Configuration](faq/share-configuration.md)
   * [Local Network Connections](faq/local-network-connections.md)
+  * [Hysteria 2](faq/hysteria2.md)
   * [Android TV](faq/android-tv.md)
   * [Apple TV (tvOS)](faq/apple-tv-tvos.md)
   * [Ping](faq/ping.md)
