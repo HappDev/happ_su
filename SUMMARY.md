@@ -8,6 +8,7 @@
   * [添加配置/订阅](faq/tian-jia-pei-zhi-ding-yue.md)
   * [分享配置](faq/fen-xiang-pei-zhi.md)
   * [本地网络连接](faq/ben-di-wang-luo-lian-jie.md)
+  * [Hysteria 2](faq/hysteria2.md)
   * [Android TV](faq/android-tv.md)
   * [Apple TV (tvOS)](faq/apple-tv-tvos.md)
   * [Ping](faq/ping.md)
