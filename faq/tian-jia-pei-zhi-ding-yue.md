@@ -9,6 +9,7 @@
 * **Socks5**
 * **Trojan**
 * **Shadowsocks**
+* **Hysteria2**
 
 配置可以通过三种方式添加：
 
@@ -41,6 +42,8 @@
 * `socks://`
 * `trojan://`
 * `ss://`
+* `hysteria2://`
+* `hy2://`
 
 可以通过以下方式将链接传递给应用程序：
 
