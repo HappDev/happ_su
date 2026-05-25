@@ -317,6 +317,91 @@ vmess://zkIAU1JitkI…
 
 </details>
 
+<details>
+
+<summary>SOCKS Inbound 认证</summary>
+
+定义本地 SOCKS 代理的工作模式和凭据。\
+
+* **auto** — 自动生成并将数据注入到配置和隧道中。
+* **manual** — 使用在设置中设定的用户名和密码。
+* **from-json** — 从 JSON 配置中获取设置。对于 URL 配置,此选项在此情景下等同于 auto 模式。
+* **disable** — 禁用认证。
+
+**参数:**
+```
+socks-auth-mode: [auto, manual, from-json, disable]
+socks-auth-user: [String] — 登录名(用于 manual 模式)。
+socks-auth-password: [String] — 密码(用于 manual 模式)。
+```
+
+**配置示例:**
+
+```
+socks-auth-mode: manual
+socks-auth-user: myuser
+socks-auth-password: mypassword
+```
+
+**传递方式:**
+
+{% code title="通过 HTTP Headers:" %}
+```
+socks-auth-mode: manual
+socks-auth-user: myuser
+socks-auth-password: mypassword
+```
+{% endcode %}
+
+{% code title="通过订阅正文:" %}
+```
+#socks-auth-mode: manual
+#socks-auth-user: myuser
+#socks-auth-password: mypassword
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>HTTP Inbound 认证</summary>
+
+定义本地 HTTP 代理的工作模式和凭据。\
+
+* **auto** — 自动生成并将数据注入到配置和隧道中。
+* **manual** — 使用在设置中设定的用户名和密码。
+* **from-json** — 从 JSON 配置中获取设置。对于 URL 配置,此选项在此情景下等同于 auto 模式。
+* **disable** — 禁用认证。
+
+**参数:**
+```
+http-auth-mode: [auto, manual, from-json, disable]
+http-auth-user: [String] — 登录名(用于 manual 模式)。
+http-auth-password: [String] — 密码(用于 manual 模式)。
+```
+
+**传递方式:**
+
+{% code title="通过 HTTP Headers:" %}
+```
+http-auth-mode: manual
+http-auth-user: user1
+http-auth-password: pass1
+```
+{% endcode %}
+
+{% code title="通过订阅正文:" %}
+```
+#http-auth-mode: manual
+#http-auth-user: user1
+#http-auth-password: pass1
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
 ## 高级参数 <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
 
 {% hint style="warning" %}
@@ -2010,91 +2095,6 @@ dns-from-json-enable: true
 {% code title="通过订阅正文:" %}
 ```
 #dns-from-json-enable: true
-vless://70cc48c5‑b2f4…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>SOCKS Inbound 认证</summary>
-
-定义本地 SOCKS 代理的工作模式和凭据。\
-
-* **auto** — 自动生成并将数据注入到配置和隧道中。
-* **manual** — 使用在设置中设定的用户名和密码。
-* **from-json** — 从 JSON 配置中获取设置。对于 URL 配置,此选项在此情景下等同于 auto 模式。
-* **disable** — 禁用认证。
-
-**参数:**
-```
-socks-auth-mode: [auto, manual, from-json, disable]
-socks-auth-user: [String] — 登录名(用于 manual 模式)。
-socks-auth-password: [String] — 密码(用于 manual 模式)。
-```
-
-**配置示例:**
-
-```
-socks-auth-mode: manual
-socks-auth-user: myuser
-socks-auth-password: mypassword
-```
-
-**传递方式:**
-
-{% code title="通过 HTTP Headers:" %}
-```
-socks-auth-mode: manual
-socks-auth-user: myuser
-socks-auth-password: mypassword
-```
-{% endcode %}
-
-{% code title="通过订阅正文:" %}
-```
-#socks-auth-mode: manual
-#socks-auth-user: myuser
-#socks-auth-password: mypassword
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>HTTP Inbound 认证</summary>
-
-定义本地 HTTP 代理的工作模式和凭据。\
-
-* **auto** — 自动生成并将数据注入到配置和隧道中。
-* **manual** — 使用在设置中设定的用户名和密码。
-* **from-json** — 从 JSON 配置中获取设置。对于 URL 配置,此选项在此情景下等同于 auto 模式。
-* **disable** — 禁用认证。
-
-**参数:**
-```
-http-auth-mode: [auto, manual, from-json, disable]
-http-auth-user: [String] — 登录名(用于 manual 模式)。
-http-auth-password: [String] — 密码(用于 manual 模式)。
-```
-
-**传递方式:**
-
-{% code title="通过 HTTP Headers:" %}
-```
-http-auth-mode: manual
-http-auth-user: user1
-http-auth-password: pass1
-```
-{% endcode %}
-
-{% code title="通过订阅正文:" %}
-```
-#http-auth-mode: manual
-#http-auth-user: user1
-#http-auth-password: pass1
 vless://70cc48c5‑b2f4…
 ```
 {% endcode %}
