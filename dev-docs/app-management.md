@@ -317,6 +317,91 @@ vmess://zkIAU1JitkI…
 
 </details>
 
+<details>
+
+<summary>Авторизация SOCKS Inbound</summary>
+
+Определяет режим работы и учетные данные для локального SOCKS-прокси.\
+
+* **auto** — автоматическая генерация и подставление данных в конфиги и тунель.
+* **manual** — использование заданных в настройках user и password.
+* **from-json** — брать настройки из JSON-конфигурации. Для URL config ов работает как режим auto в данном выборе.
+* **disable** — отключить авторизацию.
+
+**Параметры:**
+```
+socks-auth-mode: [auto, manual, from-json, disable]
+socks-auth-user: [String] — логин (для режима manual).
+socks-auth-password: [String] — пароль (для режима manual).
+```
+
+**Пример настройки:**
+
+```
+socks-auth-mode: manual
+socks-auth-user: myuser
+socks-auth-password: mypassword
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+socks-auth-mode: manual
+socks-auth-user: myuser
+socks-auth-password: mypassword
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#socks-auth-mode: manual
+#socks-auth-user: myuser
+#socks-auth-password: mypassword
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Авторизация HTTP Inbound</summary>
+
+Определяет режим работы и учетные данные для локального HTTP-прокси.\
+
+* **auto** — автоматическая генерация и подставление данных в конфиги и тунель.
+* **manual** — использование заданных в настройках user и password.
+* **from-json** — брать настройки из JSON-конфигурации. Для URL config ов работает как режим auto в данном выборе.
+* **disable** — отключить авторизацию.
+
+**Параметры:**
+```
+http-auth-mode: [auto, manual, from-json, disable]
+http-auth-user: [String] — логин (для режима manual).
+http-auth-password: [String] — пароль (для режима manual).
+```
+
+**Способы передачи:**
+
+{% code title="Через HTTP Headers:" %}
+```
+http-auth-mode: manual
+http-auth-user: user1
+http-auth-password: pass1
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#http-auth-mode: manual
+#http-auth-user: user1
+#http-auth-password: pass1
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
 ## Расширенные параметры <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
 
 {% hint style="warning" %}
@@ -2010,91 +2095,6 @@ dns-from-json-enable: true
 {% code title="Через тело подписки:" %}
 ```
 #dns-from-json-enable: true
-vless://70cc48c5‑b2f4…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>Авторизация SOCKS Inbound</summary>
-
-Определяет режим работы и учетные данные для локального SOCKS-прокси.\
-
-* **auto** — автоматическая генерация и подставление данных в конфиги и тунель.
-* **manual** — использование заданных в настройках user и password.
-* **from-json** — брать настройки из JSON-конфигурации. Для URL config ов работает как режим auto в данном выборе.
-* **disable** — отключить авторизацию.
-
-**Параметры:**
-```
-socks-auth-mode: [auto, manual, from-json, disable]
-socks-auth-user: [String] — логин (для режима manual).
-socks-auth-password: [String] — пароль (для режима manual).
-```
-
-**Пример настройки:**
-
-```
-socks-auth-mode: manual
-socks-auth-user: myuser
-socks-auth-password: mypassword
-```
-
-**Способы передачи:**
-
-{% code title="Через HTTP Headers:" %}
-```
-socks-auth-mode: manual
-socks-auth-user: myuser
-socks-auth-password: mypassword
-```
-{% endcode %}
-
-{% code title="Через тело подписки:" %}
-```
-#socks-auth-mode: manual
-#socks-auth-user: myuser
-#socks-auth-password: mypassword
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>Авторизация HTTP Inbound</summary>
-
-Определяет режим работы и учетные данные для локального HTTP-прокси.\
-
-* **auto** — автоматическая генерация и подставление данных в конфиги и тунель.
-* **manual** — использование заданных в настройках user и password.
-* **from-json** — брать настройки из JSON-конфигурации. Для URL config ов работает как режим auto в данном выборе.
-* **disable** — отключить авторизацию.
-
-**Параметры:**
-```
-http-auth-mode: [auto, manual, from-json, disable]
-http-auth-user: [String] — логин (для режима manual).
-http-auth-password: [String] — пароль (для режима manual).
-```
-
-**Способы передачи:**
-
-{% code title="Через HTTP Headers:" %}
-```
-http-auth-mode: manual
-http-auth-user: user1
-http-auth-password: pass1
-```
-{% endcode %}
-
-{% code title="Через тело подписки:" %}
-```
-#http-auth-mode: manual
-#http-auth-user: user1
-#http-auth-password: pass1
 vless://70cc48c5‑b2f4…
 ```
 {% endcode %}
