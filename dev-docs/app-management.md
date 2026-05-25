@@ -317,6 +317,91 @@ vmess://zkIAU1JitkI…
 
 </details>
 
+<details>
+
+<summary>SOCKS Inbound authentication</summary>
+
+Defines the operating mode and credentials for the local SOCKS proxy.\
+
+* **auto** — automatic generation and injection of data into configs and the tunnel.
+* **manual** — uses the user and password set in the settings.
+* **from-json** — takes settings from the JSON configuration. For URL configs, it works as auto mode in this selection.
+* **disable** — disables authentication.
+
+**Parameters:**
+```
+socks-auth-mode: [auto, manual, from-json, disable]
+socks-auth-user: [String] — login (for manual mode).
+socks-auth-password: [String] — password (for manual mode).
+```
+
+**Example configuration:**
+
+```
+socks-auth-mode: manual
+socks-auth-user: myuser
+socks-auth-password: mypassword
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+socks-auth-mode: manual
+socks-auth-user: myuser
+socks-auth-password: mypassword
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#socks-auth-mode: manual
+#socks-auth-user: myuser
+#socks-auth-password: mypassword
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>HTTP Inbound authentication</summary>
+
+Defines the operating mode and credentials for the local HTTP proxy.\
+
+* **auto** — automatic generation and injection of data into configs and the tunnel.
+* **manual** — uses the user and password set in the settings.
+* **from-json** — takes settings from the JSON configuration. For URL configs, it works as auto mode in this selection.
+* **disable** — disables authentication.
+
+**Parameters:**
+```
+http-auth-mode: [auto, manual, from-json, disable]
+http-auth-user: [String] — login (for manual mode).
+http-auth-password: [String] — password (for manual mode).
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+http-auth-mode: manual
+http-auth-user: user1
+http-auth-password: pass1
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#http-auth-mode: manual
+#http-auth-user: user1
+#http-auth-password: pass1
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
 ## Advanced parameters <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
 
 {% hint style="warning" %}
@@ -2010,91 +2095,6 @@ dns-from-json-enable: true
 {% code title="Via subscription body:" %}
 ```
 #dns-from-json-enable: true
-vless://70cc48c5‑b2f4…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>SOCKS Inbound authentication</summary>
-
-Defines the operating mode and credentials for the local SOCKS proxy.\
-
-* **auto** — automatic generation and injection of data into configs and the tunnel.
-* **manual** — uses the user and password set in the settings.
-* **from-json** — takes settings from the JSON configuration. For URL configs, it works as auto mode in this selection.
-* **disable** — disables authentication.
-
-**Parameters:**
-```
-socks-auth-mode: [auto, manual, from-json, disable]
-socks-auth-user: [String] — login (for manual mode).
-socks-auth-password: [String] — password (for manual mode).
-```
-
-**Example configuration:**
-
-```
-socks-auth-mode: manual
-socks-auth-user: myuser
-socks-auth-password: mypassword
-```
-
-**Delivery methods:**
-
-{% code title="Via HTTP Headers:" %}
-```
-socks-auth-mode: manual
-socks-auth-user: myuser
-socks-auth-password: mypassword
-```
-{% endcode %}
-
-{% code title="Via subscription body:" %}
-```
-#socks-auth-mode: manual
-#socks-auth-user: myuser
-#socks-auth-password: mypassword
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>HTTP Inbound authentication</summary>
-
-Defines the operating mode and credentials for the local HTTP proxy.\
-
-* **auto** — automatic generation and injection of data into configs and the tunnel.
-* **manual** — uses the user and password set in the settings.
-* **from-json** — takes settings from the JSON configuration. For URL configs, it works as auto mode in this selection.
-* **disable** — disables authentication.
-
-**Parameters:**
-```
-http-auth-mode: [auto, manual, from-json, disable]
-http-auth-user: [String] — login (for manual mode).
-http-auth-password: [String] — password (for manual mode).
-```
-
-**Delivery methods:**
-
-{% code title="Via HTTP Headers:" %}
-```
-http-auth-mode: manual
-http-auth-user: user1
-http-auth-password: pass1
-```
-{% endcode %}
-
-{% code title="Via subscription body:" %}
-```
-#http-auth-mode: manual
-#http-auth-user: user1
-#http-auth-password: pass1
 vless://70cc48c5‑b2f4…
 ```
 {% endcode %}
