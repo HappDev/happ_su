@@ -2,7 +2,7 @@
 description: 通过订阅管理应用程序设置
 ---
 
-# 应用程序管理
+# 应用管理
 
 **应用程序管理功能**包括两个部分:
 
@@ -56,8 +56,6 @@ vmess://zkIAU1JitkI…
 
 <summary>订阅名称</summary>
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
-
 订阅配置文件的名称。可以以纯文本形式或 base64(UTF-8)形式传递。**限制**:最大长度 — 25 个字符。
 
 通过订阅正文传递时,需在参数前加 `#` 符号(例如 `#profile-title`)。
@@ -95,12 +93,10 @@ vmess://zkIAU1JitkI…
 
 <summary>订阅状态栏(流量、到期日期)</summary>
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
-
 显示余额、已用流量和订阅到期日期的信息。\
 在应用程序中,状态栏左侧显示已用流量(上传 + 下载),右侧在 "/" 符号后显示总流量(total)。\
 订阅到期日期在 **expire** 参数中指定。\
-**注意:**所有数据通过一个 header 传输,并以 **;** 符号分隔。
+\*\*注意:\*\*所有数据通过一个 header 传输,并以 **;** 符号分隔。
 
 **该参数的配置示例:**
 
@@ -134,8 +130,6 @@ vmess://zkIAU1JitkI…
 <details>
 
 <summary>支持页面链接</summary>
-
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 跳转到支持页面的按钮。\
 以位于状态栏右侧的蓝色图标显示。\
@@ -174,8 +168,6 @@ vmess://zkIAU1JitkI…
 
 <summary>网站页面链接</summary>
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
-
 跳转到订阅网站页面的按钮。\
 以位于状态栏左侧的蓝色图标显示。\
 如果未设置该参数,图标将显示为灰色。
@@ -213,10 +205,8 @@ vmess://zkIAU1JitkI…
 
 <summary>公告</summary>
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
-
 订阅可以包含公告文本,以 **plain text** 或 **Base64** 格式传递。\
-**限制:**显示文本的最大长度 — **200 个字符**。
+\*\*限制:\*\*显示文本的最大长度 — **200 个字符**。
 
 **该参数的配置示例:**
 
@@ -321,7 +311,7 @@ vmess://zkIAU1JitkI…
 
 <summary>SOCKS Inbound 认证</summary>
 
-定义本地 SOCKS 代理的工作模式和凭据。\
+定义本地 SOCKS 代理的工作模式和凭据。\\
 
 * **auto** — 自动生成并将数据注入到配置和隧道中。
 * **manual** — 使用在设置中设定的用户名和密码。
@@ -329,6 +319,7 @@ vmess://zkIAU1JitkI…
 * **disable** — 禁用认证。
 
 **参数:**
+
 ```
 socks-auth-mode: [auto, manual, from-json, disable]
 socks-auth-user: [String] — 登录名(用于 manual 模式)。
@@ -367,7 +358,7 @@ socks-auth-password: mypassword
 
 <summary>HTTP Inbound 认证</summary>
 
-定义本地 HTTP 代理的工作模式和凭据。\
+定义本地 HTTP 代理的工作模式和凭据。\\
 
 * **auto** — 自动生成并将数据注入到配置和隧道中。
 * **manual** — 使用在设置中设定的用户名和密码。
@@ -375,6 +366,7 @@ socks-auth-password: mypassword
 * **disable** — 禁用认证。
 
 **参数:**
+
 ```
 http-auth-mode: [auto, manual, from-json, disable]
 http-auth-user: [String] — 登录名(用于 manual 模式)。
@@ -482,8 +474,6 @@ vmess://zkIAU1JitkI…
 
 <summary>Fallback URL(备用订阅 URL)</summary>
 
-<figure><img src="../.gitbook/assets/telegram-cloud-photo-size-2-5260524142723798836-w.jpg" alt="" width="375"><figcaption></figcaption></figure>
-
 如果主 URL 不可用、返回 300–599 错误或 9 秒内未响应,应用程序将切换到 Fallback URL(如果可用)。
 
 **该参数的配置示例:**
@@ -518,8 +508,6 @@ vmess://zkIAU1JitkI…
 <details>
 
 <summary>订阅中的服务器描述</summary>
-
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 允许您设置一个附加说明文字,显示在服务器名称下方,代替默认文本(例如 "VMess"、"VLESS"、"Trojan")。
 
@@ -591,44 +579,44 @@ wireguard://password2key@123.123.123.2:10803?publickey=asd33d223d33&address=dom.
 
 <summary>高级公告</summary>
 
-<div><figure><img src="../.gitbook/assets/3588.png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/3584.png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/3585.png" alt="" width="188"><figcaption></figcaption></figure></div>
-
 更加醒目的公告。分为两种类型:任意的信息文本(`sub-info`)和订阅到期的系统通知(`sub-expire`)。
 
 订阅到期通知具有优先级,会在到期前 3 天或到期后自动显示。信息块仅在没有正在显示的 expire 消息时才显示。
 
-这两种机制都可以通过 HTTP headers 显式禁用。如果传入参数后未取消,它们将保持激活状态,直到订阅被删除。
+{% hint style="info" %}
+要禁用通过 HTTP 标头或推送激活的公告，请发送值 0。
+{% endhint %}
 
-| META PARAM KEY              | 类型     | 必填 | 限制 / 取值                      | 描述 |
-|----------------------------|----------|----------|----------------------------------|-------------|
-| sub-info-color             | String   | 否       | red、blue、green(默认 blue)    | 信息块的颜色 |
-| sub-info-text              | String   | 是*      | 最长 200 个字符                  | 信息块的主文本。没有此参数时,块不显示。或向该参数传 0 时也不显示。空字符串会禁用显示 |
-| sub-info-button-text       | String   | 否       | 最长 25 个字符                   | 按钮文字。如果缺失 — 不显示按钮 |
-| sub-info-button-link       | String   | 否       | 任意字符串(URL / deeplink)     | 按钮链接。在浏览器中打开,不做校验 |
-| sub-expire                 | Boolean  | 否       | true \| 1 = 启用                 | 启用订阅到期信息显示机制 |
-| sub-expire-button-link     | String   | 否       | 任意字符串(URL / deeplink)     | "续订"按钮的链接。没有链接则不显示按钮 |
+| META PARAM KEY         | 类型      | 必填  | 限制 / 取值                 | 描述                                           |
+| ---------------------- | ------- | --- | ----------------------- | -------------------------------------------- |
+| sub-info-color         | String  | 否   | red、blue、green(默认 blue) | 信息块的颜色                                       |
+| sub-info-text          | String  | 是\* | 最长 200 个字符              | 信息块的主文本。没有此参数时,块不显示。或向该参数传 0 时也不显示。空字符串会禁用显示 |
+| sub-info-button-text   | String  | 否   | 最长 25 个字符               | 按钮文字。如果缺失 — 不显示按钮                            |
+| sub-info-button-link   | String  | 否   | 任意字符串(URL / deeplink)   | 按钮链接。在浏览器中打开,不做校验                            |
+| sub-expire             | Boolean | 否   | true \| 1 = 启用          | 启用订阅到期信息显示机制                                 |
+| sub-expire-button-link | String  | 否   | 任意字符串(URL / deeplink)   | "续订"按钮的链接。没有链接则不显示按钮                         |
 
 #### 显示逻辑(摘要)
 
-| 条件 | 结果 |
-|----------|--------|
+| 条件                              | 结果                   |
+| ------------------------------- | -------------------- |
 | sub-expire = true 且订阅在 ≤ 3 天内到期 | 显示消息"您的订阅将在 N 天后到期。" |
-| sub-expire = true 且订阅已到期 | 显示消息"订阅已到期!" |
-| sub-expire = true 且天数 > 3 | 到期消息被隐藏 |
-| 没有到期日期 | 不显示到期信息 |
-| 存在正在显示的 expire 消息 | sub-info 块不显示 |
-| 没有 expire 消息且存在 sub-info-text | 显示 sub-info 块 |
-| sub-info-text = 0 | sub-info 块被禁用 |
-| sub-expire ≠ true \| 1 | expire 机制被禁用 |
+| sub-expire = true 且订阅已到期        | 显示消息"订阅已到期!"         |
+| sub-expire = true 且天数 > 3       | 到期消息被隐藏              |
+| 没有到期日期                          | 不显示到期信息              |
+| 存在正在显示的 expire 消息               | sub-info 块不显示        |
+| 没有 expire 消息且存在 sub-info-text   | 显示 sub-info 块        |
+| sub-info-text = 0               | sub-info 块被禁用        |
+| sub-expire ≠ true \| 1          | expire 机制被禁用         |
 
 #### 说明
 
-| 说明 |
-|------|
-| 这些参数仅对传入它们的订阅生效 |
+| 说明                            |
+| ----------------------------- |
+| 这些参数仅对传入它们的订阅生效               |
 | 如果参数是通过推送传入且未被显式禁用,它们将无限期保持激活 |
-| expire 按钮的文字始终为"Renew(续订)" |
-| 天数(N)按完整天数计算,最大为 3 |
+| expire 按钮的文字始终为"Renew(续订)"    |
+| 天数(N)按完整天数计算,最大为 3            |
 
 **传递方式:**
 
@@ -667,7 +655,7 @@ vmess://zkIAU1JitkI…
 
 默认情况下,所有订阅均启用分片。
 
-#### &#x20;带参数的 URL 方案
+#### 带参数的 URL 方案
 
 ```
 [link]#title?[fragment]&[resolve-address]&[host]&[insecure]
@@ -811,8 +799,6 @@ vmess://zkIAU1JitkI…
 <details>
 
 <summary>隐藏订阅中的服务器设置</summary>
-
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 禁止订阅用户查看和编辑服务器配置。该设置同时适用于已添加的订阅以及将来添加的订阅。
 
@@ -1074,11 +1060,11 @@ vmess://zkIAU1JitkI…
 
 此功能允许您选择应用程序中执行 ping 的方式。\
 有四个可用选项:
+
 * **via Proxy - GET**
 * **via Proxy - HEAD**
 * **TCP**
-* **ICMP**
-对于"via Proxy"模式,您还可以额外指定用于 ping 检查的 URL。
+* **ICMP** 对于"via Proxy"模式,您还可以额外指定用于 ping 检查的 URL。
 
 **该参数的配置示例:**
 
@@ -1151,7 +1137,7 @@ vmess://zkIAU1JitkI…
 
 <summary>应用程序自启动</summary>
 
-此功能允许在设备开机时自动启动应用程序。目前仅在 Android 上可用。&#x20;
+此功能允许在设备开机时自动启动应用程序。目前仅在 Android 上可用。
 
 **该参数的配置示例:**
 
@@ -1373,8 +1359,6 @@ vmess://zkIAU1JitkI…
 
 <summary>禁用订阅折叠</summary>
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
-
 此功能禁用订阅折叠能力:服务器列表始终完整显示,处于展开视图。<br>
 
 **该参数的配置示例:**
@@ -1444,8 +1428,6 @@ vmess://zkIAU1JitkI…
 <details>
 
 <summary>Ping 显示模式</summary>
-
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
 允许使用图标代替时间值进行显示。<br>
 
@@ -1602,7 +1584,7 @@ vmess://zkIAU1JitkI…
 
 <summary>隧道核心选择(仅限 Desktop)</summary>
 
-决定 TUN 连接使用哪种核心。可用选项:\
+决定 TUN 连接使用哪种核心。可用选项:\\
 
 * [sing-box](https://github.com/SagerNet/sing-box)
 * [tun2proxy](https://github.com/tun2proxy/tun2proxy)
@@ -1714,9 +1696,7 @@ vmess://zkIAU1JitkI…
 
 <summary>主题(仅限 iOS)</summary>
 
-<figure><img src="../.gitbook/assets/222223.png" alt="" width="375"><figcaption></figcaption></figure>
-
-允许您将配色主题更改为个性化主题。您可以在编辑器中创建自己的主题 — 长按"Appearance theme(外观主题)"标签以打开菜单。创建的主题可以导出到剪贴板,也可以从剪贴板、`.happ` 文件或通过订阅导入。&#x20;
+允许您将配色主题更改为个性化主题。您可以在编辑器中创建自己的主题 — 长按"Appearance theme(外观主题)"标签以打开菜单。创建的主题可以导出到剪贴板,也可以从剪贴板、`.happ` 文件或通过订阅导入。
 
 {% code title="VIOLET Theme" overflow="wrap" expandable="true" %}
 ```json
@@ -1930,10 +1910,10 @@ vless://70cc48c5‑b2f4…
 
 <summary>不使用服务器列表过滤</summary>
 
-Premium 订阅中默认启用自动过滤:\
+Premium 订阅中默认启用自动过滤:\\
+
 * 如果服务器名称包含"only WiFi" — 仅在通过 Wi-Fi 连接时可见。
-* 如果名称包含"only Mobile" — 仅在移动网络时可见。
-此选项禁用该行为。
+* 如果名称包含"only Mobile" — 仅在移动网络时可见。 此选项禁用该行为。
 
 **该参数的配置示例:**
 
@@ -1963,7 +1943,8 @@ vless://70cc48c5‑b2f4…
 
 <summary>置顶当前订阅</summary>
 
-允许在总列表中置顶(Pin)或取消置顶订阅。\
+允许在总列表中置顶(Pin)或取消置顶订阅。\\
+
 * true — 将订阅置顶。
 * false — 取消置顶。
 
@@ -2068,14 +2049,13 @@ vless://70cc48c5‑b2f4…
 
 * **直接 IP**:如果指定了 IPv4/IPv6,将其设置为隧道的 DOU DNS。
 * **DoH**:如果指定了 URL(https://),则在 `dns.hosts` 中查找 IP。
-  - iOS:配置完整的 DoH 请求。
-  - Android / Desktop:使用 hosts 中的 IP(DOU)。
-
+  * iOS:配置完整的 DoH 请求。
+  * Android / Desktop:使用 hosts 中的 IP(DOU)。
 * **对象**:从 `address` 字段中提取值,与上述描述类似。
 * **Fallback DNS**:\
-如果主服务器无效,则使用默认值:
-  - Android / Desktop:1.1.1.1(DOU)。
-  - iOS:Cloudflare DoH(https://cloudflare-dns.com/dns-query)。
+  如果主服务器无效,则使用默认值:
+  * Android / Desktop:1.1.1.1(DOU)。
+  * iOS:Cloudflare DoH(https://cloudflare-dns.com/dns-query)。
 
 **该参数的配置示例:**
 
@@ -2102,11 +2082,13 @@ vless://70cc48c5‑b2f4…
 </details>
 
 <details>
+
 <summary>下载 geo 文件的 User-Agent</summary>
 
 允许在下载 Geo-IP 和 Geo-Site 文件时更改 User-Agent 头的值。
 
 **可用值:**
+
 * **safari-mac**
 * **chrome-win**
 * **safari-ios**
@@ -2137,6 +2119,7 @@ vless://70cc48c5‑b2f4…
 </details>
 
 <details>
+
 <summary>代理 ping 超时(仅限 iOS)</summary>
 
 设置通过代理服务器检查可用性(ping)时的超时时间(秒)。\
@@ -2167,6 +2150,7 @@ vless://70cc48c5‑b2f4…
 </details>
 
 <details>
+
 <summary>隐藏 VPN 图标(Hide Proxy Icon)</summary>
 
 控制系统状态栏中 VPN 图标的显示。\
@@ -2195,4 +2179,3 @@ vless://70cc48c5‑b2f4…
 {% endcode %}
 
 </details>
-
