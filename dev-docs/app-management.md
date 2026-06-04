@@ -2,7 +2,7 @@
 description: Manage application settings through the subscription
 ---
 
-# App Management
+# App management
 
 **The app management feature** includes two areas:
 
@@ -17,7 +17,7 @@ To enable a parameter, pass the value `true` or `1`; to disable it, pass any oth
 
 <summary>Subscription auto-update</summary>
 
-<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 The system creates a task to perform the operation at a given interval. Depending on internal priorities, the system tries to start the subscription update at the specified time.\
 If for some reason the update was not performed within the specified interval, it will happen automatically on the next application launch.\
@@ -95,7 +95,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Subscription status line (traffic, expiration date)</summary>
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 Displays information about the balance, used traffic volume, and subscription expiration date.\
 In the app, the left side of the bar shows the amount of used traffic (upload + download), and the right side — the total volume (total) after the "/" symbol.\
@@ -174,7 +174,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Link to the website page</summary>
 
-<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 Button to go to the subscription website page.\
 Displayed as a blue icon located on the left side of the bar.\
@@ -321,7 +321,7 @@ vmess://zkIAU1JitkI…
 
 <summary>SOCKS Inbound authentication</summary>
 
-Defines the operating mode and credentials for the local SOCKS proxy.\
+Defines the operating mode and credentials for the local SOCKS proxy.\\
 
 * **auto** — automatic generation and injection of data into configs and the tunnel.
 * **manual** — uses the user and password set in the settings.
@@ -329,6 +329,7 @@ Defines the operating mode and credentials for the local SOCKS proxy.\
 * **disable** — disables authentication.
 
 **Parameters:**
+
 ```
 socks-auth-mode: [auto, manual, from-json, disable]
 socks-auth-user: [String] — login (for manual mode).
@@ -367,7 +368,7 @@ socks-auth-password: mypassword
 
 <summary>HTTP Inbound authentication</summary>
 
-Defines the operating mode and credentials for the local HTTP proxy.\
+Defines the operating mode and credentials for the local HTTP proxy.\\
 
 * **auto** — automatic generation and injection of data into configs and the tunnel.
 * **manual** — uses the user and password set in the settings.
@@ -375,6 +376,7 @@ Defines the operating mode and credentials for the local HTTP proxy.\
 * **disable** — disables authentication.
 
 **Parameters:**
+
 ```
 http-auth-mode: [auto, manual, from-json, disable]
 http-auth-user: [String] — login (for manual mode).
@@ -519,7 +521,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Server description in the subscription</summary>
 
-<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 Allows you to set an additional caption that is displayed under the server name instead of the default text (for example, "VMess", "VLESS", "Trojan").
 
@@ -597,38 +599,40 @@ More prominent announcements. Split into two types: arbitrary informational text
 
 Subscription expiration notifications have priority and are displayed automatically 3 days before expiration or after it has expired. The info block is shown only when there is no active expire message.
 
-Both mechanisms can be explicitly disabled via HTTP headers. If the parameters were passed and not cancelled, they remain active until the subscription is deleted.
+{% hint style="info" %}
+To disable an announcement activated via an HTTP header or push, send the value 0.
+{% endhint %}
 
-| META PARAM KEY              | TYPE     | REQUIRED | LIMITS / VALUES                  | DESCRIPTION |
-|----------------------------|----------|----------|----------------------------------|-------------|
-| sub-info-color             | String   | No       | red, blue, green (default blue)  | Color of the info block |
-| sub-info-text              | String   | Yes*     | max 200 chars                    | Main text of the info block. Without this parameter, the block is not displayed. Or if 0 is sent to the parameter. An empty string disables the display |
-| sub-info-button-text       | String   | No       | max 25 chars                     | Button text. If missing — the button is not shown |
-| sub-info-button-link       | String   | No       | any string (URL / deeplink)      | Button link. Opens in a browser, without validation |
-| sub-expire                 | Boolean  | No       | true \| 1 = enabled              | Enables the mechanism for displaying subscription expiration info |
-| sub-expire-button-link     | String   | No       | any string (URL / deeplink)      | Link for the "Renew" button. Without a link, the button is not shown |
+| META PARAM KEY         | TYPE    | REQUIRED | LIMITS / VALUES                 | DESCRIPTION                                                                                                                                             |
+| ---------------------- | ------- | -------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| sub-info-color         | String  | No       | red, blue, green (default blue) | Color of the info block                                                                                                                                 |
+| sub-info-text          | String  | Yes\*    | max 200 chars                   | Main text of the info block. Without this parameter, the block is not displayed. Or if 0 is sent to the parameter. An empty string disables the display |
+| sub-info-button-text   | String  | No       | max 25 chars                    | Button text. If missing — the button is not shown                                                                                                       |
+| sub-info-button-link   | String  | No       | any string (URL / deeplink)     | Button link. Opens in a browser, without validation                                                                                                     |
+| sub-expire             | Boolean | No       | true \| 1 = enabled             | Enables the mechanism for displaying subscription expiration info                                                                                       |
+| sub-expire-button-link | String  | No       | any string (URL / deeplink)     | Link for the "Renew" button. Without a link, the button is not shown                                                                                    |
 
 #### Display logic (summary)
 
-| CONDITION | RESULT |
-|----------|--------|
+| CONDITION                                              | RESULT                                                  |
+| ------------------------------------------------------ | ------------------------------------------------------- |
 | sub-expire = true and subscription expires in ≤ 3 days | Show the message "Your subscription expires in N days." |
-| sub-expire = true and the subscription has expired | Show the message "Subscription has expired!" |
-| sub-expire = true and days > 3 | The expiration message is hidden |
-| No expiration date | Expiration info is not displayed |
-| There is an active expire message | The sub-info block is not displayed |
-| No expire message and sub-info-text exists | Show the sub-info block |
-| sub-info-text = 0 | The sub-info block is disabled |
-| sub-expire ≠ true \| 1 | The expire mechanism is disabled |
+| sub-expire = true and the subscription has expired     | Show the message "Subscription has expired!"            |
+| sub-expire = true and days > 3                         | The expiration message is hidden                        |
+| No expiration date                                     | Expiration info is not displayed                        |
+| There is an active expire message                      | The sub-info block is not displayed                     |
+| No expire message and sub-info-text exists             | Show the sub-info block                                 |
+| sub-info-text = 0                                      | The sub-info block is disabled                          |
+| sub-expire ≠ true \| 1                                 | The expire mechanism is disabled                        |
 
 #### Notes
 
-| NOTE |
-|------|
-| The parameters apply only to the subscription for which they were passed |
+| NOTE                                                                                              |
+| ------------------------------------------------------------------------------------------------- |
+| The parameters apply only to the subscription for which they were passed                          |
 | If the parameters came via push and were not explicitly disabled, they remain active indefinitely |
-| The expire button always has the text "Renew" |
-| The number of days (N) is counted as full days, maximum 3 |
+| The expire button always has the text "Renew"                                                     |
+| The number of days (N) is counted as full days, maximum 3                                         |
 
 **Delivery methods:**
 
@@ -667,7 +671,7 @@ You can also access your domain to retrieve the server list using packet fragmen
 
 By default, fragmentation is enabled for all subscriptions.
 
-#### &#x20;URL scheme with parameters
+#### URL scheme with parameters
 
 ```
 [link]#title?[fragment]&[resolve-address]&[host]&[insecure]
@@ -1074,11 +1078,11 @@ vmess://zkIAU1JitkI…
 
 This feature allows you to choose how ping is performed in the app.\
 Four options are available:
+
 * **via Proxy - GET**
 * **via Proxy - HEAD**
 * **TCP**
-* **ICMP**
-For the "via Proxy" mode, you can additionally specify a URL for the ping check.
+* **ICMP** For the "via Proxy" mode, you can additionally specify a URL for the ping check.
 
 **Example of configuring this parameter:**
 
@@ -1151,7 +1155,7 @@ vmess://zkIAU1JitkI…
 
 <summary>App autostart</summary>
 
-This feature allows the app to start automatically when the device is turned on. Currently available only on Android.&#x20;
+This feature allows the app to start automatically when the device is turned on. Currently available only on Android.
 
 **Example of configuring this parameter:**
 
@@ -1445,7 +1449,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Ping display mode</summary>
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 Allows displaying icons instead of time values.<br>
 
@@ -1602,7 +1606,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Tunnel core selection (Desktop only)</summary>
 
-Determines which core will be used for the TUN connection. Available choices:\
+Determines which core will be used for the TUN connection. Available choices:\\
 
 * [sing-box](https://github.com/SagerNet/sing-box)
 * [tun2proxy](https://github.com/tun2proxy/tun2proxy)
@@ -1714,9 +1718,7 @@ vmess://zkIAU1JitkI…
 
 <summary>Themes (iOS only)</summary>
 
-<figure><img src="../.gitbook/assets/222223.png" alt="" width="375"><figcaption></figcaption></figure>
-
-Allows you to change the color theme to a personal one. You can create your own theme in the editor — press and hold the "Appearance theme" label to open the menu. A created theme can be exported to the clipboard, as well as imported from the clipboard, from a `.happ` file, or transferred via a subscription.&#x20;
+Allows you to change the color theme to a personal one. You can create your own theme in the editor — press and hold the "Appearance theme" label to open the menu. A created theme can be exported to the clipboard, as well as imported from the clipboard, from a `.happ` file, or transferred via a subscription.
 
 {% code title="VIOLET Theme" overflow="wrap" expandable="true" %}
 ```json
@@ -1930,10 +1932,10 @@ vless://70cc48c5‑b2f4…
 
 <summary>Do not use server list filtering</summary>
 
-By default, automatic filtering works in Premium subscriptions:\
+By default, automatic filtering works in Premium subscriptions:\\
+
 * If the server name contains "only WiFi" — it is visible only when connected via Wi-Fi.
-* If the name contains "only Mobile" — it is visible only on mobile internet.
-This option disables this behavior.
+* If the name contains "only Mobile" — it is visible only on mobile internet. This option disables this behavior.
 
 **Example of configuring this parameter:**
 
@@ -1963,7 +1965,8 @@ vless://70cc48c5‑b2f4…
 
 <summary>Pin the current subscription</summary>
 
-Allows a subscription to be pinned (Pin) or unpinned in the general list.\
+Allows a subscription to be pinned (Pin) or unpinned in the general list.\\
+
 * true — pins the subscription to the top.
 * false — unpins.
 
@@ -2068,14 +2071,13 @@ Selection algorithm:
 
 * **Direct IP**: If IPv4/IPv6 is specified, it is set as the DOU DNS of the tunnel.
 * **DoH**: If a URL (https://) is specified, the IP is looked up in `dns.hosts`.
-  - iOS: A full-fledged DoH request is configured.
-  - Android / Desktop: The IP from hosts (DOU) is used.
-
+  * iOS: A full-fledged DoH request is configured.
+  * Android / Desktop: The IP from hosts (DOU) is used.
 * **Object**: The value is extracted from the `address` field, similar to the description above.
 * **Fallback DNS**:\
-If the main server is invalid, the default is used:
-  - Android / Desktop: 1.1.1.1 (DOU).
-  - iOS: Cloudflare DoH (https://cloudflare-dns.com/dns-query).
+  If the main server is invalid, the default is used:
+  * Android / Desktop: 1.1.1.1 (DOU).
+  * iOS: Cloudflare DoH (https://cloudflare-dns.com/dns-query).
 
 **Example of configuring this parameter:**
 
@@ -2102,11 +2104,13 @@ vless://70cc48c5‑b2f4…
 </details>
 
 <details>
+
 <summary>User-Agent for downloading geo files</summary>
 
 Allows you to change the User-Agent header value when downloading Geo-IP and Geo-Site files.
 
 **Available values:**
+
 * **safari-mac**
 * **chrome-win**
 * **safari-ios**
@@ -2137,6 +2141,7 @@ vless://70cc48c5‑b2f4…
 </details>
 
 <details>
+
 <summary>Proxy ping timeout (iOS only)</summary>
 
 Sets the timeout (in seconds) when checking availability (ping) through a proxy server.\
@@ -2167,6 +2172,7 @@ vless://70cc48c5‑b2f4…
 </details>
 
 <details>
+
 <summary>Hide VPN icon (Hide Proxy Icon)</summary>
 
 Controls the display of the VPN icon in the system status bar.\
@@ -2195,4 +2201,3 @@ vless://70cc48c5‑b2f4…
 {% endcode %}
 
 </details>
-
