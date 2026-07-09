@@ -4,6 +4,7 @@
 * [隐私政策](privacy-policy.md)
 * [服务条款](terms-of-services.md)
 * [FAQ](faq/README.md)
+  * [系统要求](faq/requirements.md)
   * [如何购买或获取服务器](faq/how-to-buy-or-get-a-server.md)
   * [添加配置/订阅](faq/adding-configuration-subscription.md)
   * [分享配置](faq/fen-xiang-pei-zhi.md)
