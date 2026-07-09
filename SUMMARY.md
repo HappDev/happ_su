@@ -4,6 +4,7 @@
 * [Privacy Policy](privacy-policy.md)
 * [Terms of Services](terms-of-services.md)
 * [FAQ](faq/README.md)
+  * [System Requirements](faq/requirements.md)
   * [How to buy or get a server](faq/how-to-buy-or-get-a-server.md)
   * [Adding Configuration/Subscription](faq/adding-configuration-subscription.md)
   * [Share Configuration](faq/share-configuration.md)
