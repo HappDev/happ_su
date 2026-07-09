@@ -4,6 +4,7 @@
 * [Политика конфиденциальности](privacy-policy.md)
 * [Условия использования](terms-of-services.md)
 * [FAQ](faq/README.md)
+  * [Cистемные требования](faq/requirements.md)
   * [Как купить или получить сервер](faq/how-to-buy-or-get-a-server.md)
   * [Добавление конфигурации/подписки](faq/adding-configuration-subscription.md)
   * [Поделиться конфигурацией](faq/podelitsya-konfiguraciei.md)
