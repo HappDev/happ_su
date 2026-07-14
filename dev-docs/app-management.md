@@ -2201,3 +2201,218 @@ vless://70cc48c5‑b2f4…
 {% endcode %}
 
 </details>
+
+<details>
+
+<summary>Subscription request timeout</summary>
+
+Sets the timeout (in seconds) for requesting subscription data.\
+Allowed range: **5 – 15** seconds.\
+If not specified, the default value of 9 is used.
+
+**Example configuration:**
+
+```
+subscription-request-timeout: 10
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+subscription-request-timeout: 10
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#subscription-request-timeout: 10
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Inbound HTTP enable</summary>
+
+Enables or disables the addition of final JSON configurations for Xray (inbound HTTP) to the URL config.
+
+**Example configuration:**
+
+```
+inbound-http-enable: [true / 1]
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+inbound-http-enable: true
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#inbound-http-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Xray tunnel enable (Android, iOS)</summary>
+
+Enables or disables the use of the Xray tunnel in the application.
+
+**Example configuration:**
+
+```
+xray-tun-enable: [true / 1]
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+xray-tun-enable: true
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#xray-tun-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Xray tunnel MTU (Android, iOS)</summary>
+
+Sets the MTU (Maximum Transmission Unit) parameter for the Xray tunnel.\
+Allowed range: **68 – 65535**.
+
+**Example configuration:**
+
+```
+xray-tun-mtu: 1500
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+xray-tun-mtu: 1500
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#xray-tun-mtu: 1500
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Block bind to tunnel (Android only)</summary>
+
+Enables or disables binding to the tunnel.\
+When enabled, requests explicitly bound to the tunnel interface (e.g., `curl --interface tun0`) will be blocked.
+Work only with BadVPN(Tunnel), not work with Xray TUN
+
+**Example configuration:**
+
+```
+block-bind-to-tunnel-enable: [true / 1]
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+block-bind-to-tunnel-enable: true
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#block-bind-to-tunnel-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Alternative HWID for subscription (Desktop only)</summary>
+
+Toggles the sending of an alternative HWID (Hardware ID) for subscriptions.
+* **Default HWID:** aaaaaaaaa-537f-4c45-a479-ee0b6cf035f7
+* **Alternative HWID:** aaaaaaaaa537f4c45a479ee0b6cf035f7
+
+
+**Example configuration:**
+
+```
+subscription-alternative-hwid-enabled: [true / 1]
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+subscription-alternative-hwid-enabled: true
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#subscription-alternative-hwid-enabled: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Proxy ping mode</summary>
+
+Selects the ping mode used via proxy.\
+Allowed values: 
+* **default**
+* **double** - Requests are sent within one core session with Keep-Alive disabled. The second request is faster due to DNS caching.
+* **keepalive** - Requests are sent within one core session over a single transport instance. The second request measures pure connection speed via an already established TLS connection.
+
+**Example configuration:**
+
+```
+proxy-ping-mode: keepalive
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+proxy-ping-mode: keepalive
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#proxy-ping-mode: keepalive
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
