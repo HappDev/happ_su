@@ -2203,3 +2203,217 @@ vless://70cc48c5‑b2f4…
 {% endcode %}
 
 </details>
+
+<details>
+
+<summary>Таймаут запроса подписки (Subscription request timeout)</summary>
+
+Устанавливает таймаут (в секундах) для запроса данных подписки.\
+Допустимый диапазон: **5 – 15** секунд.\
+Если не указано, используется значение по умолчанию 9.
+
+**Пример конфигурации:**
+
+```
+subscription-request-timeout: 10
+```
+
+**Методы доставки:**
+
+{% code title="Через HTTP заголовки:" %}
+```
+subscription-request-timeout: 10
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#subscription-request-timeout: 10
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Включение Inbound HTTP (Inbound HTTP enable)</summary>
+
+Включает или отключает добавление итоговых JSON конфигураций для Xray (inbound HTTP) в конфигурацию URL.
+
+**Пример конфигурации:**
+
+```
+inbound-http-enable: [true / 1]
+```
+
+**Методы доставки:**
+
+{% code title="Через HTTP заголовки:" %}
+```
+inbound-http-enable: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#inbound-http-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Включение туннеля Xray (Android, iOS)</summary>
+
+Включает или отключает использование туннеля Xray в приложении.
+
+**Пример конфигурации:**
+
+```
+xray-tun-enable: [true / 1]
+```
+
+**Методы доставки:**
+
+{% code title="Через HTTP заголовки:" %}
+```
+xray-tun-enable: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#xray-tun-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>MTU туннеля Xray (Android, iOS)</summary>
+
+Устанавливает параметр MTU (Maximum Transmission Unit) для туннеля Xray.\
+Допустимый диапазон: **68 – 65535**.
+
+**Пример конфигурации:**
+
+```
+xray-tun-mtu: 1500
+```
+
+**Методы доставки:**
+
+{% code title="Через HTTP заголовки:" %}
+```
+xray-tun-mtu: 1500
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#xray-tun-mtu: 1500
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Блокировка привязки к туннелю (Только Android)</summary>
+
+Включает или отключает привязку к туннелю.\
+Если включено, запросы, явно привязанные к интерфейсу туннеля (например, `curl --interface tun0`), будут заблокированы.\
+Работает только с BadVPN(Tunnel), не работает с Xray TUN.
+
+**Пример конфигурации:**
+
+```
+block-bind-to-tunnel-enable: [true / 1]
+```
+
+**Методы доставки:**
+
+{% code title="Через HTTP заголовки:" %}
+```
+block-bind-to-tunnel-enable: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#block-bind-to-tunnel-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Альтернативный HWID для подписки (Только Desktop)</summary>
+
+Переключает отправку альтернативного HWID (Hardware ID) для подписок.
+* **Стандартный HWID:** aaaaaaaaa-537f-4c45-a479-ee0b6cf035f7
+* **Альтернативный HWID:** aaaaaaaaa537f4c45a479ee0b6cf035f7
+
+**Пример конфигурации:**
+
+```
+subscription-alternative-hwid-enabled: [true / 1]
+```
+
+**Методы доставки:**
+
+{% code title="Через HTTP заголовки:" %}
+```
+subscription-alternative-hwid-enabled: true
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#subscription-alternative-hwid-enabled: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Режим пинга через прокси (Proxy ping mode)</summary>
+
+Выбирает режим пинга, используемый через прокси.\
+Допустимые значения: 
+* **default**
+* **double** - Запросы отправляются в рамках одной сессии ядра с отключенным Keep-Alive. Второй запрос выполняется быстрее за счет кэширования DNS.
+* **keepalive** - Запросы отправляются в рамках одной сессии ядра через один транспортный экземпляр. Второй запрос измеряет чистую скорость соединения через уже установленное TLS-соединение.
+
+**Пример конфигурации:**
+
+```
+proxy-ping-mode: keepalive
+```
+
+**Методы доставки:**
+
+{% code title="Через HTTP заголовки:" %}
+```
+proxy-ping-mode: keepalive
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```
+#proxy-ping-mode: keepalive
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
