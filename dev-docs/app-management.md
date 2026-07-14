@@ -2179,3 +2179,217 @@ vless://70cc48c5‑b2f4…
 {% endcode %}
 
 </details>
+
+<details>
+
+<summary>订阅请求超时 (Subscription request timeout)</summary>
+
+设置请求订阅数据的超时时间（秒）。\
+允许范围：**5 – 15** 秒。\
+如果未指定，则使用默认值 9。
+
+**配置示例：**
+
+```
+subscription-request-timeout: 10
+```
+
+**下发方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+subscription-request-timeout: 10
+```
+{% endcode %}
+
+{% code title="通过订阅正文：" %}
+```
+#subscription-request-timeout: 10
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>启用 Inbound HTTP (Inbound HTTP enable)</summary>
+
+启用或禁用将 Xray 的最终 JSON 配置（inbound HTTP）添加到 URL 配置中。
+
+**配置示例：**
+
+```
+inbound-http-enable: [true / 1]
+```
+
+**下发方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+inbound-http-enable: true
+```
+{% endcode %}
+
+{% code title="通过订阅正文：" %}
+```
+#inbound-http-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>启用 Xray 隧道 (Android, iOS)</summary>
+
+启用或禁用在应用程序中使用 Xray 隧道。
+
+**配置示例：**
+
+```
+xray-tun-enable: [true / 1]
+```
+
+**下发方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+xray-tun-enable: true
+```
+{% endcode %}
+
+{% code title="通过订阅正文：" %}
+```
+#xray-tun-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Xray 隧道 MTU (Android, iOS)</summary>
+
+设置 Xray 隧道的 MTU（最大传输单元）参数。\
+允许范围：**68 – 65535**。
+
+**配置示例：**
+
+```
+xray-tun-mtu: 1500
+```
+
+**下发方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+xray-tun-mtu: 1500
+```
+{% endcode %}
+
+{% code title="通过订阅正文：" %}
+```
+#xray-tun-mtu: 1500
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>阻止绑定到隧道 (仅限 Android)</summary>
+
+启用或禁用绑定到隧道。\
+启用后，明确绑定到隧道接口的请求（例如 `curl --interface tun0`）将被阻止。\
+仅适用于 BadVPN(Tunnel)，不适用于 Xray TUN。
+
+**配置示例：**
+
+```
+block-bind-to-tunnel-enable: [true / 1]
+```
+
+**下发方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+block-bind-to-tunnel-enable: true
+```
+{% endcode %}
+
+{% code title="通过订阅正文：" %}
+```
+#block-bind-to-tunnel-enable: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>订阅的备用 HWID (仅限桌面端)</summary>
+
+切换发送订阅的备用 HWID（硬件 ID）。
+* **默认 HWID：** aaaaaaaaa-537f-4c45-a479-ee0b6cf035f7
+* **备用 HWID：** aaaaaaaaa537f4c45a479ee0b6cf035f7
+
+**配置示例：**
+
+```
+subscription-alternative-hwid-enabled: [true / 1]
+```
+
+**下发方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+subscription-alternative-hwid-enabled: true
+```
+{% endcode %}
+
+{% code title="通过订阅正文：" %}
+```
+#subscription-alternative-hwid-enabled: true
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>代理 Ping 模式 (Proxy ping mode)</summary>
+
+选择通过代理使用的 ping 模式。\
+允许的值：
+* **default**
+* **double** - 请求在禁用 Keep-Alive 的一个核心会话内发送。由于 DNS 缓存，第二个请求更快。
+* **keepalive** - 请求通过单个传输实例在一个核心会话内发送。第二个请求通过已建立的 TLS 连接测量纯连接速度。
+
+**配置示例：**
+
+```
+proxy-ping-mode: keepalive
+```
+
+**下发方式：**
+
+{% code title="通过 HTTP 标头：" %}
+```
+proxy-ping-mode: keepalive
+```
+{% endcode %}
+
+{% code title="通过订阅正文：" %}
+```
+#proxy-ping-mode: keepalive
+vless://70cc48c5‑b2f4…
+```
+{% endcode %}
+
+</details>
