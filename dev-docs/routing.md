@@ -2,6 +2,25 @@
 
 The app comes with pre-installed geo files, ensuring it's ready to use immediately after installation. The relevance of geo files is maintained by updating the core version within the app.
 
+# Decentralization of Architecture
+
+The application implements a transition from monolithic global management to modular management at the subscription level:
+* **Individual rule set:** Every subscription (including the server list `Server-List`) now has its own isolated set of rules and routing profiles ("Control Panel"), featuring an independent lifecycle.
+* **Deferred effect of changes:** Any modification to the settings (such as toggling the routing switch or selecting a different profile) is saved to the database but is only applied after a connection restart (**Reconnect**).
+* **Cascading deletion:** When a subscription is deleted from the application, all routing profiles bound to it and their corresponding cached geofiles on the disk are deleted in a cascading manner.
+
+#### **Specifics of Working with JSON Subscriptions (Restricted Mode)**
+
+To prevent synchronization issues between the application settings and the provider's metadata, a strict restrictions mode is enforced for JSON configurations:
+* **Profile limit:** A JSON subscription may have strictly **0 or 1** routing profile.
+* **Bundled only:** The routing profile for a JSON configuration cannot be added manually, copied from another subscription, or imported from the clipboard. It is provided **exclusively together with the subscription itself** from the provider. Manual creation and copying options are fully blocked.
+* **Inability to disable or modify:** The user is restricted from manually managing the activity of such a profile or changing its parameters:
+  * The main routing toggle is forcibly locked in the `true` state (or `false` if the provider itself sent a disabling command).
+  * Modifying the name, URLs, and the geofiles themselves (GeoSite/GeoIP blocks) is entirely blocked.
+* **Tunnel DNS:** The "Remote DNS" fields in the user interface have been renamed to **Tunnel DNS** (Tunnel DNS Type, Tunnel IP, Tunnel Domain) and are used locally to configure the system tunnel, without being injected into the provider's actual JSON file.
+
+***
+
 ### Adding Routing Rules
 
 The app allows you to add routing rules automatically by using special links that can be created on the [https://routing.happ.su](https://routing.happ.su/) website.
@@ -31,6 +50,26 @@ The problematic profile state automatically resolves after:
 * Deleting the problematic profile.
 
 If there are no more problematic profiles in the list, error notifications are removed.
+
+#### Adding / Updating a Profile
+
+**Adding a Routing Profile**
+
+During the import of a routing profile, if none existed in the subscription, the profile is added and bound to this subscription, and the geofiles are downloaded.
+
+**Updating a Routing Profile**
+
+The update process is triggered when the system receives a command to import a profile with an already existing name.
+
+* **Initiation of the Update.** The system receives a new profile import. The entity transitions to a transient `Update` state.
+* **Background Download (Ensuring Continuity).** The process of downloading new geofiles via links from the updated version begins.
+  * **Important:** During the download, the `Current` state remains unchanged. The core continues to run with the old rules and old geofiles, ensuring uninterrupted routing.
+* **Completion of Download and Atomic Swapping.** As soon as all geofiles for the updated version are successfully downloaded:
+  * The old geofiles are replaced with the new ones.
+  * The `Current` state is overwritten with the new rules from the import.
+* **State Synchronization.** Following a successful swap, the system updates the metadata within the single entity:
+  * The `Default` state is updated — the newly imported set of rules is now considered the default.
+  * The `Update` state is marked as completed (or cleared), and the system returns to its normal operating mode.
 
 ### Types of Links
 
