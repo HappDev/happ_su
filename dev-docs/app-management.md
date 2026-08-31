@@ -1611,11 +1611,12 @@ vmess://zkIAU1JitkI…
 * [sing-box](https://github.com/SagerNet/sing-box)
 * [tun2proxy](https://github.com/tun2proxy/tun2proxy)
 * default(Happ TUN) наша реализация туннеля
+* [xray](https://xtls.github.io/config/inbounds/tun.html)
 
 **Пример настройки данного параметра:**
 
 ```
-tun-type: [singbox, tun2proxy, default]
+tun-type: [singbox, tun2proxy, default, xray]
 ```
 
 **Способы передачи:**
