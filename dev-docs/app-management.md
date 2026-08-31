@@ -1611,11 +1611,12 @@ Determines which core will be used for the TUN connection. Available choices:\\
 * [sing-box](https://github.com/SagerNet/sing-box)
 * [tun2proxy](https://github.com/tun2proxy/tun2proxy)
 * default (Happ TUN) — our own tunnel implementation
+* [xray](https://xtls.github.io/config/inbounds/tun.html)
 
 **Example of configuring this parameter:**
 
 ```
-tun-type: [singbox, tun2proxy, default]
+tun-type: [singbox, tun2proxy, default, xray]
 ```
 
 **Delivery methods:**
