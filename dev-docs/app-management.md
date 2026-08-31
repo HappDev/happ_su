@@ -1589,11 +1589,12 @@ vmess://zkIAU1JitkI…
 * [sing-box](https://github.com/SagerNet/sing-box)
 * [tun2proxy](https://github.com/tun2proxy/tun2proxy)
 * default(Happ TUN)— 我们自己实现的隧道
+* [xray](https://xtls.github.io/config/inbounds/tun.html)
 
 **该参数的配置示例:**
 
 ```
-tun-type: [singbox, tun2proxy, default]
+tun-type: [singbox, tun2proxy, default, xray]
 ```
 
 **传递方式:**
