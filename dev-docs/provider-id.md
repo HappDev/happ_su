@@ -63,9 +63,7 @@ https://check.happ-proxy.com/provider?id={ProviderID}
 
 <figure><img src="../.gitbook/assets/telegram-cloud-document-2-5305500219448790093.jpg" alt="" width="375"><figcaption></figcaption></figure>
 
-
-
-#### Добавление ProviderID (на примере панели Remnawave)
+**Добавление ProviderID (на примере панели Remnawave)**
 
 Скопируйте ваш ProviderID в панели управления happ-proxy.com.
 

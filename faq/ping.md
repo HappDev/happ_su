@@ -108,7 +108,7 @@
 **Как включить:**\
 Настройки → **Подписки** → включите **«Пинг при запуске»**.
 
-<figure><img src="../.gitbook/assets/image (26).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (25).png" alt="" width="188"><figcaption></figcaption></figure>
 
 После активации при каждом запуске приложения происходит измерение Ping всех серверов и обновляется их статус (время отклика или иконка).
 

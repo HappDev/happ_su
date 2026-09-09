@@ -6,7 +6,7 @@
 {% endcolumn %}
 
 {% column %}
-<figure><img src="../.gitbook/assets/3425 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/3425.png" alt=""><figcaption></figcaption></figure>
 {% endcolumn %}
 {% endcolumns %}
 

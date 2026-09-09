@@ -6,7 +6,7 @@
 {% endcolumn %}
 
 {% column %}
-<figure><img src="../.gitbook/assets/3425 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/3425.png" alt=""><figcaption></figcaption></figure>
 {% endcolumn %}
 {% endcolumns %}
 
@@ -36,4 +36,3 @@ curl -X POST https://check.happ.su/sendtv/QWET5 \
 
 * `QWET5` — это UID телевизора (тот самый 5-значный код).
 * Значение поля `"data"` — это пример конфигурации, закодированной в Base64
-
