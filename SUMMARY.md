@@ -21,7 +21,7 @@
   * [HWID ссылки](dev-docs/hwid-ssylki.md)
   * [Управление приложением](dev-docs/app-management.md)
   * [Provider ID](dev-docs/provider-id.md)
-  * [Отображение Meta info](dev-docs/meta-info.md)
+  * [Шифрование содержимого подписки](dev-docs/meta-info.md)
   * [Геонастройки / Routing](dev-docs/routing.md)
   * [Отображение смайликов и флагов](dev-docs/emoji.md)
   * [Примеры ссылок и параметров](dev-docs/examples-of-links-and-parameters.md)

@@ -3,81 +3,211 @@ hidden: true
 noIndex: true
 ---
 
-# Отображение Meta info
+# Шифрование содержимого подписки
 
-<figure><img src="../.gitbook/assets/Frame 110 (1).png" alt="" width="375"><figcaption></figcaption></figure>
+## Шифрование содержимого подписки
 
-Владелец подписки может отобразить информацию о потребленном и оставшемся трафике, сроке действия подписки, а также отображать объявления и задавать до двух ссылок для иконок в строке отображения метаданных.
+Happ поддерживает получение зашифрованного содержимого подписки. Это позволяет провайдеру не передавать конфигурацию серверов в открытом виде между backend и приложением.
 
-Все данные могут быть переданы в формате plain text или base64.
+Для шифрования используется алгоритм **AES-128-GCM**.
 
-Метаданные можно передать двумя способами:
+### Общая схема работы
 
-1. Через HTTP-заголовок страницы подписки.
-2. Через тело подписки, указав перед параметром знак # (например #profile-title).
+При запросе подписки backend должен:
 
-### Параметры отображения
+1. Получить обычное содержимое подписки.
+2. Зашифровать его с помощью **AES-128-GCM**.
+3. Передать зашифрованное содержимое в теле HTTP-ответа.
+4. Передать GCM authentication tag в HTTP-заголовке `encrypt-tag`.
+5. В URL подписки указать идентификатор используемого ключа через параметр `key`.
 
-* **`profile-title`** (string):\
-  Название профиля. Может быть передано как plain text или в base64 (UTF-8).\
-  **Ограничение**: Максимальная длина — 25 символов.
-* **`subscription-userinfo`** (string):\
-  Содержит информацию для отображения трафика и срока подписки.
-  * В левой части шкалы отображается сумма потребленного трафика (`upload + download`), в правой части после знака `/` — общий объем (`total`).
-  * Дата окончания подписки указана в параметре `expire`.\
-    **Примечание**: Все данные передаются в одном заголовке и разделяются символом `;`.
-* **`support-url`** (string):\
-  Ссылка на поддержку.
-  * Отображается иконкой синего цвета в правой части строки.
-  * Область клика выделена зеленым прямоугольником.
-* **`profile-web-page-url`** (string):\
-  Ссылка на веб-страницу профиля.
-  * Если параметр указан, иконка приобретает синий цвет (аналогично `support-url`).
-  * Область клика также выделена зеленым прямоугольником.
-* **`announce`** (string):\
-  Текст объявления. Может быть передан в формате plain text или base64.\
-  **Ограничение**: Максимальная длина отображаемого текста — 200 символов.
+Пример URL:
 
-### Параметр обновления
+```
+https://vpn.com/sub/kjdsfkWr5jewk3rjew?key=key02
+```
 
-**profile-update-interval** (int): Интервал автоматического обновления подписки, задаётся в часах.\
-Если пользователь указал интервал в настройках приложения, этот параметр будет проигнорирован.
-
-### Дополнительные рекомендации
-
-* Для корректного отображения метаданных убедитесь, что формат данных соответствует требованиям (plain text или base64 UTF-8).
-* Параметры, указанные в теле подписки, имеют более высокий приоритет, чем параметры, переданные через HTTP-заголовки.
-* Если часть параметров поступает через HTTP-заголовки, а другая часть через тело подписки, необходимо объединить (merge) все параметры, учитывая их приоритеты, и корректно отобразить результат.<br>
+После получения такой подписки Happ определит используемый ключ по значению параметра `key` и расшифрует содержимое.
 
 ***
 
-### **Пример http headers:**
+### Параметры AES-128-GCM
+
+#### Алгоритм
+
+Используйте:
 
 ```
-HTTP/2 200 
-date: Wed, 24 Nov 2024 10:00:52 GMT
-content-type: application/json
-content-length: 3798
-content-disposition: attachment; filename="213"
-profile-web-page-url: https://happ.su
-support-url: https://t.me//happ_chat
-profile-title: base64:0J/QvtC00L/QuNGB0LrQsA==
-profile-update-interval: 1
-subscription-userinfo: upload=0; download=122190068697; total=0; expire=0
-announce: base64:J1bC5jb20iLCJwYXRoIjoiXC8xUyIsInRscyI6InRscyIsImFkZCI6Ind3dy5ndWF2ZWlzdGFuYnVsLmN
-cf-cache-status: DYNAMIC
+AES-128-GCM
 ```
 
-### **Пример тела подписки:**
+Ключ AES-128 должен иметь длину **16 байт**.
+
+#### IV
+
+Используйте следующий IV:
 
 ```
-#profile-title: Happ.su
-#profile-title: base64:0J/QvtC00L/QuNGB0LrQsA==
-#profile-update-interval: 1
-#subscription-userinfo: upload=455727941; download=6174315083; total=1073741824000; expire=1671815872
-#support-url: https://t.me/happ_chat
-#profile-web-page-url: https://happ.su
-#announce: base64:J1bC5jb20iLCJwYXRoIjoiXC8xUyIsInRscyI6InRscyIsImFkZCI6Ind3dy5ndWF2ZWlzdGFuYnVsLmN
-vmess://eyJob3N0IjoiZ3Vhdmypc3RhbmJ1bC5jb20iLCJwYXRoIjoiXC8xUyIsInRscyI6InRscyIsImFkZCI6Ind3dy5ndWF2ZWlzdGFuYnVsLmNvbSIsInBvcnQiOjQ0MywiYWlkIjowLCJuZXQiOiJ3cyIsInR5cGUiOiJub25lIiwiZnAiOiJjaHJvbWUiLCJhbHBuIjoiaHR0cFwvMS4xIiwibm9kZV9zc19wdWJsaWNrZXkiOiIiLCIiOmZhbHNlLCJ2IjoiMiIsInBzIjoiXHVkODNjXHVkZGU5XHVkODNjXHVkZGVhIDRHIC0gR2VybWFueSAtIDAxIiwiaWQiOiI4YjhkYWI4NC03OGEzLTNhMWItYTE1NS03M2FkNDk1ZTY0NmUifQ==
-vless://70cc43c5-b2f4-34ac-a092-d806984a6b8c@1.13.7.91:443?encryption=none&security=reality&pbk=qGPTy8EZokn3hWp6hKBQ0MVvEuLRJCcv5UdWeP4TVhI&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=booking.com&sid=6ba85179e30d4fc2#%F0%9F%87%B1%F0%9F%87%B9%20Test
+kkkkkkkkkkkk
 ```
+
+Длина IV составляет **12 байт**.
+
+IV должен передаваться в AES-GCM именно как последовательность байтов UTF-8/ASCII строки выше.
+
+#### Authentication Tag
+
+В результате AES-GCM шифрования, кроме ciphertext, формируется authentication tag.
+
+Его необходимо передать отдельно в HTTP-заголовке:
+
+```http
+encrypt-tag: <Base64 authentication tag>
+```
+
+Перед отправкой tag необходимо закодировать в **Base64**.
+
+Например:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/plain
+encrypt-tag: YWJjZGVmZ2hpamtsbW5vcA==
+
+<Base64 encrypted subscription>
+```
+
+> Значение выше приведено только как пример формата и не является настоящим authentication tag.
+
+***
+
+## Идентификатор ключа
+
+Параметр `key` в URL **не содержит сам AES-ключ**.
+
+Он содержит только идентификатор ключа, который Happ должен использовать для расшифровки подписки.
+
+Например:
+
+```
+?key=key02
+```
+
+***
+
+## Временный тестовый ключ
+
+Для проверки своей реализации можно использовать тестовый ключ Happ.
+
+**ID ключа:**
+
+```
+key02
+```
+
+**AES-ключ:**
+
+```
+key02:+]%4ij#P"/
+```
+
+Этот ключ имеет необходимую для AES-128 длину — 16 байт.
+
+Таким образом backend должен выполнить шифрование с параметрами:
+
+```
+Algorithm: AES-128-GCM
+Key:       key02:+]%4ij#P"/
+IV:        kkkkkkkkkkkk
+```
+
+При этом URL подписки должен содержать:
+
+```
+?key=key02
+```
+
+Например:
+
+```
+https://vpn.com/sub/kjdsfkWr5jewk3rjew?key=key02
+```
+
+***
+
+## Формат ответа backend
+
+Backend должен вернуть зашифрованную подписку и authentication tag.
+
+Пример:
+
+```http
+GET /sub/kjdsfkWr5jewk3rjew?key=key02 HTTP/1.1
+Host: vpn.com
+```
+
+Ответ:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/plain
+encrypt-tag: <Base64 authentication tag>
+
+<Base64 encrypted subscription>
+```
+
+То есть:
+
+```
+Original subscription
+        │
+        ▼
+   AES-128-GCM
+        │
+        ├── Ciphertext ──────────────► HTTP response body
+        │
+        └── Authentication Tag ─────► encrypt-tag header
+```
+
+***
+
+## Проверка реализации
+
+Для проверки работы шифрования и расшифровки можно использовать тестовую страницу Happ:
+
+[https://crypto.happ.su/aes.php](https://crypto.happ.su/aes.php)
+
+Для теста укажите:
+
+```
+Key:
+key02:+]%4ij#P"/
+
+IV:
+kkkkkkkkkkkk
+```
+
+Зашифруйте тестовое содержимое подписки и сравните результат со своей backend-реализацией.
+
+Для расшифровки понадобятся:
+
+* зашифрованное содержимое в Base64;
+* AES-ключ;
+* IV;
+* authentication tag в Base64.
+
+***
+
+## Важные моменты
+
+При реализации необходимо обратить внимание на следующие требования:
+
+* алгоритм должен быть именно `AES-128-GCM`;
+* ключ должен иметь длину 16 байт;
+* IV должен быть `kkkkkkkkkkkk`;
+* authentication tag необходимо передавать отдельно;
+* authentication tag должен быть закодирован в Base64;
+* HTTP-заголовок для tag — `encrypt-tag`;
+* параметр `key` содержит **ID ключа**, а не сам AES-ключ;
+* для тестового ключа в URL необходимо использовать `key=key02`;
+* не добавляйте authentication tag к ciphertext, если используемая библиотека делает это автоматически — Happ ожидает tag отдельно в HTTP-заголовке.
