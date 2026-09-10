@@ -22,6 +22,7 @@
   * [App management](dev-docs/app-management.md)
   * [Provider ID](dev-docs/provider-id.md)
   * [Routing](dev-docs/routing.md)
+  * [Subscription Content Encryption](dev-docs/encrypting-subscription-content.md)
   * [Displaying flags and smileys](dev-docs/emoji.md)
   * [Examples of links and parameters](dev-docs/examples-of-links-and-parameters.md)
   * [Ping](dev-docs/ping.md)
