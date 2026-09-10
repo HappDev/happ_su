@@ -394,6 +394,46 @@ vless://70cc48c5‑b2f4…
 
 </details>
 
+<details>
+
+<summary>隧道核心选择(仅限 Desktop)</summary>
+
+决定 TUN 连接使用哪种核心。可用选项:\\
+
+* [sing-box](https://github.com/SagerNet/sing-box)
+* [tun2proxy](https://github.com/tun2proxy/tun2proxy)
+* default(Happ TUN)— 我们自己实现的隧道
+* [xray](https://xtls.github.io/config/inbounds/tun.html)
+
+**该参数的配置示例:**
+
+```
+tun-type: [singbox, tun2proxy, default, xray]
+```
+
+**传递方式:**
+
+{% code title="通过 HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+tun-type: tun2proxy
+```
+{% endcode %}
+
+{% code title="通过订阅正文:" %}
+```
+#tun-type: tun2proxy
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
 ## 高级参数 <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
 
 {% hint style="warning" %}
@@ -1573,46 +1613,6 @@ tun-mode: gvisor
 {% code title="通过订阅正文:" %}
 ```
 #tun-mode: gvisor
-vless://70cc48c5‑b2f4…
-vmess://zkIAU1JitkI…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>隧道核心选择(仅限 Desktop)</summary>
-
-决定 TUN 连接使用哪种核心。可用选项:\\
-
-* [sing-box](https://github.com/SagerNet/sing-box)
-* [tun2proxy](https://github.com/tun2proxy/tun2proxy)
-* default(Happ TUN)— 我们自己实现的隧道
-* [xray](https://xtls.github.io/config/inbounds/tun.html)
-
-**该参数的配置示例:**
-
-```
-tun-type: [singbox, tun2proxy, default, xray]
-```
-
-**传递方式:**
-
-{% code title="通过 HTTP Headers:" %}
-```
-HTTP/2 200 
-date: Wed, 24 Nov 2024 10:00:52 GMT
-content-type: application/json
-content-length: 3798
-content-disposition: attachment; filename="213"
-tun-type: tun2proxy
-```
-{% endcode %}
-
-{% code title="通过订阅正文:" %}
-```
-#tun-type: tun2proxy
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
