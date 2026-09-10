@@ -404,6 +404,46 @@ vless://70cc48c5‑b2f4…
 
 </details>
 
+<details>
+
+<summary>Tunnel core selection (Desktop only)</summary>
+
+Determines which core will be used for the TUN connection. Available choices:\\
+
+* [sing-box](https://github.com/SagerNet/sing-box)
+* [tun2proxy](https://github.com/tun2proxy/tun2proxy)
+* default (Happ TUN) — our own tunnel implementation
+* [xray](https://xtls.github.io/config/inbounds/tun.html)
+
+**Example of configuring this parameter:**
+
+```
+tun-type: [singbox, tun2proxy, default, xray]
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+tun-type: tun2proxy
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#tun-type: tun2proxy
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
 ## Advanced parameters <a href="#id-rasshirennyifunkcional-opisanieparametrov" id="id-rasshirennyifunkcional-opisanieparametrov"></a>
 
 {% hint style="warning" %}
@@ -1595,46 +1635,6 @@ tun-mode: gvisor
 {% code title="Via subscription body:" %}
 ```
 #tun-mode: gvisor
-vless://70cc48c5‑b2f4…
-vmess://zkIAU1JitkI…
-```
-{% endcode %}
-
-</details>
-
-<details>
-
-<summary>Tunnel core selection (Desktop only)</summary>
-
-Determines which core will be used for the TUN connection. Available choices:\\
-
-* [sing-box](https://github.com/SagerNet/sing-box)
-* [tun2proxy](https://github.com/tun2proxy/tun2proxy)
-* default (Happ TUN) — our own tunnel implementation
-* [xray](https://xtls.github.io/config/inbounds/tun.html)
-
-**Example of configuring this parameter:**
-
-```
-tun-type: [singbox, tun2proxy, default, xray]
-```
-
-**Delivery methods:**
-
-{% code title="Via HTTP Headers:" %}
-```
-HTTP/2 200 
-date: Wed, 24 Nov 2024 10:00:52 GMT
-content-type: application/json
-content-length: 3798
-content-disposition: attachment; filename="213"
-tun-type: tun2proxy
-```
-{% endcode %}
-
-{% code title="Via subscription body:" %}
-```
-#tun-type: tun2proxy
 vless://70cc48c5‑b2f4…
 vmess://zkIAU1JitkI…
 ```
