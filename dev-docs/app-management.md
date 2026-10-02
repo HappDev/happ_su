@@ -11,10 +11,11 @@ description: Manage application settings through the subscription
 
 To enable a parameter, pass the value `true` or `1`; to disable it, pass any other non-empty value (for example, `0` or `false`).
 
-[!NOTE]
+{% hint style="info" %}
 **Compatibility
 
 Parameters marked **(Desktop only)** apply exclusively to the macOS **DMG version** (full desktop build) and are **not** supported in the Mac Catalyst version from the App Store.
+{% endhint %}
 
 ## Standard parameters
 
