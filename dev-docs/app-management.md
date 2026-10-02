@@ -11,6 +11,12 @@ description: 通过订阅管理应用程序设置
 
 若要启用参数,请传入值 `true` 或 `1`;若要禁用参数,请传入任意其他非空值(例如 `0` 或 `false`)。
 
+{% hint style="info" %}
+**注意**
+
+带有 **(Desktop only)** 标注的参数仅适用于 macOS **DMG 版本**（完整桌面版），**不**适用于 App Store 的 Mac Catalyst 版本。
+{% endhint %}
+
 ## 标准参数
 
 <details>
