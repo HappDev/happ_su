@@ -2334,7 +2334,8 @@ vless://70cc48c5‑b2f4…
 
 Enables or disables binding to the tunnel.\
 When enabled, requests explicitly bound to the tunnel interface (e.g., `curl --interface tun0`) will be blocked.
-Work only with BadVPN(Tunnel), not work with Xray TUN
+
+Work only with Xray TUN (when `xray-tun-enable` is enabled). Does not work with hev2socks.
 
 **Example configuration:**
 
