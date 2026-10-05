@@ -2308,11 +2308,12 @@ vless://70cc48c5‑b2f4…
 
 <details>
 
-<summary>阻止绑定到隧道 (仅限 Android)</summary>
+<summary>阻止绑定到隧道（仅限 Android）</summary>
 
 启用或禁用绑定到隧道。\
-启用后，明确绑定到隧道接口的请求（例如 `curl --interface tun0`）将被阻止。\
-仅适用于 BadVPN(Tunnel)，不适用于 Xray TUN。
+启用后，明确绑定到隧道接口的请求（例如 `curl --interface tun0`）将被阻止。
+
+仅适用于 Xray TUN（当启用 `xray-tun-enable` 时）。不适用于 hev2socks。
 
 **配置示例：**
 
@@ -2322,13 +2323,13 @@ block-bind-to-tunnel-enable: [true / 1]
 
 **下发方式：**
 
-{% code title="通过 HTTP 标头：" %}
+{% code title="通过 HTTP 请求头：" %}
 ```
 block-bind-to-tunnel-enable: true
 ```
 {% endcode %}
 
-{% code title="通过订阅正文：" %}
+{% code title="通过订阅主体：" %}
 ```
 #block-bind-to-tunnel-enable: true
 vless://70cc48c5‑b2f4…
