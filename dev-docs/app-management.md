@@ -2425,3 +2425,100 @@ vless://70cc48c5‑b2f4…
 {% endcode %}
 
 </details>
+
+<details>
+<summary>Режим прокси для приложений (Desktop)</summary>
+
+В этих параметрах вы можете настроить глобальный режим работы прокси для приложений на десктопных платформах (Windows, macOS и Linux).
+
+**Возможные значения:**
+* `off`: **Системные настройки** — все приложения направляются через VPN-туннель.
+* `bypass`: **Прямое подключение для выбранных приложений** — трафик выбранных приложений направляется в обход VPN, а остальные приложения идут через прокси.
+* `on`: **Прокси только для выбранных приложений** — трафик выбранных приложений идет через прокси, а остальные приложения подключаются напрямую.
+
+**Пример настройки этого параметра:**
+```text
+per-app-proxy-mode-windows: [off/on/bypass] \\ Укажите режим для Windows
+per-app-proxy-mode-macos: [off/on/bypass]   \\ Укажите режим для macOS
+per-app-proxy-mode-linux: [off/on/bypass]   \\ Укажите режим для Linux
+```
+
+**Способы передачи:**
+
+{% code title="Через Заголовки HTTP:" %}
+```http
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+per-app-proxy-mode-windows: on
+per-app-proxy-mode-macos: on
+per-app-proxy-mode-linux: on
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```text
+#per-app-proxy-mode-windows: on
+#per-app-proxy-mode-macos: on
+#per-app-proxy-mode-linux: on
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+<summary>Списки приложений прокси: Add / Set (Desktop)</summary>
+
+В этих параметрах вы можете указать списки ID приложений через запятую для десктопных платформ, используя метод `add` или `set`.
+
+* **`add`**: Добавляет указанные приложения к существующему списку проксирования.
+* **`set`**: Очищает текущий список выбранных приложений и устанавливает его заново только из указанных элементов.
+
+**Пример настройки этих параметров:**
+```text
+per-app-proxy-list-windows-add: [explorer.exe,discord.exe] \\ Добавить приложения в список Windows
+per-app-proxy-list-windows-set: [explorer.exe,discord.exe] \\ Перезаписать список Windows
+
+per-app-proxy-list-macos-add: [finder,keychain]            \\ Добавить приложения в список macOS
+per-app-proxy-list-macos-set: [finder,keychain]            \\ Перезаписать список macOS
+
+per-app-proxy-list-linux-add: [firefox,discord]            \\ Добавить приложения в список Linux
+per-app-proxy-list-linux-set: [firefox,discord]            \\ Перезаписать список Linux
+```
+
+**Способы передачи:**
+
+{% code title="Через Заголовки HTTP:" %}
+```http
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+per-app-proxy-list-windows-add: explorer.exe,discord.exe
+per-app-proxy-list-windows-set: explorer.exe,discord.exe
+per-app-proxy-list-macos-add: finder,keychain
+per-app-proxy-list-macos-set: finder,keychain
+per-app-proxy-list-linux-add: firefox,discord
+per-app-proxy-list-linux-set: firefox,discord
+```
+{% endcode %}
+
+{% code title="Через тело подписки:" %}
+```text
+#per-app-proxy-list-windows-add: explorer.exe,discord.exe
+#per-app-proxy-list-windows-set: explorer.exe,discord.exe
+#per-app-proxy-list-macos-add: finder,keychain
+#per-app-proxy-list-macos-set: finder,keychain
+#per-app-proxy-list-linux-add: firefox,discord
+#per-app-proxy-list-linux-set: firefox,discord
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
