@@ -2401,3 +2401,100 @@ vless://70cc48c5‑b2f4…
 {% endcode %}
 
 </details>
+
+<details>
+<summary>分应用代理模式 (Desktop)</summary>
+
+在这些参数中，您可以为桌面平台（Windows、macOS 和 Linux）配置全局分应用代理行为。
+
+**可选模式：**
+* `off`：**系统设置** — 所有应用程序流量均通过 VPN 隧道。
+* `bypass`：**选中应用直连** — 所选应用程序的流量绕过 VPN，其余应用程序流量走代理。
+* `on`：**仅选中应用代理** — 所选应用程序的流量走代理，其余应用程序直接连接。
+
+**配置示例：**
+```text
+per-app-proxy-mode-windows: [off/on/bypass] \\ 指定 Windows 模式
+per-app-proxy-mode-macos: [off/on/bypass]   \\ 指定 macOS 模式
+per-app-proxy-mode-linux: [off/on/bypass]   \\ 指定 Linux 模式
+```
+
+**传递方式：**
+
+{% code title="通过 HTTP 响应头：" %}
+```http
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+per-app-proxy-mode-windows: on
+per-app-proxy-mode-macos: on
+per-app-proxy-mode-linux: on
+```
+{% endcode %}
+
+{% code title="通过订阅内容主体：" %}
+```text
+#per-app-proxy-mode-windows: on
+#per-app-proxy-mode-macos: on
+#per-app-proxy-mode-linux: on
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+<summary>代理应用列表：Add / Set (Desktop)</summary>
+
+在这些参数中，您可以针对桌面平台指定由逗号分隔的应用 ID 列表，可以使用 `add` 或 `set` 方法。
+
+* **`add`**：将指定应用程序追加到现有的分应用代理列表中。
+* **`set`**：清空当前选中的所有应用，并仅将列表设为指定的内容。
+
+**配置示例：**
+```text
+per-app-proxy-list-windows-add: [explorer.exe,discord.exe] \\ 追加应用到 Windows 列表
+per-app-proxy-list-windows-set: [explorer.exe,discord.exe] \\ 覆盖 Windows 列表
+
+per-app-proxy-list-macos-add: [finder,keychain]            \\ 追加应用到 macOS 列表
+per-app-proxy-list-macos-set: [finder,keychain]            \\ 覆盖 macOS 列表
+
+per-app-proxy-list-linux-add: [firefox,discord]            \\ 追加应用到 Linux 列表
+per-app-proxy-list-linux-set: [firefox,discord]            \\ 覆盖 Linux 列表
+```
+
+**传递方式：**
+
+{% code title="通过 HTTP 响应头：" %}
+```http
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+per-app-proxy-list-windows-add: explorer.exe,discord.exe
+per-app-proxy-list-windows-set: explorer.exe,discord.exe
+per-app-proxy-list-macos-add: finder,keychain
+per-app-proxy-list-macos-set: finder,keychain
+per-app-proxy-list-linux-add: firefox,discord
+per-app-proxy-list-linux-set: firefox,discord
+```
+{% endcode %}
+
+{% code title="通过订阅内容主体：" %}
+```text
+#per-app-proxy-list-windows-add: explorer.exe,discord.exe
+#per-app-proxy-list-windows-set: explorer.exe,discord.exe
+#per-app-proxy-list-macos-add: finder,keychain
+#per-app-proxy-list-macos-set: finder,keychain
+#per-app-proxy-list-linux-add: firefox,discord
+#per-app-proxy-list-linux-set: firefox,discord
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
