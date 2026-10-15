@@ -2424,3 +2424,105 @@ vless://70cc48c5‑b2f4…
 {% endcode %}
 
 </details>
+
+<details>
+
+<summary>Per App Proxy Mode for Desktop</summary>
+
+In this parameter, you can configure the global per-app proxy behavior for desktop platforms (Windows, macOS, and Linux).
+
+**Available modes:**
+
+* `off`: System settings — all applications are routed through the VPN tunnel.
+* `bypass`: Direct connection for selected apps — traffic for the selected applications bypasses the VPN, while all other applications go through the proxy.
+* `on`: Proxy only for selected apps — traffic for the selected applications goes through the proxy, while all other applications go directly.
+
+**Example of configuring this parameter:**
+
+```
+per-app-proxy-mode-windows: [off/on/bypass] \\ Specify mode for Windows
+per-app-proxy-mode-macos: [off/on/bypass] \\ Specify mode for macOS
+per-app-proxy-mode-linux: [off/on/bypass] \\ Specify mode for Linux
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+per-app-proxy-mode-windows: on
+per-app-proxy-mode-macos: on
+per-app-proxy-mode-linux: on
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#per-app-proxy-mode-windows: on
+#per-app-proxy-mode-macos: on
+#per-app-proxy-mode-linux: on
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>Per App Proxy Lists for Desktop (add & set)</summary>
+
+In these parameters, you can specify lists of application IDs separated by commas for desktop platforms using either the `add` or `set` method.
+
+* **`add`**: Appends the specified applications to the existing per-app proxy list.
+* **`set`**: Clears all currently selected apps and sets the list anew from the specified elements only.
+
+**Example of configuring these parameters:**
+
+```
+per-app-proxy-list-windows-add: [explorer.exe,discord.exe] \\ Add apps to Windows list
+per-app-proxy-list-windows-set: [explorer.exe,discord.exe] \\ Overwrite Windows list
+
+per-app-proxy-list-macos-add: [finder,keychain] \\ Add apps to macOS list
+per-app-proxy-list-macos-set: [finder,keychain] \\ Overwrite macOS list
+
+per-app-proxy-list-linux-add: [firefox,discord] \\ Add apps to Linux list
+per-app-proxy-list-linux-set: [firefox,discord] \\ Overwrite Linux list
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+HTTP/2 200 
+date: Wed, 24 Nov 2024 10:00:52 GMT
+content-type: application/json
+content-length: 3798
+content-disposition: attachment; filename="213"
+per-app-proxy-list-windows-add: explorer.exe,discord.exe
+per-app-proxy-list-windows-set: explorer.exe,discord.exe
+per-app-proxy-list-macos-add: finder,keychain
+per-app-proxy-list-macos-set: finder,keychain
+per-app-proxy-list-linux-add: firefox,discord
+per-app-proxy-list-linux-set: firefox,discord
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#per-app-proxy-list-windows-add: explorer.exe,discord.exe
+#per-app-proxy-list-windows-set: explorer.exe,discord.exe
+#per-app-proxy-list-macos-add: finder,keychain
+#per-app-proxy-list-macos-set: finder,keychain
+#per-app-proxy-list-linux-add: firefox,discord
+#per-app-proxy-list-linux-set: firefox,discord
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
