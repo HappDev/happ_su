@@ -1979,7 +1979,7 @@ vless://70cc48c5‑b2f4…
 
 在 **switch** 和 **switch_push** 模式下，应用按保存的顺序选择同一订阅中第一个名称不包含 **only Mobile** 的服务器，然后重新建立连接。不会检查服务器可用性或 Ping。如果没有符合条件的服务器，则不执行切换。
 
-**autoswitch-on-wifi-timeout** 参数设置延迟时间，单位为**分钟**。允许范围：**1–60**；默认值：**1**。无效值会被替换为 **1**。如果 Wi-Fi 在延迟结束前断开，倒计时将取消，并在重新连接 Wi-Fi 时重新开始。
+**autoswitch-on-wifi-timeout** 参数设置延迟时间，单位为**分钟**。允许范围：**1–20**；默认值：**1**。无效值会被替换为 **1**。如果 Wi-Fi 在延迟结束前断开，倒计时将取消，并在重新连接 Wi-Fi 时重新开始。
 
 从 Wi-Fi 切换到移动网络时，不会自动更换服务器或恢复到之前的服务器。**dont-use-filter** 参数单独控制服务器列表过滤，不会禁用自动切换功能。
 
@@ -1987,7 +1987,7 @@ vless://70cc48c5‑b2f4…
 
 ```
 autoswitch-on-wifi: [disabled/push/switch/switch_push]
-autoswitch-on-wifi-timeout: [1–60]
+autoswitch-on-wifi-timeout: [1–20]
 ```
 
 **传递方式:**
