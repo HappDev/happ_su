@@ -1970,6 +1970,53 @@ vless://70cc48c5‑b2f4…
 
 <details>
 
+<summary>Autoswitch on Wi-Fi (Android, iOS)</summary>
+
+Controls what happens when the device connects to Wi-Fi while the active server's name contains **only Mobile** (case-insensitive). The setting applies to the current subscription and also works if the connection to such a server is started while already on Wi-Fi.
+
+**Available modes:**
+
+* **disabled** — disables the feature (default).
+* **push** — shows a notification suggesting a server change, without switching servers.
+* **switch** — automatically switches servers without a notification.
+* **switch_push** — automatically switches servers and shows a notification.
+
+In **switch** and **switch_push** modes, the app selects the first server in the same subscription's stored order whose name does not contain **only Mobile**, then restarts the connection. Server availability and ping are not checked. If no suitable server is found, no switch occurs.
+
+The **autoswitch-on-wifi-timeout** parameter sets the delay in **minutes**. Allowed range: **1–60**; default: **1**. Invalid values are replaced with **1**. If Wi-Fi disconnects before the delay expires, the countdown is cancelled and starts again when Wi-Fi reconnects.
+
+Switching from Wi-Fi to mobile data does not automatically change the server or restore the previous one. The **dont-use-filter** parameter controls server list filtering separately and does not disable autoswitching.
+
+**Example of configuring these parameters:**
+
+```
+autoswitch-on-wifi: [disabled/push/switch/switch_push]
+autoswitch-on-wifi-timeout: [1–60]
+```
+
+**Delivery methods:**
+
+{% code title="Via HTTP Headers:" %}
+```
+HTTP/2 200
+autoswitch-on-wifi: switch_push
+autoswitch-on-wifi-timeout: 2
+```
+{% endcode %}
+
+{% code title="Via subscription body:" %}
+```
+#autoswitch-on-wifi: switch_push
+#autoswitch-on-wifi-timeout: 2
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>Pin the current subscription</summary>
 
 Allows a subscription to be pinned (Pin) or unpinned in the general list.\\
