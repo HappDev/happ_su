@@ -561,6 +561,24 @@ vmess://zkIAU1JitkI…
 ```
 {% endcode %}
 
+Параметр **fallback-url** также можно передать прямо в URL подписки, после `#Название?`. Это позволяет использовать запасной адрес уже при первом добавлении подписки, даже если основной URL недоступен. `Название` — имя подписки.
+
+Укажите абсолютный запасной URL с `https://` или `http://` и примените URL-кодирование ко всему его значению (например, с помощью `encodeURIComponent`). Кодируйте только значение запасного URL, включая символы `?`, `&`, `=`, `#` и `%`. Если во фрагменте уже есть параметры, добавьте `&fallback-url=...`.
+
+{% code title="Через URL подписки:" %}
+```
+https://example.com/sub#MyVPN?fallback-url=https%3A%2F%2Fbackup.example.com%2Fsub
+```
+{% endcode %}
+
+Для запасного URL с собственными параметрами, например `https://backup.example.com/sub?token=abc123&format=base64`:
+
+{% code title="Запасной URL с параметрами:" %}
+```
+https://example.com/sub#MyVPN?fallback-url=https%3A%2F%2Fbackup.example.com%2Fsub%3Ftoken%3Dabc123%26format%3Dbase64
+```
+{% endcode %}
+
 </details>
 
 <details>
