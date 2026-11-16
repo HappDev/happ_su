@@ -561,6 +561,24 @@ vmess://zkIAU1JitkI…
 ```
 {% endcode %}
 
+The **fallback-url** parameter can also be passed directly in the subscription URL, after `#Name?`. This makes the backup address available during the first import, even if the main URL is unavailable. `Name` is the subscription name.
+
+Use an absolute `https://` or `http://` backup URL and URL-encode its entire value (for example, using `encodeURIComponent`). Encode only the backup URL value, including its `?`, `&`, `=`, `#`, and `%` characters. If the fragment already contains parameters, append `&fallback-url=...`.
+
+{% code title="Via subscription URL:" %}
+```
+https://example.com/sub#MyVPN?fallback-url=https%3A%2F%2Fbackup.example.com%2Fsub
+```
+{% endcode %}
+
+For a backup URL with its own parameters, such as `https://backup.example.com/sub?token=abc123&format=base64`:
+
+{% code title="Backup URL with parameters:" %}
+```
+https://example.com/sub#MyVPN?fallback-url=https%3A%2F%2Fbackup.example.com%2Fsub%3Ftoken%3Dabc123%26format%3Dbase64
+```
+{% endcode %}
+
 </details>
 
 <details>
