@@ -549,6 +549,24 @@ vmess://zkIAU1JitkI…
 ```
 {% endcode %}
 
+**fallback-url** 参数也可以直接放在订阅 URL 的 `#名称?` 后面。这样，即使主 URL 不可用，应用也能在首次导入订阅时使用备用地址。`名称` 表示订阅名称。
+
+请使用以 `https://` 或 `http://` 开头的绝对备用 URL，并对其完整值进行 URL 编码（例如使用 `encodeURIComponent`）。只编码备用 URL 的值，包括其中的 `?`、`&`、`=`、`#` 和 `%` 字符。如果片段中已有参数，请追加 `&fallback-url=...`。
+
+{% code title="通过订阅 URL:" %}
+```
+https://example.com/sub#MyVPN?fallback-url=https%3A%2F%2Fbackup.example.com%2Fsub
+```
+{% endcode %}
+
+如果备用 URL 带有自己的参数，例如 `https://backup.example.com/sub?token=abc123&format=base64`：
+
+{% code title="带参数的备用 URL:" %}
+```
+https://example.com/sub#MyVPN?fallback-url=https%3A%2F%2Fbackup.example.com%2Fsub%3Ftoken%3Dabc123%26format%3Dbase64
+```
+{% endcode %}
+
 </details>
 
 <details>
