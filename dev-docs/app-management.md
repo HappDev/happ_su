@@ -1948,6 +1948,53 @@ vless://70cc48c5‑b2f4…
 
 <details>
 
+<summary>连接 Wi-Fi 时自动切换服务器(Android、iOS)</summary>
+
+当设备连接到 Wi-Fi，且当前使用的服务器名称包含 **only Mobile**（不区分大小写）时，控制应用执行的操作。此设置适用于当前订阅。如果设备已连接 Wi-Fi，然后才连接到此类服务器，该功能同样生效。
+
+**可用模式:**
+
+* **disabled** — 禁用此功能（默认值）。
+* **push** — 显示建议更换服务器的通知，不自动切换服务器。
+* **switch** — 自动切换服务器，不显示通知。
+* **switch_push** — 自动切换服务器并显示通知。
+
+在 **switch** 和 **switch_push** 模式下，应用按保存的顺序选择同一订阅中第一个名称不包含 **only Mobile** 的服务器，然后重新建立连接。不会检查服务器可用性或 Ping。如果没有符合条件的服务器，则不执行切换。
+
+**autoswitch-on-wifi-timeout** 参数设置延迟时间，单位为**分钟**。允许范围：**1–60**；默认值：**1**。无效值会被替换为 **1**。如果 Wi-Fi 在延迟结束前断开，倒计时将取消，并在重新连接 Wi-Fi 时重新开始。
+
+从 Wi-Fi 切换到移动网络时，不会自动更换服务器或恢复到之前的服务器。**dont-use-filter** 参数单独控制服务器列表过滤，不会禁用自动切换功能。
+
+**这些参数的配置示例:**
+
+```
+autoswitch-on-wifi: [disabled/push/switch/switch_push]
+autoswitch-on-wifi-timeout: [1–60]
+```
+
+**传递方式:**
+
+{% code title="通过 HTTP Headers:" %}
+```
+HTTP/2 200
+autoswitch-on-wifi: switch_push
+autoswitch-on-wifi-timeout: 2
+```
+{% endcode %}
+
+{% code title="通过订阅正文:" %}
+```
+#autoswitch-on-wifi: switch_push
+#autoswitch-on-wifi-timeout: 2
+vless://70cc48c5‑b2f4…
+vmess://zkIAU1JitkI…
+```
+{% endcode %}
+
+</details>
+
+<details>
+
 <summary>置顶当前订阅</summary>
 
 允许在总列表中置顶(Pin)或取消置顶订阅。\\
