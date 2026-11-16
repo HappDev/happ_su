@@ -2001,7 +2001,7 @@ Controls what happens when the device connects to Wi-Fi while the active server'
 
 In **switch** and **switch_push** modes, the app selects the first server in the same subscription's stored order whose name does not contain **only Mobile**, then restarts the connection. Server availability and ping are not checked. If no suitable server is found, no switch occurs.
 
-The **autoswitch-on-wifi-timeout** parameter sets the delay in **minutes**. Allowed range: **1–60**; default: **1**. Invalid values are replaced with **1**. If Wi-Fi disconnects before the delay expires, the countdown is cancelled and starts again when Wi-Fi reconnects.
+The **autoswitch-on-wifi-timeout** parameter sets the delay in **minutes**. Allowed range: **1–20**; default: **1**. Invalid values are replaced with **1**. If Wi-Fi disconnects before the delay expires, the countdown is cancelled and starts again when Wi-Fi reconnects.
 
 Switching from Wi-Fi to mobile data does not automatically change the server or restore the previous one. The **dont-use-filter** parameter controls server list filtering separately and does not disable autoswitching.
 
@@ -2009,7 +2009,7 @@ Switching from Wi-Fi to mobile data does not automatically change the server or 
 
 ```
 autoswitch-on-wifi: [disabled/push/switch/switch_push]
-autoswitch-on-wifi-timeout: [1–60]
+autoswitch-on-wifi-timeout: [1–20]
 ```
 
 **Delivery methods:**
